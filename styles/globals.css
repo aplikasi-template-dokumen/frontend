@@ -1,0 +1,131 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #FFFFFF;
+}
+
+header {
+  background: url('/images/bg-header.png');
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 100px 60px 150px;
+  align-items: center;
+  height: 550px;
+  /* box-shadow: 0 3px 5px 3px #eaeaea; */
+}
+
+header h1 {
+  width: 50%;
+  font-size: 45px;
+  opacity: 1;;
+  /* background-color: rgb(216, 233, 255); */
+}
+
+header span {
+  color: rgb(40, 79, 146);
+}
+
+header .fitur {
+  display: flex;
+  flex-direction: row;
+}
+
+header .fitur div {
+  margin: 0 15px;
+  /* background-color: rgb(176, 199, 219); */
+  background-color: #FFFFFF;
+  box-shadow: 0 0 5px 3px rgb(176, 199, 219);
+  border-radius: 8px;
+  /* padding: 50px 70px; */
+  width: 240px;
+  height: 300px;
+  text-align: center;
+}
+
+header .fitur div img {
+  height: 50%;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+header .fitur div p {
+  padding: 0 20px;
+  text-align: center;
+}
+
+header span {
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  padding: 0 60px;
+}
+
+.not-found-container {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color:  rgb(176, 199, 219);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('/images/bg-header.png');
+}
+
+.not-found-container h1 {
+  font-size: 150px;
+  line-height: 0;
+  letter-spacing: 15px;
+}
+
+.not-found-container p {
+  font-size: 25px;
+  letter-spacing: 5px;
+  font-weight: 400;
+}
+
+.not-found-box {
+  background-color: #ffffff9c;
+  border-radius: 4px;
+  width: fit-content;
+  padding: 15px 60px;
+  margin: 0 auto;
+}
+
+.not-found-container a {
+  width: fit-content;
+  padding: 10px 30px;
+  margin: 30px auto 0 auto;
+  color: #FFFFFF;
+  background-color: rgb(40, 79, 146);
+  border-radius: 4px;
+  transition: 0.15s;
+}
+
+.not-found-container a:hover {
+  background-color: rgb(17, 46, 96);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}

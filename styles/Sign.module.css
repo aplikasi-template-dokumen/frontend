@@ -1,0 +1,68 @@
+.container {
+    /* display: flex;
+    justify-content: center; */
+    text-align: left;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 6px 0px #ADADAD;
+    border-radius: 4px;
+    padding: 30px 60px;
+    width: 500px;
+    margin: 100px auto;
+}
+
+.container h1 {
+    margin-bottom: 40px;
+}
+
+.form p {
+    line-height: 0;
+}
+
+.form p span {
+    color: red;
+}
+
+.form input, .form button, .form a, .form select {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #ADADAD;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+.form select {
+    background-color: #FFFFFF;
+}
+
+.form button {
+    /* background-color: #82b9d6; */
+    background-color: rgb(40, 79, 146);
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: 0.15s;
+}
+
+.form button:hover {
+    background-color: rgb(17, 46, 96);
+}
+
+.form a {
+    border: none;
+    text-align: center;
+}
+
+.form .note {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.center a {
+    color: rgb(40, 79, 146);
+    margin-left: -10px;
+}

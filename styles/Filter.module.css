@@ -1,0 +1,55 @@
+.container {
+    width: 90%;
+    /* background-color: #FFFFFF; */
+    height: fit-content;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.container h2 {
+    font-size: 20px;
+    /* line-height: 0%; */
+}
+
+.container form {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 3px 1px #ADADAD;
+    padding: 5px 14px;
+    border-radius: 4px;
+    padding: 25px 15px;
+    /* font-size: 16px; */
+}
+
+.container form p {
+    line-height: 0;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.container form .sub {
+    margin-top: 30px;
+}
+
+.container form select {
+    width: 100%;
+    padding: 8px 0;
+    background-color: #FFFFFF;
+    border: 1px #ADADAD solid;
+    border-radius: 4px;
+}
+
+.container form button {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(40, 79, 146);
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: 0.15s;
+}
+
+.container form button:hover {
+    background-color: rgb(17, 46, 96);
+}
