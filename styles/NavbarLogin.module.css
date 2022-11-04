@@ -37,29 +37,39 @@
     z-index: 2;
     top: 0;
     left: 0;
-    padding: 25px 0;
-    width: 50px;
+    padding-top: 10px;
     height: 100vh;
     background-color: #588eac;
     display: flex;
 }
 
+
 .container nav img {
     width: 20px;
     height: 20px;
-    margin-left: 15px;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
-.container nav img:first-child {
-    margin-top: 0;
-    margin-bottom: 30px;
+.container nav div .link {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 10px 0 10px 20px;
+    transition: 0.15s;
 }
 
-.container nav img:last-child {
+.container nav div .link:hover {
+    background-color: #2f5f79;
+}
+
+.container nav div .link p {
+    font-size: 14px;
+    line-height: 8px;
+    padding-right: 15px;
+}
+
+.container nav div .link:last-child {
     position: absolute;
+    right: 0;
     left: 0;
     bottom: 0;
     margin-bottom: 20px;
@@ -68,7 +78,7 @@
 
 .container nav hr {
     color: #FFFFFF;
-    width: 80%;
+    width: 90%;
 }
 
 .leftLogin {
@@ -85,4 +95,12 @@
     border-radius: 50%;
     object-fit: cover;
     margin-right: 15px;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: inherit;
 }

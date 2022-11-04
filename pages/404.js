@@ -1,12 +1,14 @@
+import Link from 'next/link'
+
 export default function NotFound() {
     return(
         <div className='not-found-container'>
             <div className='not-found-box'>
                 <h1>404</h1>
-                <p>Halaman tidak ditemukan!</p>
+                <h3>Halaman tidak ditemukan!</h3>
             </div>
 
-            <a href="/">Ke Halaman utama</a>
+            <Link href='/'>Ke Halaman utama</Link>
         </div>
     )
 }

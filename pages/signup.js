@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar'
 import style from '../styles/Sign.module.css'
+import Link from 'next/link'
 
 export default function SignUpPage() {
     return (
@@ -35,7 +36,7 @@ export default function SignUpPage() {
                 <p className={style.note}><span>*</span>wajib diisi</p>
 
                 <button id='daftar'>Daftar</button>
-                <p className={style.center}>Sudah punya akun?<a href='/login'>Masuk</a></p>
+                <p className={style.center}>Sudah punya akun?<Link href='/login'>Masuk</Link></p>
             </form>
         </div>
         </>

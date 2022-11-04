@@ -1,0 +1,40 @@
+.container {
+    /* background-color: antiquewhite; */
+    padding: 80px 120px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .document {
+    width: 60%;
+    height: 600px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 1px #ADADAD;
+}
+
+.container .action {
+    width: 30%;
+    height: fit-content;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 1px #ADADAD;
+    text-align: center;
+    padding: 20px 15px;
+}
+
+.container .action button {
+    width: 80%;
+    padding: 14px 0;
+    margin: 10px 0;
+    color: #FFFFFF;
+    background-color: #284f92;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.container .action button:hover {
+    background-color: #112e60;
+}
