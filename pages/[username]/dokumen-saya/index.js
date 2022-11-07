@@ -21,20 +21,24 @@ export default function DokumenSaya() {
                         <p>Terakhir Diedit</p>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Dokumen 1</p>
                         <p>01/11/22</p>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Dokumen 2</p>
                         <p>01/11/22</p>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Dokumen 3</p>
                         <p>01/11/22</p>
                     </div>
+
+                    <Link href='/rahmams/dokumen-saya/create'>
+                        <button className={style.btnCreate}>Buat Dokumen Baru</button>
+                    </Link>
                 </main>
             </div>
         </>

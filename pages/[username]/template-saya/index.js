@@ -22,23 +22,27 @@ export default function TemplateSaya() {
                         <p>Terakhir Diedit</p>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Template 1</p>
                         <p>Publish</p>
                         <p>01/11/22</p>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Template 2</p>
                         <p>Publish</p>
                         <p>01/11/22</p>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Template 3</p>
                         <p>Publish</p>
                         <p>01/11/22</p>
                     </div>
+
+                    <Link href='/rahmams/template-saya/create'>
+                        <button className={style.btnCreate}>Buat Template Baru</button>
+                    </Link>
                 </main>
             </div>
         </>

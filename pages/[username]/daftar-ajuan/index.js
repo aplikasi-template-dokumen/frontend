@@ -22,19 +22,19 @@ export default function TemplateAjuan() {
                         <p>Periksa</p>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Template 1</p>
                         <p>rahmams68</p>
                         <button>Review</button>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Template 2</p>
                         <p>rahmams68</p>
                         <button>Review</button>
                     </div>
                     
-                    <div>
+                    <div className={style.list}>
                         <p>Template 3</p>
                         <p>rahmams68</p>
                         <button>Review</button>

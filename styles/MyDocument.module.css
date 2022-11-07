@@ -1,6 +1,5 @@
 .container {
     padding: 60px 80px;
-    /* background-color: antiquewhite; */
 }
 
 .container main div {
@@ -30,6 +29,82 @@
     font-weight: 600;
 }
 
-.container main div:nth-child(even) {
+.container main div.list:nth-child(even) {
     background-color: #82b9d638;
+}
+
+.form {
+    margin: 0 60px;
+}
+
+.form div {
+    margin: 20px 0;
+}
+
+.form div p {
+    width: 25%;
+}
+
+.form div input, .form div select {
+    width: 75%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #ADADAD;
+    background-color: #FFFFFF;
+}
+
+.editor {    
+    width: 700px;
+    height: 900px;
+    margin: 60px auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 3px 1px #ADADAD;
+}
+
+.btnCreate {
+    width: 100%;
+    margin-top: 50px;
+    color: #FFFFFF;
+    background-color: #284f92;
+    border: none;
+    border-radius: 4px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.btnCreate:hover {
+    background-color: #112e60;
+}
+
+.btnGroup {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 60px;
+    padding: 0;
+}
+
+.btnGroup .btn {
+    width: 30%;
+}
+
+.btnGroup .btn button {
+    width: 100%;
+    padding: 15px 0;
+}
+
+.btnGroup .btn .btnHapus {
+    background-color: rgb(166, 55, 55);
+}
+
+.btnGroup .btn .btnHapus:hover {
+    background-color: rgb(121, 34, 34);
+}
+
+.btnGroup .btn .btnAjukan {
+    background-color: rgb(33, 141, 82);
+}
+
+.btnGroup .btn .btnAjukan:hover {
+    background-color: rgb(17, 92, 51);
 }

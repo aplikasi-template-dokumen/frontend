@@ -73,16 +73,6 @@ export default function NavbarLogin() {
                         <p className={menu}>Keluar</p>
                     </Link>
                 </div>
-
-                <div className={style.menuList}>
-                    {/* <a>Halaman Utama</a>
-                    <p>Dokumen Saya</p>
-                    <p>Template Saya</p>
-                    <p>Daftar Template Diajukan</p>
-                    <p>Dashboard Admin</p>
-                    <p>Profil</p>
-                    <p>Keluar</p> */}
-                </div>
             </nav>
         </div>
     )
