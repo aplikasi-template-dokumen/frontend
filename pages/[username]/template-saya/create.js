@@ -9,7 +9,7 @@ export default function BuatTemplate() {
 
             <div className={style.container}>
                 <div>
-                    <Link href='/rahmams/template-saya'>Kembali ke Template Saya</Link>
+                    <Link className='backBtn' href='/rahmams/template-saya'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Template Saya</Link>
                 </div>
 
                 <main>

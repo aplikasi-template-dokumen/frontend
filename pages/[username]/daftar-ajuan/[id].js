@@ -9,7 +9,7 @@ export default function DetailTemplateAjuan() {
 
             <div className={style.container}>
                 <div>
-                    <Link href='/rahmams/daftar-ajuan'>Kembali ke Daftar Template Ajuan</Link>
+                    <Link className='backBtn' href='/rahmams/daftar-ajuan'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Daftar Template Ajuan</Link>
 
                     <main>
                         <h1>Review: Judul Template</h1>

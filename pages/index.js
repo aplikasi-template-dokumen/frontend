@@ -84,8 +84,7 @@ export default function Home() {
           </div>
 
           <div className={styles.cards}>
-            {/* <h2>Hasil Pencarian</h2> */}
-            { documentList.map((item) => <Card key={item.id} data={item} />) }
+            { documentList.length == 0 ? "Loading . . ." : documentList.map((item) => <Card key={item.id} data={item} />) }
           </div>
         </div>
       </main>

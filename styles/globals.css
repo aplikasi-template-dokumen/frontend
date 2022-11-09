@@ -120,6 +120,17 @@ main {
   background-color: rgb(17, 46, 96);
 }
 
+.backImg {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.backBtn {
+  display: flex;
+  margin-left: 55px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

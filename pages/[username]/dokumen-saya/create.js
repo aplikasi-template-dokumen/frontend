@@ -9,24 +9,26 @@ export default function BuatDokumen() {
 
             <div className={style.container}>
                 <div>
-                    <Link href='/rahmams/dokumen-saya'>Kembali ke Dokumen Saya</Link>
+                    <Link className='backBtn' href='/rahmams/dokumen-saya'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Dokumen Saya</Link>
                 </div>
 
                 <main>
                     <h1>Judul Dokumen</h1>
                     <hr />
+
+                    <div className={style.editor}></div>
                     
                     <div className={style.btnGroup}>
-                        <Link href='/'>
-                            <button>Hapus</button>
+                        <Link href='/' className={style.btn}>
+                            <button className={style.btnHapus}>Hapus</button>
                         </Link>
 
-                        <Link href='/'>
+                        <Link href='/' className={style.btn}>
                             <button>Simpan</button>
                         </Link>
 
-                        <Link href='/'>
-                            <button>Unduh</button>
+                        <Link href='/' className={style.btn}>
+                            <button className={style.btnAjukan}>Unduh</button>
                         </Link>
                     </div>
                 </main>

@@ -9,7 +9,7 @@ export default function TemplateSaya() {
 
             <div className={style.container}>
                 <div>
-                    <Link href='/rahmams'>Kembali ke Halaman Utama</Link>
+                    <Link className='backBtn' href='/rahmams'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Halaman Utama</Link>
                 </div>
 
                 <main>

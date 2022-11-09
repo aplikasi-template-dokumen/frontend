@@ -7,6 +7,10 @@ export default function Profil() {
         <>
             <NavbarLogin />
 
+            <div>
+                <Link className='backBtn' href='/rahmams'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Halaman Utama</Link>
+            </div>
+
             <div className={style.container}>
                 <img src='/images/sample-profile.png' />
                 {/* <a>Ganti Foto</a> */}

@@ -1,0 +1,60 @@
+.container {
+    padding: 60px 80px;
+}
+
+.container main form {
+    font-size: 18px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container main form select {
+    background-color: #FFFFFF;
+    border: 1px solid #ADADAD;
+    border-radius: 4px;
+    padding: 5px 30px 5px 0;
+}
+
+.container main form input {
+    padding: 5px;
+    border: 1px solid #ADADAD;
+    border-radius: 4px;
+    outline: none;
+}
+
+.container main form p {
+    display: inline;
+    margin-right: 15px;
+}
+
+.container table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.container table tr td {
+    padding: 15px 0;
+}
+
+.container table thead td {
+    padding: 15px 0;
+}
+
+.container table tr:nth-child(even) {
+    background-color: #ececec;
+}
+
+.container table button {
+    color: #FFFFFF;
+    background-color: rgb(175, 51, 51);
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.container table button.btnEdit {
+    background-color: #284f92;
+}
