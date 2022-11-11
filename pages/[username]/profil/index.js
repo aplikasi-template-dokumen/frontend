@@ -35,8 +35,8 @@ export default function Profil() {
                 </select>
                 
                 <div className={style.btn}>
-                    <button>Edit Profil</button>
-                    <button>Ganti Password</button>
+                    <Link href='/rahmams/profil/edit'><button>Edit Profil</button></Link>
+                    <Link href='/rahmams/profil/ganti-password'><button>Ganti Password</button></Link>
                 </div>
             </div>
         </>

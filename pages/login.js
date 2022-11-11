@@ -11,7 +11,7 @@ export default function LoginPage() {
 
             <form className={style.form}>
                 <p>Username <span>*</span></p>
-                <input type='text' id='username' placeholder='user123'/>
+                <input type='text' id='uname' placeholder='user123'/>
 
                 <p>Password <span>*</span></p>
                 <input type='password' id='pass'/>

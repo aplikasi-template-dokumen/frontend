@@ -16,29 +16,31 @@ export default function TemplateSaya() {
                     <h1>Template Saya</h1>
                     <hr />
 
-                    <div className={style.head}>
-                        <p>Judul Template</p>
-                        <p>Status</p>
-                        <p>Terakhir Diedit</p>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Template 1</p>
-                        <p>Publish</p>
-                        <p>01/11/22</p>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Template 2</p>
-                        <p>Publish</p>
-                        <p>01/11/22</p>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Template 3</p>
-                        <p>Publish</p>
-                        <p>01/11/22</p>
-                    </div>
+                    <table>
+                        <tr>
+                            <td>Judul Dokumen</td>
+                            <td>Status</td>
+                            <td>Terakhir Diedit</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dokumen 1</td>
+                            <td>Publish</td>
+                            <td>01/11/22</td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Dokumen 1</td>
+                            <td>Publish</td>
+                            <td>01/11/22</td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Dokumen 1</td>
+                            <td>Publish</td>
+                            <td>01/11/22</td>
+                        </tr>
+                    </table>
 
                     <Link href='/rahmams/template-saya/create'>
                         <button className={style.btnCreate}>Buat Template Baru</button>

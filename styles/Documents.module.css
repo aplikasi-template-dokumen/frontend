@@ -7,7 +7,7 @@
 
 .container .document {
     width: 60%;
-    height: 600px;
+    min-height: 11in;
     background-color: #FFFFFF;
     border-radius: 4px;
     box-shadow: 0 0 5px 1px #ADADAD;

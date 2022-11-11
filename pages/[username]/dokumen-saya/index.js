@@ -16,25 +16,27 @@ export default function DokumenSaya() {
                     <h1>Dokumen Saya</h1>
                     <hr />
 
-                    <div className={style.head}>
-                        <p>Judul Dokumen</p>
-                        <p>Terakhir Diedit</p>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Dokumen 1</p>
-                        <p>01/11/22</p>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Dokumen 2</p>
-                        <p>01/11/22</p>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Dokumen 3</p>
-                        <p>01/11/22</p>
-                    </div>
+                    <table>
+                        <tr>
+                            <td>Judul Dokumen</td>
+                            <td>Terakhir Diedit</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dokumen 1</td>
+                            <td>01/11/22</td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Dokumen 1</td>
+                            <td>01/11/22</td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Dokumen 1</td>
+                            <td>01/11/22</td>
+                        </tr>
+                    </table>
 
                     <Link href='/rahmams/dokumen-saya/create'>
                         <button className={style.btnCreate}>Buat Dokumen Baru</button>

@@ -1,4 +1,5 @@
 import NavbarLogin from '../../../components/NavbarLogin'
+import Editor from '../../../components/Editor'
 import style from '../../../styles/MyDocument.module.css'
 import Link from 'next/dist/client/link'
 
@@ -16,7 +17,9 @@ export default function BuatDokumen() {
                     <h1>Judul Dokumen</h1>
                     <hr />
 
-                    <div className={style.editor}></div>
+                    <div className={style.editor}>
+                        <Editor className={style.editor} />
+                    </div>
                     
                     <div className={style.btnGroup}>
                         <Link href='/' className={style.btn}>
