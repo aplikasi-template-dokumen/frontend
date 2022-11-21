@@ -2,15 +2,25 @@ import NavbarLogin from "../../../components/NavbarLogin"
 import DataTable from "../../../components/DataTable"
 import style from '../../../styles/Dashboard.module.css'
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useRouter } from 'next/router'
 
 export default function Dashboard() {
+    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+    const router = useRouter()
+
     const [type, setType] = useState('user')
 
     function changeType(e, type) {
         e.preventDefault()
         setType(type)
     }
+
+    useEffect(() => {
+        if (user === null) {
+            router.push(`/`)
+        }
+    })
 
     return (
         <>

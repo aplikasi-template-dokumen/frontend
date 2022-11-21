@@ -1,8 +1,19 @@
 import NavbarLogin from '../../../components/NavbarLogin'
 import style from '../../../styles/MyDocument.module.css'
 import Link from 'next/dist/client/link'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function TemplateSaya() {
+    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+    const router = useRouter()
+
+    useEffect(() => {
+        if (user === null) {
+            router.push(`/`)
+        }
+    })
+
     return (
         <>
             <NavbarLogin />
@@ -42,7 +53,7 @@ export default function TemplateSaya() {
                         </tr>
                     </table>
 
-                    <Link href='/rahmams/template-saya/create'>
+                    <Link href={`/${user}/template-saya/create`}>
                         <button className={style.btnCreate}>Buat Template Baru</button>
                     </Link>
                 </main>

@@ -1,8 +1,21 @@
 import NavbarLogin from '../../../components/NavbarLogin'
 import style from '../../../styles/MyDocument.module.css'
 import Link from 'next/dist/client/link'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function TemplateAjuan() {
+    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+    const router = useRouter()
+
+    useEffect(() => {
+        if (user === null) {
+            router.push('/')
+        }
+
+        //axios here
+    })
+
     return (
         <>
             <NavbarLogin />
@@ -16,29 +29,35 @@ export default function TemplateAjuan() {
                     <h1>Daftar Ajuan Template</h1>
                     <hr />
 
-                    <div className={style.head}>
-                        <p>Judul Template</p>
-                        <p>Kontributor</p>
-                        <p>Periksa</p>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Template 1</p>
-                        <p>rahmams68</p>
-                        <button>Review</button>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Template 2</p>
-                        <p>rahmams68</p>
-                        <button>Review</button>
-                    </div>
-                    
-                    <div className={style.list}>
-                        <p>Template 3</p>
-                        <p>rahmams68</p>
-                        <button>Review</button>
-                    </div>
+                    <table>
+                        <tr>
+                            <td>Judul Template</td>
+                            <td>Kontributor</td>
+                            <td>Tanggal Diajukan</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>Template 1</td>
+                            <td>rahmams68</td>
+                            <td>01/11/22</td>
+                            <button>Review</button>                            
+                        </tr>
+                            
+                        <tr>
+                            <td>Template 2</td>
+                            <td>rahmams68</td>
+                            <td>01/11/22</td>
+                            <button>Review</button>                            
+                        </tr>
+
+                        <tr>
+                            <td>Template 3</td>
+                            <td>rahmams68</td>
+                            <td>01/11/22</td>
+                            <button>Review</button>                            
+                        </tr>
+                    </table>
                 </main>
             </div>
         </>

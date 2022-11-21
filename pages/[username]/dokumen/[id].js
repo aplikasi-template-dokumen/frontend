@@ -1,16 +1,25 @@
 import style from '../../../styles/Documents.module.css'
 import NavbarLogin from '../../../components/NavbarLogin'
 import Editor from '../../../components/Editor'
-// import CKeditor from '../../../components/CKeditor'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 export default function DetailTemplateLogin() {
+    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+    const router = useRouter()
+
     const [editorLoaded, setEditorLoaded] = useState(false)
     const [data, setData] = useState("")
 
     useEffect(() => {
-        setEditorLoaded(true)
+        if (user === null) {
+            router.push(`/`)
+        }
+
+        else {
+            setEditorLoaded(true)
+        }
     }, [])
 
     return (

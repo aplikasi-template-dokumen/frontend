@@ -1,8 +1,21 @@
 import NavbarLogin from '../../../components/NavbarLogin'
 import style from '../../../styles/Templates.module.css'
 import Link from 'next/dist/client/link'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function DetailTemplateAjuan() {
+    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+    const router = useRouter()
+
+    useEffect(() => {
+        if (user === null) {
+            router.push('/')
+        }
+
+        //axios here
+    })
+
     return (
         <>
             <NavbarLogin />

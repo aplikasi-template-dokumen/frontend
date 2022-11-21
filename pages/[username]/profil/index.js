@@ -1,8 +1,19 @@
 import style from '../../../styles/Profile.module.css'
 import NavbarLogin from "../../../components/NavbarLogin"
 import Link from 'next/link'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Profil() {
+    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+    const router = useRouter()
+
+    useEffect(() => {
+        if (user === null) {
+            router.push(`/`)
+        }
+    })
+
     return (
         <>
             <NavbarLogin />
@@ -35,8 +46,10 @@ export default function Profil() {
                 </select>
                 
                 <div className={style.btn}>
-                    <Link href='/rahmams/profil/edit'><button>Edit Profil</button></Link>
-                    <Link href='/rahmams/profil/ganti-password'><button>Ganti Password</button></Link>
+                    <Link className={style.button} href={`/${user}/profil/edit`}>Edit Profil</Link>
+                    <Link className={style.button} href={`/${user}/profil/ganti-password`}>Ganti Password</Link>
+                    {/* <button>Edit Profil</button>
+                    <button>Ganti Password</button> */}
                 </div>
             </div>
         </>

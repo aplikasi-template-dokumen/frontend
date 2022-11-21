@@ -2,8 +2,19 @@ import NavbarLogin from '../../../components/NavbarLogin'
 import Editor from '../../../components/Editor'
 import style from '../../../styles/MyDocument.module.css'
 import Link from 'next/dist/client/link'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function BuatTemplate() {
+    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+    const router = useRouter()
+
+    useEffect(() => {
+        if (user === null) {
+            router.push(`/`)
+        }
+    })
+    
     return (
         <>
             <NavbarLogin />

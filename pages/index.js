@@ -3,17 +3,25 @@ import Navbar from '../components/Navbar'
 import FilterBox from '../components/FilterBox'
 import Card from '../components/Card'
 import styles from '../styles/Home.module.css'
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 export default function Home() {
   const [documentList, setDocumentList] = useState([])
+  const router = useRouter()
 
   const changeSelectedCategory = (e, category) => {
     console.log(category);
   }
 
+  const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+
   useEffect(() => {
+    if (user !== null) {
+      router.push(`/${user}`)
+    }
+
     fetch('http://localhost:3000/api/documents/semua-kategori')
       .then((res) => res.json())
       .then((data) => {
