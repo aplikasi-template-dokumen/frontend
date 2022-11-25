@@ -9,33 +9,62 @@ import axios from 'axios'
 
 export default function Home() {
   const [documentList, setDocumentList] = useState([])
+  const [sub, setSub] = useState([])
+  const [lang, setLang] = useState([])
+
   const router = useRouter()
 
-  const changeSelectedCategory = (e, category) => {
-    console.log(category);
-  }
-
-  const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+  // const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
 
   useEffect(() => {
-    if (user !== null) {
-      router.push(`/${user}`)
-    }
+    // if (user !== null) {
+    //   router.push(`/${user}`)
+    // }
 
-    fetch('http://localhost:3000/api/documents/semua-kategori')
+    fetch('http://127.0.0.1:3001/t-all')
       .then((res) => res.json())
       .then((data) => {
-        setDocumentList(data)
+        setDocumentList(data.data)
       })
-    // console.log("List:", documentList)
+    // console.log("List aaa:", documentList)
   }, [])
 
-  const getDocumentList = async (e, category) => {
+  const getDocumentList = async (e, cat_id) => {
     try {
       e.preventDefault()
-      const respone = await axios.get(`http://localhost:3000/api/documents/${category}`)
-      setDocumentList(respone.data)
-      console.log('List ', category, ': ', documentList)
+      if (cat_id === 0) {
+        const response = await axios.get(`http://127.0.0.1:3001/t-all`)
+        setDocumentList(response.data.data)
+        console.log('List ', documentList)
+      }
+
+      else {
+        const response = await axios.get(`http://127.0.0.1:3001/t/cat/${cat_id}`)
+        setDocumentList(response.data.data)
+        console.log('List ', documentList)
+
+        const language = await axios.get(`http://127.0.0.1:3001/l`)
+        setLang(language.data.data)
+        // console.log(language.data.data)
+
+        const subCategories = await axios.get(`http://127.0.0.1:3001/sc/c/${cat_id}`)
+        setSub(subCategories.data.data)
+      }
+      // setDocumentList(response.data.data)
+      // console.log('List ', category, ': ', documentList)
+    }
+
+    catch(err) {
+      console.log(err)
+    }
+  }
+
+  const handleSearch = async (e, key) => {
+    try {
+      e.preventDefault()
+      const response = await axios.get(`http://127.0.0.1:3001/t/search?key=${key}`)
+      console.log('Key: ', key, ' Res: ', response.data.data)
+      setDocumentList(response.data.data)
     }
 
     catch(err) {
@@ -72,23 +101,23 @@ export default function Home() {
           <h1>Cari Template</h1>
 
           <div className={styles.form}>
-            <input id='keyword' type='text' placeholder='Masukkan kata kunci . . .'/>
-            <button><img className={styles.searchIcon} src='/images/icon-search.png' /></button>
+            <input id='key' type='text' placeholder='Masukkan kata kunci . . .'/>
+            <button onSubmit={(event) => handleSearch(event, document.getElementById('key').value)} onClick={(event) => handleSearch(event, document.getElementById('key').value)}><img className={styles.searchIcon} src='/images/icon-search.png' /></button>
           </div>
 
           <div className={styles.categories}>
-            <p id='semua-kategori' onClick={(event) => getDocumentList(event,'semua-kategori')}>Semua Kategori</p>
-            <p id='surat' onClick={(event) => getDocumentList(event,'surat')}>Surat</p>
-            <p id='proposal' onClick={(event) => getDocumentList(event,'proposal')}>Proposal</p>
-            <p id='laporan' onClick={(event) => getDocumentList(event,'laporan')}>Laporan</p>
-            <p id='tugas' onClick={(event) => getDocumentList(event,'tugas')}>Tugas</p>
-            <p id='karya-tulis' onClick={(event) => getDocumentList(event,'karya-tulis-ilmiah')}>Karya Tulis Ilmiah</p>
+            <p id='semua-kategori' onClick={(event) => getDocumentList(event, 0)}>Semua Kategori</p>
+            <p id='surat' onClick={(event) => getDocumentList(event, 1)}>Surat</p>
+            <p id='proposal' onClick={(event) => getDocumentList(event, 2)}>Proposal</p>
+            <p id='laporan' onClick={(event) => getDocumentList(event,3)}>Laporan</p>
+            <p id='tugas' onClick={(event) => getDocumentList(event, 4)}>Tugas</p>
+            <p id='karya-tulis' onClick={(event) => getDocumentList(event, 5)}>Karya Tulis Ilmiah</p>
           </div>
         </div>
 
         <div className={`${styles.content} ${styles.bgSample}`}>
           <div className={styles.filterBox}>
-            <FilterBox />
+            <FilterBox data={[lang, sub]}/>
           </div>
 
           <div className={styles.cards}>

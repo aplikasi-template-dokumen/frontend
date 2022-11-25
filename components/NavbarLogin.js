@@ -23,8 +23,8 @@ export default function NavbarLogin() {
     }
 
     const logout = async () => {
-        window.localStorage.removeItem('u')
-        // window.localStorage.clear()
+        // window.localStorage.removeItem('u')
+        window.localStorage.clear()
         router.push('/')
     }
 

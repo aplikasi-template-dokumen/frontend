@@ -11,27 +11,28 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (user !== null) {
-            router.push(`/${user}`)
+            router.push(`/`)
         }
-
-        //axios here
     })
 
 
     const handleSubmit = async (e, uname, pass) => {
         e.preventDefault()
-        // console.log('uname: ', uname, ' pass: ', pass)
 
         try {
-            const response = await axios.post('http://127.0.0.1:3001/u/login', {
+            const response = await axios.post(`http://127.0.0.1:3001/u/login`, {
                 uname: uname,
                 pass: pass
             })
             .then((val) => {
                 // console.log('Response: ', val.data.data)
-                window.localStorage.setItem('u', val.data.data.username)
+                // window.localStorage.setItem('status', 'login')
+                window.localStorage.setItem('i', val.data.data.id)
+                // window.localStorage.setItem('r', val.data.data.role)
+                // window.localStorage.setItem('u', val.data.data.username)
+                console.log(val)
                 console.log(val.data.message)
-                router.push({ pathname: `/${val.data.data.username}` })
+                router.push({ pathname: `/` })
             })
         }
 

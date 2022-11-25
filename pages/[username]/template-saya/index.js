@@ -28,29 +28,37 @@ export default function TemplateSaya() {
                     <hr />
 
                     <table>
-                        <tr>
-                            <td>Judul Dokumen</td>
-                            <td>Status</td>
-                            <td>Terakhir Diedit</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <td>Judul Dokumen</td>
+                                <td>Status</td>
+                                <td>Terakhir Diedit</td>
+                            </tr>
+                        </thead>
 
-                        <tr>
-                            <td>Dokumen 1</td>
-                            <td>Publish</td>
-                            <td>01/11/22</td>
-                        </tr>
-                            
-                        <tr>
-                            <td>Dokumen 1</td>
-                            <td>Publish</td>
-                            <td>01/11/22</td>
-                        </tr>
-                            
-                        <tr>
-                            <td>Dokumen 1</td>
-                            <td>Publish</td>
-                            <td>01/11/22</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Dokumen 1</td>
+                                <td>Publish</td>
+                                <td>01/11/22</td>
+                            </tr>
+                        </tbody>
+
+                        <tbody>
+                            <tr>
+                                <td>Dokumen 1</td>
+                                <td>Publish</td>
+                                <td>01/11/22</td>
+                            </tr>
+                        </tbody>
+
+                        <tbody>
+                            <tr>
+                                <td>Dokumen 1</td>
+                                <td>Publish</td>
+                                <td>01/11/22</td>
+                            </tr>
+                        </tbody>    
                     </table>
 
                     <Link href={`/${user}/template-saya/create`}>

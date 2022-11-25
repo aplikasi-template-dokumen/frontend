@@ -1,6 +1,5 @@
 import NavbarLogin from '../../../components/NavbarLogin'
-// import Editor from '../../../components/Editor'
-import EditorQ from '../../../components/EditorQ'
+import QuillEditor from '../../../components/Quill'
 import style from '../../../styles/MyDocument.module.css'
 import Link from 'next/dist/client/link'
 import { useRouter } from 'next/router'
@@ -18,30 +17,6 @@ export default function BuatDokumen() {
         }
     })
 
-    const TOOLBAR_OPTIONS = [
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        [{ font: [] }],
-        [{ list: "ordered" }, { list: "bullet" }],
-        ["bold", "italic", "underline", "strike"],
-        [{ color: [] }, { background: [] }],
-        [{ script: "sub" }, { script: "super" }],
-        [{ indent: "-1" }, { indent: "+1" }],
-        [{ align: [] }],
-        ["image", "blockquote", "code-block"],
-        [{ direction: 'rtl' }],
-        [{ size: ['small', false, 'large', 'huge'] }],
-        ["link", "image", "video", "formula"],
-        ["clean"]
-    ]
-    
-    const quill = new Quill('#editor', {
-        modules: {
-            toolbar: TOOLBAR_OPTIONS
-        },
-
-        theme: 'snow'
-    })
-
     return (
         <>
             <NavbarLogin />
@@ -55,10 +30,7 @@ export default function BuatDokumen() {
                     <h1>Judul Dokumen</h1>
                     <hr />
 
-                    {/* <div id='editor' className={style.editor}> */}
-                        {/* <Editor className={style.editor} /> */}
-                        <EditorQ className={style.editor} />
-                    {/* </div> */}
+                    <QuillEditor />
                     
                     <div className={style.btnGroup}>
                         <Link href='/' className={style.btn}>
