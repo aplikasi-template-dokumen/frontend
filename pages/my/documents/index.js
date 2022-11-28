@@ -1,10 +1,11 @@
 import Navbar from "../../../components/Navbar"
 import style from "../../../styles/MyDocument.module.css"
 import Link from "next/link"
+import axios from "axios"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
-export default function MyDocumentDetail() {
+export default function MyDocumentsPage() {
     const [id, setId] = useState()
     const [list, setList] = useState([])
     const router = useRouter()
@@ -26,6 +27,20 @@ export default function MyDocumentDetail() {
                 })
         }
     }, [])
+
+    const handleCreate = async (event, id) => {
+        event.preventDefault()
+
+        const response = await axios.post(`http://127.0.0.1:3001/d/create`, {
+            title: 'Untitled',
+            user_id: id,
+            data: null
+        })
+        .then((val) => {
+            router.push({ pathname: `/my/documents/${val.data.data.id}` })
+            // console.log(val.data.data.id)
+        })
+    }
 
     return(
         <>
@@ -53,7 +68,7 @@ export default function MyDocumentDetail() {
                         </tbody>
                     </table>
 
-                    <Link href='/'>
+                    <Link href='/' onClick={(event) => handleCreate(event, id)}>
                         <button className={style.btnCreate}>Buat Dokumen Baru</button>
                     </Link>
                 </main>

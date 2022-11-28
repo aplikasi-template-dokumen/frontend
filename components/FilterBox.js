@@ -20,6 +20,14 @@ export default function FilterBox(data) {
                 {/* </div> */}
 
                 {/* <div> */}
+                    <p>Kategori</p>
+                    <select>
+                        <option value={0}>Pilih Bahasa</option>
+                        { data.data[0].length == 0 ? "Loading . . ." : data.data[0].map((item) => <option value={item.id} key={item.id}>{item.name}</option>) }
+                    </select>
+                {/* </div> */}
+
+                {/* <div> */}
                     <p className={style.sub}>Sub Kategori</p>
                     <select>
                         <option value={0}>Pilih Sub Kategori</option>

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css'
 
-export default function QuillEditor() {
+export default function QuillEditor(data) {
     const modules = {
         toolbar: [
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -21,14 +21,23 @@ export default function QuillEditor() {
         ]
     }
 
+    // const initialState = { data: data.data.data }
+    // const [state, dispatch] = useReducer(reducer, initialState)
+
     const [value, setValue] = useState({})
+
+    useEffect(() => {
+        if (data.data.data != null) {
+            setValue(data.data.data)
+        }
+    }, [])
 
     function handleChange(content, delta, source, editor) {
         setValue(editor.getContents())
         // setValue(delta)
     }
 
-    console.log(value)
+    // console.log(value)
 
     return (
         <div className="editor-container">

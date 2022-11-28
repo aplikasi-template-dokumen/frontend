@@ -1,6 +1,7 @@
 import Navbar from "../../../components/Navbar"
 import style from "../../../styles/MyDocument.module.css"
 import Link from "next/link"
+import axios from "axios"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
@@ -26,6 +27,26 @@ export default function MyTemplatesPage() {
                 })
         }
     }, [])
+
+    const handleCreate = async (event, id) => {
+        event.preventDefault()
+
+        const response = await axios.post(`http://127.0.0.1:3001/t/create`, {
+            title: 'Untitled',
+            desc: null,
+            lang_id: 1,
+            cat_id: 1,
+            sub_cat_id: 1,
+            img: null,
+            notes: null,
+            contributor_id: id,
+            data: null
+        })
+        .then((val) => {
+            router.push({ pathname: `/my/templates/${val.data.data.id}` })
+            // console.log(val.data.data.id)
+        })
+    }
 
     return(
         <>
@@ -55,7 +76,7 @@ export default function MyTemplatesPage() {
                         </tbody>
                     </table>
 
-                    <Link href='/'>
+                    <Link href='/' onClick={(event) => handleCreate(event, id)}>
                         <button className={style.btnCreate}>Buat Template Baru</button>
                     </Link>
                 </main>
