@@ -23,7 +23,7 @@ export default function Profil() {
             </div>
 
             <div className={style.container}>
-                <img src='/images/sample-profile.png' />
+                <img src='/images/sample-profile.png' alt='profile' />
                 {/* <a>Ganti Foto</a> */}
 
                 <p>Role</p>

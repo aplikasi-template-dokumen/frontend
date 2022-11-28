@@ -8,12 +8,12 @@ export default function Card(data) {
     return (
         <>
             <div id={data.data.id} className={style.container}>
-                <Link href={`/template/${data.data.id}`}>
+                <Link href={`/templates/${data.data.id}`}>
                     <img src={data.data.img} alt="image" />
                     <p>{data.data.title}</p>
                 </Link>
 
-                {/* <Link href={`/${user}/template/${data.data.id}`}>
+                {/* <Link href={`/${user}/templates/${data.data.id}`}>
                     <img src={data.data.img} alt="image" />
                     <p>{data.data.title}</p>
                 </Link> */}

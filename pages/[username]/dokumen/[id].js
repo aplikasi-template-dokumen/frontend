@@ -1,6 +1,5 @@
 import style from '../../../styles/Documents.module.css'
 import NavbarLogin from '../../../components/NavbarLogin'
-import Editor from '../../../components/Editor'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -28,9 +27,7 @@ export default function DetailTemplateLogin() {
 
             <div className={style.container}>
                 <div className={style.document}>
-                    {/* <CKeditor name="description" onChange={ (data) => { setData(data) } } editorLoaded={editorLoaded} />
-                    {JSON.stringify(data)} */}
-                    <Editor />
+                    {/*  */}
                 </div>
                 
                 <div className={style.action}>

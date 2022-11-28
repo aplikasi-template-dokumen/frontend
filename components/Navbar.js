@@ -2,18 +2,28 @@ import style from '../styles/Navbar.module.css';
 import styleLogin from '../styles/NavbarLogin.module.css';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
-    const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
+    const [status, setStatus] = useState()
+    const [menu, setMenu] = useState(styleLogin.hide)
+    const router = useRouter()
+    
+    useEffect(() => {
+        const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
+        // const id = window.localStorage.getItem('i')
+        setStatus(id)
+        // console.log(id)
+    }, [])
+
     // console.log(id)
 
-    if (id == null) {
+    if (status == null) {
         // console.log(id, 'Tidak login')
         return (
             <div className={style.container}>
                 <div className={style.left}>
-                    <img src='/favicon.ico' />
+                    <img src='/favicon.ico' alt='logo' />
                     <Link href='/'>TemplateKita</Link>
                 </div>
     
@@ -27,9 +37,6 @@ export default function Navbar() {
 
     else {
         // console.log(id, 'login')
-
-        const [menu, setMenu] = useState(styleLogin.hide)
-        const router = useRouter()
 
         const changeDisplay = (e) => {
             e.preventDefault()
@@ -52,12 +59,12 @@ export default function Navbar() {
         return (
             <div className={styleLogin.container}>
                 <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
-                    <img src='/favicon.ico' />
+                    <img src='/favicon.ico' alt='logo' />
                     <Link href={``}>TemplateKita</Link>
                 </div>
     
                 <div className={`${styleLogin.left} ${styleLogin.rightLogin}`}>
-                    <img src='/images/sample-profile.png' />
+                    <img src='/images/sample-profile.png' alt='profile' />
                     <a>rahmams68</a>
                 </div>
     
@@ -74,15 +81,15 @@ export default function Navbar() {
                         </Link>
                         
                         <hr />
-                        <Link href={`/dokumen-saya`} className={styleLogin.link}>
+                        <Link href={`/my/documents`} className={styleLogin.link}>
                             <img src='/images/icon-document.png' alt='document' title='Dokumen Saya' />
                             <p className={menu}>Dokumen Saya</p>
                         </Link>
-                        <Link href={`/template-saya`} className={styleLogin.link}>
+                        <Link href={`/my/templates`} className={styleLogin.link}>
                             <img src='/images/icon-template.png' alt='template' title='Template Saya' />
                             <p className={menu}>Template Saya</p>
                         </Link>
-                        <Link href={`/daftar-ajuan`} className={styleLogin.link}>
+                        <Link href={`/submissions`} className={styleLogin.link}>
                             <img src='/images/icon-paper.png' alt='submission' title='Template Diajukan' />
                             <p className={menu}>Daftar Template Ajuan</p>
                         </Link>
@@ -95,7 +102,7 @@ export default function Navbar() {
                         </Link>
                         <hr />
                         
-                        <Link href={`/profil`} className={styleLogin.link}>
+                        <Link href={`/profile`} className={styleLogin.link}>
                             <img src='/images/icon-user.png' alt='profile' title='Profil' />
                             <p className={menu}>Profil</p>
                         </Link>

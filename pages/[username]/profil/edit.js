@@ -19,7 +19,7 @@ export default function EditProfil() {
             <NavbarLogin />
 
             <div className={style.container}>
-                <img src='/images/sample-profile.png' />
+                <img src='/images/sample-profile.png' alt='profile' />
 
                 <p>Email</p>
                 <input type='email' value='rahma.maulida68@gmail.com' disabled />

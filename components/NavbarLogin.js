@@ -31,12 +31,12 @@ export default function NavbarLogin() {
     return (
         <div className={style.container}>
             <div className={`${style.left} ${style.leftLogin}`}>
-                <img src='/favicon.ico' />
+                <img src='/favicon.ico' alt='logo' />
                 <Link href={`/${user}`}>TemplateKita</Link>
             </div>
 
             <div className={`${style.left} ${style.rightLogin}`}>
-                <img src='/images/sample-profile.png' />
+                <img src='/images/sample-profile.png' alt='profile' />
                 <a>rahmams68</a>
             </div>
 

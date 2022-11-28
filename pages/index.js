@@ -17,16 +17,11 @@ export default function Home() {
   // const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
 
   useEffect(() => {
-    // if (user !== null) {
-    //   router.push(`/${user}`)
-    // }
-
     fetch('http://127.0.0.1:3001/t-all')
       .then((res) => res.json())
       .then((data) => {
         setDocumentList(data.data)
       })
-    // console.log("List aaa:", documentList)
   }, [])
 
   const getDocumentList = async (e, cat_id) => {
@@ -45,13 +40,10 @@ export default function Home() {
 
         const language = await axios.get(`http://127.0.0.1:3001/l`)
         setLang(language.data.data)
-        // console.log(language.data.data)
 
         const subCategories = await axios.get(`http://127.0.0.1:3001/sc/c/${cat_id}`)
         setSub(subCategories.data.data)
       }
-      // setDocumentList(response.data.data)
-      // console.log('List ', category, ': ', documentList)
     }
 
     catch(err) {
@@ -102,7 +94,7 @@ export default function Home() {
 
           <div className={styles.form}>
             <input id='key' type='text' placeholder='Masukkan kata kunci . . .'/>
-            <button onSubmit={(event) => handleSearch(event, document.getElementById('key').value)} onClick={(event) => handleSearch(event, document.getElementById('key').value)}><img className={styles.searchIcon} src='/images/icon-search.png' /></button>
+            <button onSubmit={(event) => handleSearch(event, document.getElementById('key').value)} onClick={(event) => handleSearch(event, document.getElementById('key').value)}><img className={styles.searchIcon} src='/images/icon-search.png' alt='search-icon' /></button>
           </div>
 
           <div className={styles.categories}>

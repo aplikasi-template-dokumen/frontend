@@ -19,7 +19,7 @@ export default function GantiPassword() {
             <NavbarLogin />
 
             <div className={style.container}>
-                <img src='/images/sample-profile.png' />
+                <img src='/images/sample-profile.png' alt='profile' />
 
                 <p>Password Lama</p>
                 <input type='password' required />
