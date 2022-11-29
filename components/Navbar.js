@@ -6,13 +6,19 @@ import { useEffect, useState } from 'react';
 
 export default function Navbar() {
     const [status, setStatus] = useState()
+    const [uname, setUname] = useState()
+    const [role, setRole] = useState()
     const [menu, setMenu] = useState(styleLogin.hide)
     const router = useRouter()
     
     useEffect(() => {
         const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
+        const uname = window.localStorage.getItem('u')
+        const role = typeof window !== 'undefined' ? window.localStorage.getItem('r') : {}
         // const id = window.localStorage.getItem('i')
         setStatus(id)
+        setUname(uname)
+        setRole(role)
         // console.log(id)
     }, [])
 
@@ -53,7 +59,8 @@ export default function Navbar() {
         const logout = async () => {
             // window.localStorage.removeItem('u')
             window.localStorage.clear()
-            router.push('/')
+            router.push({ pathname: '/login' })
+            // router.push({ pathname: '/' })
         }
 
         return (
@@ -65,7 +72,7 @@ export default function Navbar() {
     
                 <div className={`${styleLogin.left} ${styleLogin.rightLogin}`}>
                     <img src='/images/sample-profile.png' alt='profile' />
-                    <a>rahmams68</a>
+                    <a>{uname}</a>
                 </div>
     
                 <nav>

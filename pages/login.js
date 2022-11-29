@@ -16,21 +16,22 @@ export default function LoginPage() {
     })
 
 
-    const handleSubmit = async (e, uname, pass) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         try {
             const response = await axios.post(`http://127.0.0.1:3001/u/login`, {
-                uname: uname,
-                pass: pass
+                uname: document.getElementById('uname').value,
+                pass: document.getElementById('pass').value
             })
             .then((val) => {
                 // console.log('Response: ', val.data.data)
                 // window.localStorage.setItem('status', 'login')
                 window.localStorage.setItem('i', val.data.data.id)
-                // window.localStorage.setItem('r', val.data.data.role)
-                // window.localStorage.setItem('u', val.data.data.username)
-                console.log(val)
+                window.localStorage.setItem('u', val.data.data.username)
+                window.localStorage.setItem('r', val.data.data.role)
+
+                // console.log(val)
                 console.log(val.data.message)
                 router.push({ pathname: `/` })
             })
@@ -56,7 +57,7 @@ export default function LoginPage() {
 
                 <p className={style.note}><span>*</span>wajib diisi</p>
 
-                <button onClick={(event) => handleSubmit(event, document.getElementById('uname').value, document.getElementById('pass').value)} id='daftar'>Masuk</button>
+                <button onClick={(event) => handleSubmit(event)} id='daftar'>Masuk</button>
                 <p className={style.center}>Belum punya akun?<Link href='/signup'>Daftar di sini</Link></p>
             </form>
         </div>
