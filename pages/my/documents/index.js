@@ -23,7 +23,14 @@ export default function MyDocumentsPage() {
             fetch(`http://127.0.0.1:3001/d/user?id=${id}`)
                 .then((res) => res.json())
                 .then((data) => {
-                    setList(data.data)
+                    if (data.status == 404) {
+                        // console.log(data.status)
+                        setList([])
+                    }
+
+                    else {
+                        setList(data.data)
+                    }
                 })
         }
     }, [])
@@ -32,7 +39,6 @@ export default function MyDocumentsPage() {
         event.preventDefault()
 
         const response = await axios.post(`http://127.0.0.1:3001/d/create`, {
-            title: 'Untitled',
             user_id: id,
             data: null
         })
@@ -55,7 +61,7 @@ export default function MyDocumentsPage() {
                     <h1>Dokumen Saya</h1>
                     <hr />
 
-                    <table>
+                    {/* <table>
                         <thead>
                             <tr>
                                 <td>Judul Dokumen</td>
@@ -66,7 +72,9 @@ export default function MyDocumentsPage() {
                         <tbody>
                             { list.length == 0 ? <tr><td>Belum ada dokumen, nih...</td></tr> : list.map((item) => <tr key={item.id}><td><Link href={`/my/documents/${item.id}`}>{item.title}</Link></td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }
                         </tbody>
-                    </table>
+                    </table> */}
+
+                    { list.length == 0 ? <p>Belum ada dokumen...</p> : <table><thead><tr><td>Judul Dokumen</td><td>Terakhir Diedit</td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/documents/${item.id}`}>{item.title}</Link></td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }</tbody></table> }
 
                     <Link href='/' onClick={(event) => handleCreate(event, id)}>
                         <button className={style.btnCreate}>Buat Dokumen Baru</button>

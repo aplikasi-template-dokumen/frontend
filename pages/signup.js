@@ -21,7 +21,6 @@ export default function SignUpPage() {
                 .then((res) => res.json())
                 .then((data) => {
                     setOccs(data.data)
-                    // console.log(data.data)
                 })
         }
     }, [])

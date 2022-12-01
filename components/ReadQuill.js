@@ -12,13 +12,13 @@ export default function QuillEditorReadOnly() {
 
     const [value, setValue] = useState({})
 
-    useEffect(() => {
-        fetch(`http://127.0.0.1:3001/t/${router.query.id}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setValue(data.data.data)
-            })
-    })
+    // useEffect(() => {
+    //     fetch(`http://127.0.0.1:3001/t/${router.query.id}`)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setValue(data.data.data)
+    //         })
+    // })
 
     return (
         <div className="read-editor-container">

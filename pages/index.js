@@ -1,16 +1,18 @@
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
-import FilterBox from '../components/FilterBox'
+// import FilterBox from '../components/FilterBox'
 import Card from '../components/Card'
 import styles from '../styles/Home.module.css'
+import stylesFilter from '../styles/Filter.module.css'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 export default function Home() {
   const [documentList, setDocumentList] = useState([])
-  const [sub, setSub] = useState([])
   const [lang, setLang] = useState([])
+  const [cat, setCat] = useState([])
+  const [sub, setSub] = useState([])
 
   const router = useRouter()
 
@@ -22,27 +24,93 @@ export default function Home() {
       .then((data) => {
         setDocumentList(data.data)
       })
+
+    fetch('http://127.0.0.1:3001/c')
+      .then((res) => res.json())
+      .then((data) => {
+        setCat(data.data)
+      })
+
+    fetch('http://127.0.0.1:3001/l')
+      .then((res) => res.json())
+      .then((data) => {
+        setLang(data.data)
+      })
   }, [])
 
   const getDocumentList = async (e, cat_id) => {
     try {
       e.preventDefault()
-      if (cat_id === 0) {
+      if (cat_id == 0) {
         const response = await axios.get(`http://127.0.0.1:3001/t-all`)
         setDocumentList(response.data.data)
-        console.log('List ', documentList)
+
+        document.getElementById('kategori').value = 0
+        setSub([])
       }
 
       else {
         const response = await axios.get(`http://127.0.0.1:3001/t/cat/${cat_id}`)
         setDocumentList(response.data.data)
-        console.log('List ', documentList)
 
         const language = await axios.get(`http://127.0.0.1:3001/l`)
         setLang(language.data.data)
 
         const subCategories = await axios.get(`http://127.0.0.1:3001/sc/c/${cat_id}`)
         setSub(subCategories.data.data)
+
+        document.getElementById('kategori').value = cat_id
+      }
+    }
+
+    catch(err) {
+      console.log(err)
+    }
+  }
+
+  const handleSubCategory = async (e) => {
+    try {
+      e.preventDefault()
+
+      const cat_id = document.getElementById('kategori').value
+
+      if (cat_id == 0) {
+        setSub([])
+      }
+
+      else {
+        const response = await axios.get(`http://127.0.0.1:3001/sc/c/${cat_id}`)
+
+        
+        setSub(response.data.data)
+      }
+
+    }
+
+    catch(err) {
+      console.log()
+    }
+  }
+
+  const handleFilter = async (e) => {
+    try {
+      e.preventDefault()
+
+      const lang = parseInt(document.getElementById('bahasa').value)
+      // const cat = parseInt(document.getElementById('kategori').value)
+      const sub_cat = parseInt(document.getElementById('sub-kategori').value)
+
+      // console.log(`${lang} - ${cat} - ${sub_cat}`)
+
+      if (lang == 0 && sub_cat == 0) {
+        return
+      }
+
+      else {
+        const result = await axios.get(`http://localhost:3001/t/filter/${lang}/${sub_cat}`)
+        setDocumentList(result.data.data)
+        // console.log(result.data.data)
+        // console.log('List ', documentList)
       }
     }
 
@@ -109,7 +177,31 @@ export default function Home() {
 
         <div className={`${styles.content} ${styles.bgSample}`}>
           <div className={styles.filterBox}>
-            <FilterBox data={[lang, sub]}/>
+            <div className={stylesFilter.container}>
+              <h2>Filter Dokumen</h2>
+
+              <form>
+                <p>Bahasa</p>
+                <select id='bahasa'>
+                  <option value={0}>Pilih Bahasa</option>
+                  {lang.length == 0 ? <option>Loading...</option> : lang.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
+                </select>
+
+                <p>Kategori</p>
+                <select id='kategori' onChange={(event) => handleSubCategory(event)}>
+                  <option value={0}>Pilih Kategori</option>
+                  {cat.length == 0 ? <option>Loading...</option> : cat.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
+                </select>
+
+                <p>Sub Kategori</p>
+                <select id='sub-kategori'>
+                  {/* <option value={0}>Pilih Sub Kategori</option> */}
+                  {sub.length == 0 ? <option value={0}>Pilih Sub Kategori</option> : sub.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
+                </select>
+
+                <button onClick={(event) => handleFilter(event)}>Filter</button>
+              </form>
+            </div>
           </div>
 
           <div className={styles.cards}>

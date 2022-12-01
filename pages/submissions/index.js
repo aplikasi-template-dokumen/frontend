@@ -23,7 +23,14 @@ export default function SubmissionsPage() {
                 .then((res) => res.json())
                 .then((data) => {
                     // setList(data.data)
-                    console.log(data.data)
+                    // console.log(data)
+                    if (data.status == 404) {
+                        setList([])
+                    }
+
+                    else {
+                        setList(data.data)
+                    }
                 })
         }
     }, [])
@@ -41,7 +48,7 @@ export default function SubmissionsPage() {
                     <h1>Daftar Ajuan Template</h1>
                     <hr />
 
-                    <table>
+                    {/* <table>
                         <thead>
                             <tr>
                                 <td>Judul Template</td>
@@ -53,7 +60,9 @@ export default function SubmissionsPage() {
                         <tbody>
                             { list.length == 0 ? <tr><td>Belum ada template yang diajukan</td></tr> : list.map((item) => <tr key={item.id}><td><Link href={`/my/submissions/${item.id}`}>{item.title}</Link></td><td>{item.contributor_id}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }
                         </tbody>
-                    </table>
+                    </table> */}
+
+                    { list.length == 0 ? <p>Belum ada template yang diajukan...</p> : <table><thead><tr><td>Judul Template</td><td>Kontributor</td><td>Tanggal Diajukan</td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/submissions/${item.id}`}>{item.title}</Link></td><td>{item.contributor_id}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }</tbody></table> }
                 </main>
             </div>
         </>

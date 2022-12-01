@@ -23,7 +23,13 @@ export default function MyTemplatesPage() {
             fetch(`http://127.0.0.1:3001/t/user?id=${id}`)
                 .then((res) => res.json())
                 .then((data) => {
-                    setList(data.data)
+                    if (data.status == 404) {
+                        setList([])
+                    }
+
+                    else {
+                        setList(data.data)
+                    }
                 })
         }
     }, [])
@@ -32,15 +38,7 @@ export default function MyTemplatesPage() {
         event.preventDefault()
 
         const response = await axios.post(`http://127.0.0.1:3001/t/create`, {
-            title: 'Untitled',
-            desc: null,
-            lang_id: 1,
-            cat_id: 1,
-            sub_cat_id: 1,
-            img: null,
-            notes: null,
-            contributor_id: id,
-            data: null
+            contributor_id: id
         })
         .then((val) => {
             router.push({ pathname: `/my/templates/${val.data.data.id}` })
@@ -61,7 +59,7 @@ export default function MyTemplatesPage() {
                     <h1>Template Saya</h1>
                     <hr />
 
-                    <table>
+                    {/* <table>
                         <thead>
                             <tr>
                                 <td>Judul Template</td>
@@ -71,10 +69,12 @@ export default function MyTemplatesPage() {
                         </thead>
 
                         <tbody>
-                            {/* { list.length == 0 ? "Loading . . ." : list.map((item) => <tr><td><Link key={item.id} href={`/my/templates/${item.id}`}>{item.title}</Link></td><td>{item.status_id}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) } */}
                             { list.length == 0 ? <tr><td>Belum ada template, nih...</td></tr> : list.map((item) => <tr key={item.id}><td><Link href={`/my/templates/${item.id}`}>{item.title}</Link></td><td>{item.status_id}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }
                         </tbody>
-                    </table>
+                    </table> */}
+
+                    { list.length == 0 ? <p>Belum ada template...</p> : <table><thead><tr><td>Judul Template</td><td>Status</td><td>Terakhir Diedit</td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/templates/${item.id}`}>{item.title}</Link></td><td>{item.status_id}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }</tbody></table> }
+
 
                     <Link href='/' onClick={(event) => handleCreate(event, id)}>
                         <button className={style.btnCreate}>Buat Template Baru</button>

@@ -5,12 +5,20 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 export default function GantiPassword() {
-    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
+    const user = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
     const router = useRouter()
 
     useEffect(() => {
         if (user === null) {
             router.push(`/`)
+        }
+
+        else {
+            fetch(`http://127.0.0.1:3001/u/profile/${i}`)
+                .then((res) => res.json())
+                .then((val) => {
+                    console.log(val)
+                })
         }
     })
 

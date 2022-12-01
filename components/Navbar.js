@@ -67,7 +67,7 @@ export default function Navbar() {
             <div className={styleLogin.container}>
                 <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
                     <img src='/favicon.ico' alt='logo' />
-                    <Link href={``}>TemplateKita</Link>
+                    <Link href={`/`}>TemplateKita</Link>
                 </div>
     
                 <div className={`${styleLogin.left} ${styleLogin.rightLogin}`}>
