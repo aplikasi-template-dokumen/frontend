@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import dynamic from 'next/dynamic'
+// import ReactQuill from "react-quill"
 
 
 export default function TesQuill() {
-    const [value, setValue] = useState({})
+    const [value, setValue] = useState({"ops":[{"attributes":{"bold":true},"insert":"Sample Template 1 - Surat Izin"},{"insert":"\n\nBy 'rms'\n"}]})
+    const currentContent = useRef(value)
 
-    useEffect(() => {
-        fetch(`http://127.0.0.1:3001/d/3`)
-            .then((res) => res.json())
-            .then((val) => {
-                console.log(val.data)
-                setValue(val.data.data)
-            })
-    }, [])
+    function submitHandler(event) {
+        event.preventDefault()
+
+        console.log('Current content: ', currentContent.current)
+    }
 
     const modules = {
         toolbar: [
@@ -30,6 +29,11 @@ export default function TesQuill() {
             ["link", "image", "video", "formula"],
             ["clean"]
         ],
+
+        clipboard: {
+            //toogle to add extra line breaks when pasting HTML
+            matchVisual: false
+        }
     }
 
     const formats = [
@@ -54,15 +58,22 @@ export default function TesQuill() {
         loading: () => <p>Loading . . .</p>
     })
 
+    // const QuillNoSSRWrapper = dynamic (() => import('react-quill').then((q) => console.log(q)))
+
     function handleChange(content, delta, source, editor) {
-        console.log('Delta: ', editor.getContents())
+        currentContent.current = editor.getContents()
+        // console.log(currentContent.current)
     }
 
     return (
         <>
-            <div className="editor-container">
-                <QuillNoSSRWrapper onChange={handleChange} value={value} modules={modules} placeholder='Type something here . . .' theme='snow' />
-            </div>
+            <form onSubmit={submitHandler}>
+                {/* <QuillNoSSRWrapper onChange={handleChange} value={value} modules={modules} placeholder='Type something here . . .' theme='snow' /> */}
+                <label htmlFor="title">Title</label>
+                {/* <input type='text' value={title} name="title" placeholder="Enter a title" onChange={handleTitleChange} required /> */}
+                <QuillNoSSRWrapper id="text-editor" onChange={handleChange} defaultValue={value} modules={modules} placeholder='Type something here . . .' theme='snow' />
+                <button>Save</button>
+            </form>
         </>
     )
 }

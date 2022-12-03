@@ -46,6 +46,17 @@ export default function MyTemplatesPage() {
         })
     }
 
+    const handleDelete = async (event, t_id) => {
+        if (confirm('Hapus template ini?') == true) {
+            const response = await axios.delete(`http://127.0.0.1:3001/t/${t_id}/delete`)
+            window.location.reload()
+        }
+
+        else {
+            return false
+        }
+    }
+
     return(
         <>
             <Navbar />
@@ -59,21 +70,7 @@ export default function MyTemplatesPage() {
                     <h1>Template Saya</h1>
                     <hr />
 
-                    {/* <table>
-                        <thead>
-                            <tr>
-                                <td>Judul Template</td>
-                                <td>Status</td>
-                                <td>Terakhir Diedit</td>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            { list.length == 0 ? <tr><td>Belum ada template, nih...</td></tr> : list.map((item) => <tr key={item.id}><td><Link href={`/my/templates/${item.id}`}>{item.title}</Link></td><td>{item.status_id}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }
-                        </tbody>
-                    </table> */}
-
-                    { list.length == 0 ? <p>Belum ada template...</p> : <table><thead><tr><td>Judul Template</td><td>Status</td><td>Terakhir Diedit</td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/templates/${item.id}`}>{item.title}</Link></td><td>{item.status_id}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }</tbody></table> }
+                    { list.length == 0 ? <p>Belum ada template...</p> : <table><thead><tr><td>Judul Template</td><td>Status</td><td>Terakhir Diedit</td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/templates/${item.id}`}>{item.title}</Link></td><td>{item.status.name}</td><td>{item.updatedAt.slice(0, 10)}</td><td><img className="iconDel" src='/images/icon-del.png' alt='del' onClick={(event) => handleDelete(event, item.id)}/></td></tr>) }</tbody></table> }
 
 
                     <Link href='/' onClick={(event) => handleCreate(event, id)}>

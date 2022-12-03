@@ -4,6 +4,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 
 export default function TemplateDetail() {
     const router = useRouter()
@@ -37,7 +38,15 @@ export default function TemplateDetail() {
         }
 
         else {
-            console.log('Bisa digunakan')
+            // console.log('Bisa digunakan')
+            const response = await axios.post(`http://127.0.0.1:3001/d/create`, {
+                title: title,
+                user_id: window.localStorage.getItem('i'),
+                data: value
+            })
+            .then((val) => {
+                router.push({ pathname: `/my/documents/${val.data.data.id}` })
+            })
         }
     }
 

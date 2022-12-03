@@ -2,13 +2,16 @@ import Navbar from '../../../components/Navbar'
 import style from '../../../styles/MyDocument.module.css'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function MyDocumentDetail() {
     const router = useRouter()
     const [value, setValue] = useState({})
-    // const [title, setTitle] = useState('')
+    // const [title, setTitle] = useState('Loading...')
+
+    const currentContent = useRef({})
 
     // useEffect(() => {
     //     const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
@@ -28,7 +31,8 @@ export default function MyDocumentDetail() {
             .then((res) => res.json())
             .then((val) => {
                 setValue(val.data.data)
-                document.getElementById('doc-title').innerHTML = val.data.title
+                // setTitle(val.data.title)
+                document.getElementById('doc-title').value = val.data.title
             })
     }, [])
 
@@ -56,7 +60,29 @@ export default function MyDocumentDetail() {
     })
 
     function handleChange(content, delta, source, editor) {
-        // setValue(editor.getContents())
+        currentContent.current = editor.getContents()
+    }
+
+    const handleSubmit = async (e) => {
+        const t = document.getElementById('doc-title').value
+
+        if (t == '') {
+            console.log('Judul harus diisi')
+            e.preventDefault()
+            return false
+        }
+
+        else {
+            const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
+            const response = await axios.post(`http://127.0.0.1:3001/d/${router.query.id}/edit?u_id=${id}`, {
+                title: document.getElementById('doc-title').value,
+                data: currentContent.current
+            })
+    
+            // console.log(response) -> if status = 201, tampilkan toast
+            router.push('/my/documents')
+        }
+
     }
 
     return(
@@ -69,7 +95,8 @@ export default function MyDocumentDetail() {
                 </div>
 
                 <main>
-                    <h1 id='doc-title'>Loading...</h1>
+                    {/* <h1 id='doc-title' contentEditable='true' spellCheck='false'>Loading...</h1> */}
+                    <input id='doc-title' type='text' placeholder='Untitled' />
                     <hr />
 
                     <div className="editor-container">
@@ -77,11 +104,11 @@ export default function MyDocumentDetail() {
                     </div>
 
                     <div className={style.btnGroup}>
-                        <Link href='/' className={style.btn}>
+                        {/* <Link href='/' className={style.btn}>
                             <button className={style.btnHapus}>Hapus</button>
-                        </Link>
+                        </Link> */}
 
-                        <Link href='/' className={style.btn}>
+                        <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event)}>
                             <button>Simpan</button>
                         </Link>
                         
@@ -89,8 +116,6 @@ export default function MyDocumentDetail() {
                             <button className={style.btnAjukan}>Unduh</button>
                         </Link>
                     </div>
-
-                    {/* <button id='btnSave'>Simpan Data</button> */}
                 </main>
             </div>
         </>

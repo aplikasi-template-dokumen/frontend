@@ -20,7 +20,7 @@ header {
 header h1 {
   width: 50%;
   font-size: 45px;
-  opacity: 1;;
+  opacity: 1;
   /* background-color: rgb(216, 233, 255); */
 }
 
@@ -71,6 +71,17 @@ a {
 
 main {
   padding: 0 60px;
+}
+
+img.iconDel {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+img.iconDel:hover {
+  opacity: 1;
 }
 
 .not-found-container {

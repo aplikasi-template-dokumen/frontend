@@ -21,7 +21,7 @@ export default function ProfilePage() {
                     document.getElementById('email').value = val.data.email
                     document.getElementById('name').value = val.data.full_name
                     document.getElementById('uname').value = val.data.username
-                    document.getElementById('occ').value = val.data.occupation_id
+                    document.getElementById('occ').value = val.data.occupation
                 })
         }
     }, [])

@@ -4,14 +4,24 @@
 
 .container table {
     width: 100%;
+    border-collapse: collapse;
 }
 
-.container table tr:nth-child(even) {
+.container table thead {
+    font-weight: bold;
+}
+
+.container table tbody tr:nth-child(odd) {
     background-color: #82b9d638;
 }
 
 .container table tr td {
     padding: 10px 0;
+}
+
+.container table tr td:nth-child(2) {
+    /* background-color: aquamarine; */
+    /* text-align: center; */
 }
 
 /* .container table tr td button {
@@ -41,10 +51,8 @@
 }
 
 .editor {    
-    /* width: 700px; */
     width: 8.5in;
     min-height: 11in;
-    /* height: 900px; */
     margin: 60px auto;
     background-color: #FFFFFF;
     box-shadow: 0 0 3px 1px #ADADAD;
@@ -112,4 +120,26 @@
 
 .btnGroup .btn .btnAjukan:hover {
     background-color: rgb(17, 92, 51);
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #ADADAD; */
+    align-items: center;
+}
+
+.info span {
+    /* background-color: #284f92; */
+    /* align-items: center; */
+}
+
+.info img {
+    align-self: center;
+    /* background-color: #284f92; */
+}
+
+.btnAdd {
+    width: 30px;
+    height: 30px;
 }
