@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import * as quillToWord from 'quill-to-word'
+import { saveAs } from 'file-saver'
 
 export default function TemplateDetail() {
     const router = useRouter()
@@ -50,6 +52,14 @@ export default function TemplateDetail() {
         }
     }
 
+    const handleDownload = async (e) => {
+        e.preventDefault()
+
+        const quillToWordConfiq = { exportAs: 'blob' }
+        const doc = await quillToWord.generateWord(value, quillToWordConfiq)
+        saveAs(doc, 'template.docx')
+    }
+
     return(
         <>
             <Navbar />
@@ -64,7 +74,7 @@ export default function TemplateDetail() {
                 <div className={style.action}>
                     <p id='temp-title'>{title}</p>
                     <Link href='/' onClick={(event) => handleUseTemplate(event)}><button>Gunakan Template</button></Link>
-                    <Link href='/'><button>Unduh Template (.doc)</button></Link>
+                    <Link href='/' onClick={(event) => handleDownload(event)}><button>Unduh Template (.doc)</button></Link>
                 </div>
             </div>
         </>

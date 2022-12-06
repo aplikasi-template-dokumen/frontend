@@ -19,10 +19,6 @@ export default function MyTemplateDetail() {
     // const [id, setId] = useState()
     // const [data, setData] = useState({})
 
-    // const [title, setTitle] = useState(data.title)
-    // const [desc, setDesc] = useState(data.desc)
-    // const [notes, setNotes] = useState(data.notes)
-
     // useEffect(() => {
     //     const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
     //     setId(id)
@@ -41,8 +37,13 @@ export default function MyTemplateDetail() {
             .then((res) => res.json())
             .then((val) => {
                 setData(val.data)
-                // console.log(val.data)
                 document.getElementById('temp-title').innerHTML = val.data.title
+                
+                fetch(`http://127.0.0.1:3001/sc/c/${val.data.cat_id}`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setSub(data.data)
+                    })
             })
         
         fetch('http://127.0.0.1:3001/c')
@@ -56,6 +57,7 @@ export default function MyTemplateDetail() {
             .then((data) => {
                 setLang(data.data)
             })
+
     }, [])
 
     const modules = {
@@ -182,25 +184,17 @@ export default function MyTemplateDetail() {
 
                         <div>
                             <p>Bahasa</p>
-                            <select id="lang">
-                                <option value={-1}>Pilih Bahasa</option>
-                                {lang.length == 0 ? <option>Loading...</option> : lang.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
-                            </select>
+                            { lang.length == 0 ? <select id="lang"><option value={-1}>Pilih Bahasa</option><option>Loading...</option></select> : <select id='id' value={data.lang_id}>{ lang.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
                         </div>
 
                         <div>
                             <p>Kategori</p>
-                            <select id="cat" defaultValue={data.cat_id} onChange={(event) => handleSubCategory(event)}>
-                                <option value={-1}>Pilih Kategori</option>
-                                {cat.length == 0 ? <option>Loading...</option> : cat.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
-                            </select>
+                            { cat.length == 0 ? <select id="cat"><option value={-1}>Pilih Kategori</option><option>Loading...</option></select> : <select id='id' value={data.cat_id} onChange={(event) => handleSubCategory(event)} onLoad={(event) => handleSubCategory(event)}>{ cat.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
                         </div>
 
                         <div>
                             <p>Sub Kategori</p>
-                            <select id="sub" defaultValue={data.sub_cat_id}>
-                                {sub.length == 0 ? <option value={-1}>Pilih Sub Kategori</option> : sub.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
-                            </select>
+                            { sub.length == 0 ? <select id="sub"><option value={-1}>Pilih Sub Kategori</option><option>Loading...</option></select> : <select id='id' value={data.sub_cat_id}>{ sub.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
                         </div>
 
                         <div>

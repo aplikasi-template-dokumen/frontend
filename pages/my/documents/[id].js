@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
+import * as quillToWord from 'quill-to-word'
+import { saveAs } from 'file-saver'
 
 export default function MyDocumentDetail() {
     const router = useRouter()
@@ -34,6 +36,12 @@ export default function MyDocumentDetail() {
                 // setTitle(val.data.title)
                 document.getElementById('doc-title').value = val.data.title
             })
+        
+        // const initQuilltoWord = async () => {
+            // const { generateWord } = await import('quill-to-word')
+            // const quillToWord - new 
+            // import * as quillToWord from 'quill-to-word'
+        // }
     }, [])
 
     const modules = {
@@ -85,6 +93,16 @@ export default function MyDocumentDetail() {
 
     }
 
+    const handleDownload = async (e) => {
+        e.preventDefault()
+
+        // console.log(currentContent.current)
+
+        const quillToWordConfiq = { exportAs: 'blob' }
+        const doc = await quillToWord.generateWord(currentContent.current, quillToWordConfiq)
+        saveAs(doc, 'template.docx')
+    }
+
     return(
         <>
             <Navbar />
@@ -96,26 +114,28 @@ export default function MyDocumentDetail() {
 
                 <main>
                     {/* <h1 id='doc-title' contentEditable='true' spellCheck='false'>Loading...</h1> */}
-                    <input id='doc-title' type='text' placeholder='Untitled' />
+                    <input id='doc-title' className={style.docTitle} type='text' placeholder='Untitled' />
                     <hr />
 
-                    <div className="editor-container">
-                        <QuillNoSSRWrapper id='text-editor' value={value} onChange={handleChange} modules={modules} placeholder='Type something here . . .' theme='snow' />
-                    </div>
+                    {/* <div className={style.contentFlex}> */}
+                        <div className="editor-container">
+                            <QuillNoSSRWrapper id='text-editor' value={value} onChange={handleChange} modules={modules} placeholder='Type something here . . .' theme='snow' />
+                        </div>
 
-                    <div className={style.btnGroup}>
-                        {/* <Link href='/' className={style.btn}>
-                            <button className={style.btnHapus}>Hapus</button>
-                        </Link> */}
+                        <div className={style.btnGroup}>
+                            {/* <Link href='/' className={style.btn}>
+                                <button className={style.btnHapus}>Hapus</button>
+                            </Link> */}
 
-                        <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event)}>
-                            <button>Simpan</button>
-                        </Link>
-                        
-                        <Link href='/' className={style.btn}>
-                            <button className={style.btnAjukan}>Unduh</button>
-                        </Link>
-                    </div>
+                            <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event)}>
+                                <button>Simpan</button>
+                            </Link>
+                            
+                            <Link href='/' className={style.btn}>
+                                <button className={style.btnAjukan} onClick={(event) => handleDownload(event)}>Unduh</button>
+                            </Link>
+                        </div>
+                    {/* </div> */}
                 </main>
             </div>
         </>

@@ -22,6 +22,7 @@ export default function ProfilePage() {
                     document.getElementById('name').value = val.data.full_name
                     document.getElementById('uname').value = val.data.username
                     document.getElementById('occ').value = val.data.occupation
+                    document.getElementById('aff').value = val.data.affiliation
                 })
         }
     }, [])
@@ -56,6 +57,9 @@ export default function ProfilePage() {
                     <option>Guru</option>
                     <option>Lainnya</option>
                 </select> */}
+
+                <p>Afiliasi</p>
+                <input id='aff' type='text' />
                 
                 <div className={style.btn}>
                     <Link className={style.button} href={`/profile/edit`}>Edit Profil</Link>

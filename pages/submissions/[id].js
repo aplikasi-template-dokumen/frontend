@@ -118,6 +118,7 @@ export default function SubmissionDetail() {
                         <div className={style.action}>
                             <p>Komentar Reviewer</p>
                             <textarea id='notes' placeholder='Tuliskan komentar terkait template untuk kontributor...'></textarea>
+                            <br />
                             <Link href='/' onClick={(event) => handleSubmit(event, 4)}><button>Terima</button></Link>
                             <Link href='/' onClick={(event) => handleSubmit(event, 1)}><button>Tolak</button></Link>
                             <Link href='/' onClick={(event) => handleSubmit(event, 3)}><button>Revisi</button></Link>

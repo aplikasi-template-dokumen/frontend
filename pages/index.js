@@ -123,8 +123,17 @@ export default function Home() {
     try {
       e.preventDefault()
       const response = await axios.get(`http://127.0.0.1:3001/t/search?key=${key}`)
-      console.log('Key: ', key, ' Res: ', response.data.data)
-      setDocumentList(response.data.data)
+      // console.log('Key: ', key, ' Res: ', response.data.data)
+      console.log(response.data.status)
+
+      if (response.data.status == 404) {
+        // console.log('Kosong')
+        setDocumentList([])
+      }
+
+      else {
+        setDocumentList(response.data.data)
+      }
     }
 
     catch(err) {
