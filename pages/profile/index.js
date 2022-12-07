@@ -8,6 +8,8 @@ export default function ProfilePage() {
     const user = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
     const router = useRouter()
 
+    const [profileImg, setProfileImg] = useState(null)
+
     useEffect(() => {
         if (user === null) {
             router.push(`/`)
@@ -23,6 +25,7 @@ export default function ProfilePage() {
                     document.getElementById('uname').value = val.data.username
                     document.getElementById('occ').value = val.data.occupation
                     document.getElementById('aff').value = val.data.affiliation
+                    setProfileImg(val.data.profile_img)
                 })
         }
     }, [])
@@ -36,7 +39,7 @@ export default function ProfilePage() {
             </div>
 
             <div className={style.container}>
-                <img src='/images/sample-profile.png' alt='profile' />
+                <img src={ profileImg == null ? '/images/sample-profile.png' : profileImg } alt='profile' />
 
                 <p>Role</p>
                 <input id='role' type='text' disabled />

@@ -111,6 +111,8 @@ export default function MyTemplateDetail() {
 
     const handleSubmit = async (e, s_id) => {
         e.preventDefault()
+
+        const formData = FormData()
         const title = document.getElementById('title').value
         const desc = document.getElementById('desc').value
         const lang_id = document.getElementById('lang').value
@@ -172,6 +174,10 @@ export default function MyTemplateDetail() {
                     <div className={style.reqBox}></div>
 
                     <form className={style.form}>
+                        {/* <div>
+                            <img src={data.img} alt='image' />
+                        </div> */}
+
                         <div>
                             <p>Judul Template</p>
                             <input id="title" type='text' defaultValue={data.title} onChange={(event) => handleTitleChanged(event)} required />

@@ -12,7 +12,10 @@ export default function EditProfile() {
     const [occs, setOccs] = useState([])
     const [occId, setOccId] = useState(-1)
     const [tempImg, setTempImg] = useState(null)
-    const [uploadImg, setUploadImg] = useState(null)
+
+    const [uname, setUname] = useState('')
+    const [name, setName] = useState('')
+    const [aff, setAff] = useState('')
 
     useEffect(() => {
         if (user === null) {
@@ -29,28 +32,12 @@ export default function EditProfile() {
             fetch(`http://127.0.0.1:3001/u/profile/${user}`)
                 .then((res) => res.json())
                 .then((val) => {
-                    document.getElementById('email').value = val.data.email
-                    document.getElementById('name').value = val.data.full_name
-                    document.getElementById('uname').value = val.data.username
-                    document.getElementById('aff').value = val.data.affiliation
+                    setName(val.data.full_name)
+                    setUname(val.data.username)
+                    setAff(val.data.affiliation)
                     setOccId(val.data.occupation_id)
-
-                    const image = val.data.profile_img.data
-
-                    // const buff = Buffer.image.toS(image, 'utf8')
-                    // console.log(buff)
-
-                    const img = image.toString('base64')
-                    setUploadImg(img)
-                    // console.log(img)
-                    
-                    // console.log(buff)
-                    // console.log(buff.toString('base64'))
-
-                    // const buff = new Buffer(image)
-                    // const imageD = buff.toString('base64')
-                    // console.log(imageD)
-                    // setTempImg(imageD)
+                    setTempImg(val.data.profile_img)
+                    document.getElementById('email').value = val.data.email
                 })
         }
     }, [])
@@ -58,36 +45,16 @@ export default function EditProfile() {
     const handleUploadImage = async (e) => {
         e.preventDefault()
 
-        const file = e.target.files[0]
-        const preview = document.getElementById('profile-img')
         const reader = new FileReader()
-        // console.log(file)
+        const file = e.target.files[0]
 
-        reader.addEventListener('load', () => {
-            const result = reader.result
-            
-            // preview.src = result
+        reader.addEventListener('load', () => {            
             setTempImg(reader.result)
-            console.log(reader.result)
-
-            const buff = Buffer.from(reader.result, 'utf8')
-            setUploadImg(buff)
-            // console.log(buff)
-            // console.log(buff.toString('base64'))
-            
-            // const encode = Buffer.from(reader.result, 'base64')
-            // const decode = encode.toString('base64')
-            // atob()
-            // btoa()
-            // console.log(encode)
-            // console.log(decode)
-            //Buffer.from(str, 'base64') andbuf.toString('base64').
         }, false)
 
         if (file) {
             reader.readAsDataURL(file)
         }
-
     }
 
     const handleSubmit = async (e) => {
@@ -95,26 +62,24 @@ export default function EditProfile() {
             e.preventDefault()
 
             const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-            const uname = document.getElementById('uname').value
-            const name = document.getElementById('name').value
-            const occ_id = document.getElementById('occ').value
-            const profile_img = uploadImg == null ? null : uploadImg
-            const aff = document.getElementById('aff').value
+            const formData = new FormData()
 
-            // const encode = Buffer.from(reader.result, 'base64')
+            formData.append('id', id)
+            formData.append('uname', uname)
+            formData.append('name', name)
+            formData.append('occ_id', occId)
+            formData.append('image', document.getElementById('input-img').files[0])
+            formData.append('aff', aff)
 
-            // console.log(`${id} - ${username} - ${full_name} - ${occupation_id} - ${affiliation}`)
-            // console.log(profile_img)
+            console.log(formData)
 
-            const response = await axios.post(`http://127.0.0.1:3001/u/${id}/edit-profile`, {
-                uname,
-                name,
-                occ_id,
-                profile_img,
-                aff
+            const response = await axios.post(`http://127.0.0.1:3001/u/${id}/edit-profile`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             })
 
-            console.log(response)
+            console.log(response.data)
 
             router.push('/profile')
         }
@@ -139,16 +104,16 @@ export default function EditProfile() {
                 <input id='email' type='email' disabled />
                 
                 <p>Nama Lengkap</p>
-                <input id='name' type='text' />
+                <input id='name' type='text' value={name} onChange={(e) => setName(e.target.value)} />
 
                 <p>Username</p>
-                <input id='uname' type='text' />
+                <input id='uname' type='text' value={uname} onChange={(e) => setUname(e.target.value)} />
 
                 <p>Pekerjaan</p>
-                { occs.length == 0 ? <select id="occ"><option value={-1}>Pilih Pekerjaan</option><option>Loading...</option></select> : <select id='occ' defaultValue={occId} >{ occs.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
+                { occs.length == 0 ? <select id="occ"><option value={-1}>Pilih Pekerjaan</option><option>Loading...</option></select> : <select id='occ' value={occId} onChange={(e) => setOccId(e.target.value)} >{ occs.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
 
                 <p>Afiliasi</p>
-                <input id='aff' type='text' />
+                <input id='aff' type='text' value={aff} onChange={(e) => setAff(e.target.value)} />
 
                 <p>Foto Profil</p>
                 <input id='input-img' type='file' accept="image/png, image/jpeg" onChange={(event) => handleUploadImage(event)} />
