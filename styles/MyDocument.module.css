@@ -1,32 +1,20 @@
 .container {
-    padding: 60px 80px;
+    padding: 60px 40px;
 }
 
-.container table {
-    width: 100%;
-    border-collapse: collapse;
+.container main .info {
+    display: flex;
+    align-items: center;
 }
 
-.container table thead {
-    font-weight: bold;
+.info img {
+    width: 245px;
+    height: 245px;
+    object-fit: cover;
+    margin-right: 50px;
+    align-items: baseline;
+    box-shadow: 0 0 6px 0px #ADADAD;
 }
-
-.container table tbody tr:nth-child(odd) {
-    background-color: #82b9d638;
-}
-
-.container table tr td {
-    padding: 10px 0;
-}
-
-.container table tr td:nth-child(2) {
-    /* background-color: aquamarine; */
-    /* text-align: center; */
-}
-
-/* .container table tr td button {
-    
-} */
 
 .form {
     margin: 30px 0;
@@ -59,67 +47,31 @@
 }
 
 .container button {
-    height: fit-content;
-    margin: auto 0;
-    color: #FFFFFF;
-    background-color: #284f92;
-    padding: 5px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.15s;
-}
-
-.container button:hover {
-    background-color: #112e60;
+    padding: 20px 0;
 }
 
 .btnCreate {
     width: 100%;
     margin-top: 50px;
-    color: #FFFFFF;
-    background-color: #284f92;
-    border: none;
-    border-radius: 4px;
     padding: 15px;
-    cursor: pointer;
-    transition: 0.15s;
-}
-
-.btnCreate:hover {
-    background-color: #112e60;
 }
 
 .btnGroup {
     display: flex;
     justify-content: space-between;
-    margin: 0 60px;
+    margin: 0 auto;
     padding: 0;
+    width: 100%;
+    max-width: 8.5in;
 }
 
 .btnGroup .btn {
-    width: 100%;
+    width: 48%;
 }
 
 .btnGroup .btn button {
     width: 100%;
     padding: 15px 0;
-}
-
-.btnGroup .btn .btnHapus {
-    background-color: rgb(166, 55, 55);
-}
-
-.btnGroup .btn .btnHapus:hover {
-    background-color: rgb(121, 34, 34);
-}
-
-.btnGroup .btn .btnAjukan {
-    background-color: rgb(33, 141, 82);
-}
-
-.btnGroup .btn .btnAjukan:hover {
-    background-color: rgb(17, 92, 51);
 }
 
 .info {
@@ -152,6 +104,7 @@
     margin-top: 30px;
     font-size: 32px;
     border: 1px solid rgb(189, 189, 189);
-    padding: 0 10px;
+    border-radius: 4px;
+    padding: 4px 10px;
     font-weight: bold;
 }

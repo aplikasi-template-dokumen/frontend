@@ -1,18 +1,18 @@
-.search {
+.searchContainer {
   padding: 30px 0 40px 0;
   text-align: center;
   border-bottom: 1px black solid;
 }
 
-.search h1 {
+.searchContainer h1 {
   margin-bottom: 40px;
 }
 
-.form {
+.searchForm {
   font-size: 20px;
 }
 
-.form input {
+.searchForm input {
   width: 500px;
   height: 50px;
   margin-right: 10px;
@@ -23,22 +23,13 @@
   font-size: 16px;
 }
 
-.form button {
+.searchForm button {
   height: 50px;
-  padding: 0 10px;
-  background-color: #82b9d6;
-  border: none;
-  border-radius: 4px;
-  padding: 0 15px;
-  color: #FFFFFF;
-  font-weight: 400;
-  cursor: pointer;
-  transition: 0.15s;
-  font-size: 16px;
+  padding: 0 16px;
 }
 
-.form button:hover {
-  background-color: #5895b6;
+.searchIcon {
+  width: 16px;
 }
 
 .categories {
@@ -62,30 +53,55 @@
 
 .content {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin: 60px 0;
 }
 
-.content .filterBox {
-  width: 20%;
+.filterBox {
+  width: 18%;
+  line-height: 0;
+  /* position: sticky; */
+  /* top: 0; */
+}
+
+.filterBox h2 {
+  margin-bottom: 40px;
+}
+
+.filterBox form {
+  margin-top: 30px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 3px 1px #ADADAD;
+  border-radius: 4px;
+  padding: 25px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filterBox form p {
+  line-height: 0;
+  font-weight: 600;
+}
+
+.filterBox form select {
+  width: 100%;
+  padding: 8px;
+  background-color: #FFFFFF;
+  border: 1px #ADADAD solid;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.filterBox form button {
+  margin-top: 10px;
+  padding: 10px 0;
 }
 
 .content .cards {
-  width: 80%;
+  width: 78%;
   display: grid;
   grid-template-columns: auto auto auto auto;
-  column-gap: 30px;
+  column-gap: 20px;
   row-gap: 40px;
-}
-
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
-.searchIcon {
-  width: 14px;
 }

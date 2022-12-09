@@ -23,7 +23,7 @@ export default function TemplateDetail() {
             .then((val) => {
                 setValue(val.data.data)
                 setTitle(val.data.title)
-                // console.log(val.data.title)
+                document.getElementById('doc-image').src = val.data.img
             })
     }, [])
 
@@ -40,7 +40,6 @@ export default function TemplateDetail() {
         }
 
         else {
-            // console.log('Bisa digunakan')
             const response = await axios.post(`http://127.0.0.1:3001/d/create`, {
                 title: title,
                 user_id: window.localStorage.getItem('i'),
@@ -64,18 +63,24 @@ export default function TemplateDetail() {
         <>
             <Navbar />
 
-            <div className={style.container}>
-                {/* <div className={style.document}> */}
-                <div className='editor-container'>
-                    <QuillNoSSRWrapper value={value} modules={modules} placeholder='Nothing here . . .' theme='snow' readOnly />
-                </div>
-                {/* </div> */}
+            <div className='main-container'>
+                <main>
+                <Link className='backBtn' href='/'><img src='/images/icon-back.png' alt='back-btn' className='backImg' />Kembali ke Halaman Utama</Link>
 
-                <div className={style.action}>
-                    <p id='temp-title'>{title}</p>
-                    <Link href='/' onClick={(event) => handleUseTemplate(event)}><button>Gunakan Template</button></Link>
-                    <Link href='/' onClick={(event) => handleDownload(event)}><button>Unduh Template (.doc)</button></Link>
+                <h1>{title}</h1>
+                <hr />
+                
+                <div className={style.container}>
+                    <QuillNoSSRWrapper className={style.document} value={value} modules={modules} placeholder='Nothing here . . .' theme='snow' readOnly />
+
+                    <div className={style.action}>
+                        <img id='doc-image' alt='image' />
+                        <p id='temp-title'>{title}</p>
+                        <Link href='/' onClick={(event) => handleUseTemplate(event)}><button className='btn green-btn'>Gunakan Template</button></Link>
+                        <Link href='/' onClick={(event) => handleDownload(event)}><button className='btn blue-btn'>Unduh Template (.doc)</button></Link>
+                    </div>
                 </div>
+                </main>
             </div>
         </>
     )

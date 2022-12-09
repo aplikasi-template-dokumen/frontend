@@ -14,6 +14,12 @@ export default function MyTemplateDetail() {
     const [sub, setSub] = useState([])
     const [lang, setLang] = useState([])
 
+    const [catId, setCatId] = useState(-1)
+    const [subId, setSubId] = useState(-1)
+    const [langId, setLangId] = useState(-1)
+
+    const [tempImg, setTempImg] = useState(null)
+
     const currentContent = useRef({})
 
     // const [id, setId] = useState()
@@ -37,6 +43,9 @@ export default function MyTemplateDetail() {
             .then((res) => res.json())
             .then((val) => {
                 setData(val.data)
+                setCatId(val.data.cat_id)
+                setSubId(val.data.sub_cat_id)
+                setLangId(val.data.lang_id)
                 document.getElementById('temp-title').innerHTML = val.data.title
                 
                 fetch(`http://127.0.0.1:3001/sc/c/${val.data.cat_id}`)
@@ -92,6 +101,7 @@ export default function MyTemplateDetail() {
           e.preventDefault()
     
           const cat_id = e.target.value
+          setCatId(catId)
     
           if (cat_id == 0) {
             setSub([])
@@ -112,34 +122,44 @@ export default function MyTemplateDetail() {
     const handleSubmit = async (e, s_id) => {
         e.preventDefault()
 
-        const formData = FormData()
         const title = document.getElementById('title').value
         const desc = document.getElementById('desc').value
         const lang_id = document.getElementById('lang').value
         const cat_id = document.getElementById('cat').value
         const sub_cat_id = document.getElementById('sub').value
-        const img = document.getElementById('image').value
+        const img = document.getElementById('image').files[0]
         const notes = document.getElementById('notes').value
+        
+        const formData = new FormData()
 
-        if (title == '' || desc == '' || lang == -1 || cat_id == -1 || sub_cat_id == -1 || img == '') {
-            console.log('Form data tidak boleh kosong!')
-            console.log(s_id)
-            return false
+        formData.append('title', title)
+        formData.append('desc', desc)
+        formData.append('lang_id', lang_id)
+        formData.append('cat_id', cat_id)
+        formData.append('sub_cat_id', sub_cat_id)
+        formData.append('img', img)
+        formData.append('notes', notes)
+        formData.append('data', JSON.stringify(currentContent.current))
+        formData.append('status_id', s_id)
+
+        if (s_id == 1 && (title == '' || desc == '')) {
+            console.log('Buat draft = Data tidak boleh kosong!')
         }
+
+        // else
+        // if (s_id == 2 && (title == '' || desc == '' || img == null)) {
+        //     console.log('Ajukan template - Data tidak boleh kosong!')
+        // }
 
         else {
             const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-            const response = await axios.post(`http://127.0.0.1:3001/t/${router.query.id}/edit?u_id=${id}`, {
-                title,
-                desc,
-                lang_id,
-                cat_id,
-                sub_cat_id,
-                img,
-                data: currentContent.current,
-                notes,
-                status_id: s_id
+            const response = await axios.post(`http://127.0.0.1:3001/t/${router.query.id}/edit?u_id=${id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
             })
+
+            console.log(response)
 
             router.push('/my/templates')
         }
@@ -157,80 +177,85 @@ export default function MyTemplateDetail() {
         }
     }
 
+    const handleUploadImage = async (e) => {
+        e.preventDefault()
+
+        const reader = new FileReader()
+        const file = e.target.files[0]
+
+        reader.addEventListener('load', () => {
+            setTempImg(reader.result)
+        }, false)
+
+        if (file) {
+            reader.readAsDataURL(file)
+        }
+    }
+
     return(
         <>
             <Navbar />
 
-            <div className={style.container}>
-                <div>
-                    <Link className='backBtn' href='/my/templates'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Template Saya</Link>
-                </div>
-
+            <div className='main-container'>
                 <main>
+                    <Link className='backBtn' href='/my/templates'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Template Saya</Link>
                     {/* <h1>Buat Template</h1> */}
                     <h1 id='temp-title'>Loading...</h1>
                     <hr />
 
                     <div className={style.reqBox}></div>
 
-                    <form className={style.form}>
-                        {/* <div>
-                            <img src={data.img} alt='image' />
-                        </div> */}
+                    <div className={style.info}>
+                        <img src={tempImg == null ? data.img : tempImg} alt='image' />
 
-                        <div>
-                            <p>Judul Template</p>
-                            <input id="title" type='text' defaultValue={data.title} onChange={(event) => handleTitleChanged(event)} required />
-                        </div>
+                        <form className={style.form}>
+                            <div>
+                                <p>Judul Template</p>
+                                <input id="title" type='text' defaultValue={data.title} onChange={(event) => handleTitleChanged(event)} required />
+                            </div>
 
-                        <div>
-                            <p>Deskripsi</p>
-                            <input id="desc" type='text' defaultValue={data.desc} />
-                        </div>
+                            <div>
+                                <p>Deskripsi</p>
+                                <input id="desc" type='text' defaultValue={data.desc} />
+                            </div>
 
-                        <div>
-                            <p>Bahasa</p>
-                            { lang.length == 0 ? <select id="lang"><option value={-1}>Pilih Bahasa</option><option>Loading...</option></select> : <select id='id' value={data.lang_id}>{ lang.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
-                        </div>
+                            <div>
+                                <p>Bahasa</p>
+                                { lang.length == 0 ? <select id="lang"><option value={-1}>Pilih Bahasa</option><option>Loading...</option></select> : <select id='lang' value={langId} onChange={(event) => setLangId(event.target.value)}>{ lang.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
+                            </div>
 
-                        <div>
-                            <p>Kategori</p>
-                            { cat.length == 0 ? <select id="cat"><option value={-1}>Pilih Kategori</option><option>Loading...</option></select> : <select id='id' value={data.cat_id} onChange={(event) => handleSubCategory(event)} onLoad={(event) => handleSubCategory(event)}>{ cat.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
-                        </div>
+                            <div>
+                                <p>Kategori</p>
+                                { cat.length == 0 ? <select id="cat"><option value={-1}>Pilih Kategori</option><option>Loading...</option></select> : <select id='cat' value={catId} onChange={(event) => handleSubCategory(event)}>{ cat.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
+                            </div>
 
-                        <div>
-                            <p>Sub Kategori</p>
-                            { sub.length == 0 ? <select id="sub"><option value={-1}>Pilih Sub Kategori</option><option>Loading...</option></select> : <select id='id' value={data.sub_cat_id}>{ sub.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
-                        </div>
+                            <div>
+                                <p>Sub Kategori</p>
+                                { sub.length == 0 ? <select id="sub"><option value={-1}>Pilih Sub Kategori</option><option>Loading...</option></select> : <select id='sub' value={subId} onChange={(event) => setSubId(event.target.value)}>{ sub.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
+                            </div>
 
-                        <div>
-                            <p>Gambar Preview</p>
-                            {/* <input id='image' type='file' /> */}
-                            <input id="image" type='text' defaultValue={data.img} />
-                        </div>
+                            <div>
+                                <p>Gambar Preview</p>
+                                <input id="image" type='file' accept="image/png, image/jpeg" defaultValue={data.img} onChange={(event) => handleUploadImage(event)} />
+                            </div>
 
-                        <div>
-                            <p>Catatan</p>
-                            <input id="notes" type='text' defaultValue={data.notes} />
-                            {/* <p id="notes">{data.notes}</p> */}
-                        </div>
-                    </form>
-
-                    <div className="editor-container">
-                        <QuillNoSSRWrapper id='text-editor' defaultValue={data.data} onChange={handleChange} modules={modules} placeholder='Type something here . . .' theme='snow' />
+                            <div>
+                                <p>Catatan</p>
+                                <input id="notes" type='text' defaultValue={data.notes} />
+                                {/* <p id="notes">{data.notes}</p> */}
+                            </div>
+                        </form>
                     </div>
 
-                    <div className={style.btnGroup}>
-                        {/* <Link href='/' className={style.btn}>
-                            <button className={style.btnHapus}>Hapus</button>
-                        </Link> */}
+                    <QuillNoSSRWrapper className='text-editor' defaultValue={data.data} onChange={handleChange} modules={modules} placeholder='Type something here . . .' theme='snow' />
 
+                    <div className={style.btnGroup}>
                         <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event, 1)}>
-                            <button>Simpan</button>
+                            <button  className='btn blue-btn'>Simpan</button>
                         </Link>
                         
                         <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event, 2)}>
-                            <button className={style.btnAjukan}>Ajukan</button>
+                            <button className='btn green-btn'>Ajukan</button>
                         </Link>
                     </div>
                 </main>

@@ -36,12 +36,13 @@ export default function ChangePassword() {
         <>
             <Navbar />
 
-            <div>
-                <Link className='backBtn' href={'/profile'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Profil</Link>
-            </div>
+            <div className='main-container'>
+                <main>
+                    <Link className='backBtn' href={'/profile'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Profil</Link>
+                </main>
 
             <div className={style.container}>
-                <img src='/images/sample-profile.png' alt='profile' />
+                {/* <img src='/images/sample-profile.png' alt='profile' /> */}
 
                 <p>Password Lama</p>
                 <input id='old-pass' type='password' required />
@@ -53,9 +54,12 @@ export default function ChangePassword() {
                 <input id='re-pass' type='password' required />
                 
                 <div className={style.btn}>
-                    <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`${style.button} ${style.fullWidth}`}>Simpan</Link>
+                    <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`btn blue-btn ${style.button} ${style.fullWidth}`}>Simpan</Link>
                 </div>
             </div>
+            </div>
+            
+
         </>
     )
 }

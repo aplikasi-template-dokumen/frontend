@@ -39,16 +39,14 @@ export default function SubmissionsPage() {
         <>
             <Navbar />
 
-            <div className={style.container}>
-                <div>
-                    <Link className='backBtn' href='/'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Halaman Utama</Link>
-                </div>
-
+            <div className='main-container'>
                 <main>
+                    <Link className='backBtn' href='/'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Halaman Utama</Link>
+                    
                     <h1>Daftar Ajuan Template</h1>
                     <hr />
 
-                    { list.length == 0 ? <p>Belum ada template yang diajukan...</p> : <table><thead><tr><td>Judul Template</td><td>Kontributor</td><td>Tanggal Diajukan</td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/submissions/${item.id}`}>{item.title}</Link></td><td>{item.contributor.username}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }</tbody></table> }
+                    { list.length == 0 ? <p>Belum ada template yang diajukan...</p> : <table className="table"><thead><tr><td>Judul Template</td><td>Kontributor</td><td>Tanggal Diajukan</td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/submissions/${item.id}`}>{item.title}</Link></td><td>{item.contributor.username}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }</tbody></table> }
                 </main>
             </div>
         </>

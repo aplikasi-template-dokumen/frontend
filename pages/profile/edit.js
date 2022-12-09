@@ -93,10 +93,11 @@ export default function EditProfile() {
         <>
             <Navbar />
 
-            <div>
-                <Link className='backBtn' href={'/profile'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Profil</Link>
-            </div>
-
+            <div className='main-container'>
+                <main>
+                    <Link className='backBtn' href={'/profile'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Profil</Link>
+                </main>
+                
             <div className={style.container}>
                 <img id='profile-img' src={tempImg == null ? '/images/sample-profile.png' : tempImg.toString('base64')} alt='profile' />
 
@@ -119,9 +120,13 @@ export default function EditProfile() {
                 <input id='input-img' type='file' accept="image/png, image/jpeg" onChange={(event) => handleUploadImage(event)} />
                 
                 <div className={style.btn}>
-                    <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`${style.button} ${style.fullWidth}`}>Simpan</Link>
+                    <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`btn blue-btn ${style.button} ${style.fullWidth}`}>Simpan</Link>
                 </div>
             </div>
+            </div>
+            
+            
+
         </>
     )
 }

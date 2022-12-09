@@ -1,4 +1,6 @@
-import style from '../../styles/Templates.module.css'
+// import style from '../../styles/Templates.module.css'
+// import style from '../../styles/MyDocument.module.css'
+import style from '../../styles/Documents.module.css'
 import Navbar from '../../components/Navbar'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -67,17 +69,17 @@ export default function SubmissionDetail() {
         <>
             <Navbar />
 
-            <div className={style.container}>
-                <Link className='backBtn' href='/submissions'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Daftar Template Ajuan</Link>
-
+            <div className='main-container'>
                 <main>
+                    <Link className='backBtn' href='/submissions'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Daftar Template Ajuan</Link>
+                    
                     <h1>Review: {data.title}</h1>
                     <hr />
 
                     <div className={style.info}>
-                        <img src={data.img} alt='image' />
+                        <img src={data.img == null ? '/img-not-available.jpg' : data.img} alt='image' />
 
-                        <form>
+                        <form className={style.form}>
                             <div>
                                 <h4>Judul Template</h4>
                                 <p>: {data.title}</p>
@@ -110,18 +112,16 @@ export default function SubmissionDetail() {
                         </form>
                     </div>
 
-                    <div className={style.containerEditor}>
-                        <div className="editor-container">
-                            <QuillNoSSRWrapper id='text-editor' value={data.data} modules={modules} placeholder='Nothing here . . .' theme='snow' readOnly />
-                        </div>
-
+                    <div className={style.container}>
+                        <QuillNoSSRWrapper className={style.document} value={data.data} modules={modules} placeholder='Nothing here . . .' theme='snow' readOnly />
+                        
                         <div className={style.action}>
-                            <p>Komentar Reviewer</p>
+                            <h3>Komentar Reviewer</h3>
                             <textarea id='notes' placeholder='Tuliskan komentar terkait template untuk kontributor...'></textarea>
-                            <br />
-                            <Link href='/' onClick={(event) => handleSubmit(event, 4)}><button>Terima</button></Link>
-                            <Link href='/' onClick={(event) => handleSubmit(event, 1)}><button>Tolak</button></Link>
-                            <Link href='/' onClick={(event) => handleSubmit(event, 3)}><button>Revisi</button></Link>
+                            
+                            <Link href='/' onClick={(event) => handleSubmit(event, 4)}><button className='btn green-btn'>Terima</button></Link>
+                            <Link href='/' onClick={(event) => handleSubmit(event, 3)}><button className='btn blue-btn'>Revisi</button></Link>
+                            <Link href='/' onClick={(event) => handleSubmit(event, 1)}><button className='btn red-btn'>Tolak</button></Link>
                         </div>
                     </div>
                 </main>

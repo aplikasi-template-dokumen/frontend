@@ -34,42 +34,37 @@ export default function ProfilePage() {
         <>
             <Navbar />
 
-            <div>
-                <Link className='backBtn' href={'/'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Utama</Link>
-            </div>
+            <div className='main-container'>
+                <main>
+                    <Link className='backBtn' href={'/'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Utama</Link>
 
-            <div className={style.container}>
-                <img src={ profileImg == null ? '/images/sample-profile.png' : profileImg } alt='profile' />
+                    <div className={style.container}>
+                        <img src={ profileImg == null ? '/images/sample-profile.png' : profileImg } alt='profile' />
 
-                <p>Role</p>
-                <input id='role' type='text' disabled />
+                        <p>Role</p>
+                        <input id='role' type='text' disabled />
 
-                <p>Email</p>
-                <input id='email' type='email' disabled />
-                
-                <p>Nama Lengkap</p>
-                <input id='name' type='text' />
+                        <p>Email</p>
+                        <input id='email' type='email' disabled />
+                        
+                        <p>Nama Lengkap</p>
+                        <input id='name' type='text' />
 
-                <p>Username</p>
-                <input id='uname' type='text' />
+                        <p>Username</p>
+                        <input id='uname' type='text' />
 
-                <p>Pekerjaan</p>
-                <input id='occ' type='text' />
-                {/* <select>
-                    <option>Pelajar</option>
-                    <option>Guru</option>
-                    <option>Lainnya</option>
-                </select> */}
+                        <p>Pekerjaan</p>
+                        <input id='occ' type='text' />
 
-                <p>Afiliasi</p>
-                <input id='aff' type='text' />
-                
-                <div className={style.btn}>
-                    <Link className={style.button} href={`/profile/edit`}>Edit Profil</Link>
-                    <Link className={style.button} href={`/profile/change-password`}>Ganti Password</Link>
-                    {/* <button>Edit Profil</button>
-                    <button>Ganti Password</button> */}
-                </div>
+                        <p>Afiliasi</p>
+                        <input id='aff' type='text' />
+                        
+                        <div className={style.btn}>
+                            <Link className={`btn blue-btn ${style.button}`} href={`/profile/edit`}>Edit Profil</Link>
+                            <Link className={`btn blue-btn ${style.button}`} href={`/profile/change-password`}>Ganti Password</Link>
+                        </div>
+                    </div>
+                </main>
             </div>
         </>
     )

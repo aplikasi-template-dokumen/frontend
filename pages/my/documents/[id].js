@@ -107,32 +107,23 @@ export default function MyDocumentDetail() {
         <>
             <Navbar />
 
-            <div className={style.container}>
-                <div>
-                    <Link className='backBtn' href='/my/documents'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Dokumen Saya</Link>
-                </div>
-
+            <div className='main-container'>
                 <main>
+                    <Link className='backBtn' href='/my/documents'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Dokumen Saya</Link>
                     {/* <h1 id='doc-title' contentEditable='true' spellCheck='false'>Loading...</h1> */}
                     <input id='doc-title' className={style.docTitle} type='text' placeholder='Untitled' />
                     <hr />
 
                     {/* <div className={style.contentFlex}> */}
-                        <div className="editor-container">
-                            <QuillNoSSRWrapper id='text-editor' value={value} onChange={handleChange} modules={modules} placeholder='Type something here . . .' theme='snow' />
-                        </div>
+                        <QuillNoSSRWrapper className='text-editor' value={value} onChange={handleChange} modules={modules} placeholder='Type something here . . .' theme='snow' />
 
                         <div className={style.btnGroup}>
-                            {/* <Link href='/' className={style.btn}>
-                                <button className={style.btnHapus}>Hapus</button>
-                            </Link> */}
-
                             <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event)}>
-                                <button>Simpan</button>
+                                <button className='btn blue-btn'>Simpan</button>
                             </Link>
                             
                             <Link href='/' className={style.btn}>
-                                <button className={style.btnAjukan} onClick={(event) => handleDownload(event)}>Unduh</button>
+                                <button className='btn green-btn' onClick={(event) => handleDownload(event)}>Unduh</button>
                             </Link>
                         </div>
                     {/* </div> */}

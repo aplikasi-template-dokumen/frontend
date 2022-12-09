@@ -1,40 +1,79 @@
+.info {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 0 auto; */
+}
+
+.info img {
+    width: 245px;
+    height: 245px;
+    object-fit: cover;
+    margin-right: 50px;
+    /* align-items: baseline; */
+    align-self: center;
+    box-shadow: 0 0 6px 0px #ADADAD;
+}
+
+.info form {
+    margin: 30px 0;
+    width: 100%;
+}
+
+.info form div {
+    display: flex;
+    align-items: center;
+}
+
+.info form div h4 {
+    width: 25%;
+    line-height: 0;
+}
+
 .container {
-    /* background-color: antiquewhite; */
-    padding: 80px 120px;
+    padding: 30px 0;
     display: flex;
     justify-content: space-between;
 }
 
 .container .document {
-    width: 60%;
-    min-height: 11in;
-    background-color: #FFFFFF;
-    border-radius: 4px;
-    box-shadow: 0 0 5px 1px #ADADAD;
+    user-select: none;
+    cursor: default;
 }
 
 .container .action {
-    width: 30%;
+    max-width: 250px;
     height: fit-content;
-    background-color: #FFFFFF;
-    border-radius: 4px;
-    box-shadow: 0 0 5px 1px #ADADAD;
     text-align: center;
-    padding: 20px 15px;
+    position: sticky;
+    top: 30px;
+}
+
+.container .action img {
+    width: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+    box-shadow: 0 0 6px 0px #ADADAD;
+}
+
+.container .action h3 {
+    line-height: 0;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.container .action textarea {
+    width: 100%;
+    height: 300px;
+    border-radius: 4px;
+    border: 1px solid gray;
+    padding: 10px;
+    margin-bottom: 15px;
+    resize: none;
+    outline: none;
 }
 
 .container .action button {
-    width: 80%;
-    padding: 14px 0;
-    margin: 10px 0;
-    color: #FFFFFF;
-    background-color: #284f92;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.15s;
-}
-
-.container .action button:hover {
-    background-color: #112e60;
+    width: 100%;
+    padding: 16px 0;
+    margin: 5px 0;
 }
