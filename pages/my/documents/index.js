@@ -13,18 +13,16 @@ export default function MyDocumentsPage() {
     useEffect(() => {
         const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
         setId(id)
-        // console.log('Dari dokumen saya: id = ', id)
 
         if (id == null) {
             router.push('/')
         }
 
         else {
-            fetch(`http://127.0.0.1:3001/d/user?id=${id}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/d/user?id=${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.status == 404) {
-                        // console.log(data.status)
                         setList([])
                     }
 
@@ -38,7 +36,7 @@ export default function MyDocumentsPage() {
     const handleCreate = async (event, id) => {
         event.preventDefault()
 
-        const response = await axios.post(`http://127.0.0.1:3001/d/create`, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/d/create`, {
             title: 'Untitled',
             user_id: id,
             data: null
@@ -50,7 +48,7 @@ export default function MyDocumentsPage() {
 
     const handleDelete = async (event, d_id) => {
         if (confirm('Hapus dokumen ini?') == true) {
-            const response = await axios.delete(`http://127.0.0.1:3001/d/${d_id}/delete`)
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/d/${d_id}/delete`)
             window.location.reload()
         }
 
@@ -70,7 +68,6 @@ export default function MyDocumentsPage() {
                     <h1>Dokumen Saya</h1>
                     <hr />
                     
-                    {/* { list.length == 0 ? <p>Belum ada dokumen...</p> : <table><thead><tr><td>Judul Dokumen</td><td>Terakhir Diedit</td><td>Aksi</td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/documents/${item.id}`}>{item.title}</Link></td><td>{item.updatedAt.slice(0, 10)}</td><td><button onClick={(event) => handleDelete(event, item.id)}>Hapus</button></td></tr>) }</tbody></table> } */}
                     { list.length == 0 ? <p>Belum ada dokumen...</p> : <table className="table"><thead><tr><td>Judul Dokumen</td><td>Terakhir Diedit</td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/documents/${item.id}`}>{item.title}</Link></td><td>{item.updatedAt.slice(0, 10)}</td><td><img className="iconDel" src='/images/icon-del.png' alt='del' onClick={(event) => handleDelete(event, item.id)}/></td></tr>) }</tbody></table> }
 
                     <Link href='/' onClick={(event) => handleCreate(event, id)}>

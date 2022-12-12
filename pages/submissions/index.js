@@ -12,18 +12,15 @@ export default function SubmissionsPage() {
     useEffect(() => {
         const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
         setId(id)
-        // console.log('Dari daftar ajuan: id = ', id)
 
         if (id == null) {
             router.push('/')
         }
 
         else {
-            fetch(`http://127.0.0.1:3001/s?r=ad`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/s?r=ad`)
                 .then((res) => res.json())
                 .then((data) => {
-                    // setList(data.data)
-                    // console.log(data)
                     if (data.status == 404) {
                         setList([])
                     }

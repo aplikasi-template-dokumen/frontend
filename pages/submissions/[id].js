@@ -1,5 +1,3 @@
-// import style from '../../styles/Templates.module.css'
-// import style from '../../styles/MyDocument.module.css'
 import style from '../../styles/Documents.module.css'
 import Navbar from '../../components/Navbar'
 import Link from 'next/link'
@@ -17,7 +15,7 @@ export default function SubmissionDetail() {
     }
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:3001/s/${router.query.id}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/s/${router.query.id}`)
             .then((res) => res.json())
             .then((val) => {
                 setData(val.data)
@@ -50,7 +48,7 @@ export default function SubmissionDetail() {
                 notes = 'Ajuan ditolak, ' + notes + ' (reviewer)'
             }
 
-            const result = await axios.post(`http://127.0.0.1:3001/s/${router.query.id}/send-review`, {
+            const result = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/s/${router.query.id}/send-review`, {
                 notes,
                 status_id: s_id,
                 reviewer_id: id,

@@ -13,14 +13,13 @@ export default function MyTemplatesPage() {
     useEffect(() => {
         const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
         setId(id)
-        // console.log('Dari template saya: id = ', id)
 
         if (id == null) {
             router.push('/')
         }
 
         else {
-            fetch(`http://127.0.0.1:3001/t/user?id=${id}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/t/user?id=${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.status == 404) {
@@ -37,18 +36,17 @@ export default function MyTemplatesPage() {
     const handleCreate = async (event, id) => {
         event.preventDefault()
 
-        const response = await axios.post(`http://127.0.0.1:3001/t/create`, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/t/create`, {
             contributor_id: id
         })
         .then((val) => {
             router.push({ pathname: `/my/templates/${val.data.data.id}` })
-            // console.log(val.data.data.id)
         })
     }
 
     const handleDelete = async (event, t_id) => {
         if (confirm('Hapus template ini?') == true) {
-            const response = await axios.delete(`http://127.0.0.1:3001/t/${t_id}/delete`)
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/t/${t_id}/delete`)
             window.location.reload()
         }
 

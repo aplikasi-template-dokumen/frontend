@@ -17,7 +17,7 @@ export default function SignUpPage() {
         }
 
         else {
-            fetch('http://127.0.0.1:3001/o')
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/o`)
                 .then((res) => res.json())
                 .then((data) => {
                     setOccs(data.data)
@@ -29,7 +29,7 @@ export default function SignUpPage() {
         e.preventDefault()
 
         try {
-            const response = await axios.post('http://127.0.0.1:3001/u/regist', {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/regist`, {
                 email: document.getElementById('email').value,
                 name: document.getElementById('name').value,
                 uname: document.getElementById('username').value,

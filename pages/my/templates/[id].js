@@ -39,7 +39,7 @@ export default function MyTemplateDetail() {
     // }, [])
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:3001/t/${router.query.id}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}`)
             .then((res) => res.json())
             .then((val) => {
                 setData(val.data)
@@ -48,20 +48,20 @@ export default function MyTemplateDetail() {
                 setLangId(val.data.lang_id)
                 document.getElementById('temp-title').innerHTML = val.data.title
                 
-                fetch(`http://127.0.0.1:3001/sc/c/${val.data.cat_id}`)
+                fetch(`${process.env.NEXT_PUBLIC_API_URL}/sc/c/${val.data.cat_id}`)
                     .then((res) => res.json())
                     .then((data) => {
                         setSub(data.data)
                     })
             })
         
-        fetch('http://127.0.0.1:3001/c')
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/c`)
             .then((res) => res.json())
             .then((data) => {
               setCat(data.data)
             })
 
-        fetch('http://127.0.0.1:3001/l')
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/l`)
             .then((res) => res.json())
             .then((data) => {
                 setLang(data.data)
@@ -108,7 +108,7 @@ export default function MyTemplateDetail() {
           }
     
           else {
-            const response = await axios.get(`http://127.0.0.1:3001/sc/c/${cat_id}`) 
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/sc/c/${cat_id}`) 
             setSub(response.data.data)
           }
     
@@ -153,7 +153,7 @@ export default function MyTemplateDetail() {
 
         else {
             const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-            const response = await axios.post(`http://127.0.0.1:3001/t/${router.query.id}/edit?u_id=${id}`, formData, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}/edit?u_id=${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }

@@ -2,7 +2,7 @@ import style from '../../styles/Profile.module.css'
 import Navbar from '../../components/Navbar'
 import Link from 'next/dist/client/link'
 import axios from 'axios'
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 export default function EditProfile() {
@@ -23,13 +23,13 @@ export default function EditProfile() {
         }
 
         else {
-            fetch(`http://127.0.0.1:3001/o`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/o`)
                 .then((res) => res.json())
                 .then((val) => {
                     setOccs(val.data)
                 })
 
-            fetch(`http://127.0.0.1:3001/u/profile/${user}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/u/profile/${user}`)
                 .then((res) => res.json())
                 .then((val) => {
                     setName(val.data.full_name)
@@ -73,7 +73,7 @@ export default function EditProfile() {
 
             console.log(formData)
 
-            const response = await axios.post(`http://127.0.0.1:3001/u/${id}/edit-profile`, formData, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/${id}/edit-profile`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

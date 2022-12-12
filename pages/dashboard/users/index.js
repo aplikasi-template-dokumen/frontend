@@ -8,10 +8,9 @@ export default function DashboardUsers() {
     const [list, setList] = useState([])
     
     useEffect(() => {
-        fetch(`http://127.0.0.1:3001/u?r=ad`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/u?r=ad`)
             .then((res) => res.json())
             .then((data) => {
-                // console.log(data.data)
                 setList(data.data)
             })
     }, [])

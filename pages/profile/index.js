@@ -16,7 +16,7 @@ export default function ProfilePage() {
         }
 
         else {
-            fetch(`http://127.0.0.1:3001/u/profile/${user}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/u/profile/${user}`)
                 .then((res) => res.json())
                 .then((val) => {
                     document.getElementById('role').value = val.data.role

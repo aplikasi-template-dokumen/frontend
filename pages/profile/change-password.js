@@ -18,12 +18,12 @@ export default function ChangePassword() {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
-            const response = await axios.post(`http://127.0.0.1:3001/u/${user}/change-pass`, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/${user}/change-pass`, {
                 oldPass: document.getElementById('old-pass').value,
                 newPass: document.getElementById('pass').value,
                 newPassConf: document.getElementById('re-pass').value
             })
-            // console.log(response)
+            
             router.push('/profile')
         }
 

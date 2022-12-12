@@ -14,19 +14,19 @@ export default function Home() {
   // const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
 
   useEffect(() => {
-    fetch('http://127.0.0.1:3001/t-all')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/t-all`)
       .then((res) => res.json())
       .then((data) => {
         setDocumentList(data.data)
       })
 
-    fetch('http://127.0.0.1:3001/c')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/c`)
       .then((res) => res.json())
       .then((data) => {
         setCat(data.data)
       })
 
-    fetch('http://127.0.0.1:3001/l')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/l`)
       .then((res) => res.json())
       .then((data) => {
         setLang(data.data)
@@ -37,7 +37,7 @@ export default function Home() {
     try {
       e.preventDefault()
       if (cat_id == 0) {
-        const response = await axios.get(`http://127.0.0.1:3001/t-all`)
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/t-all`)
         setDocumentList(response.data.data)
 
         document.getElementById('kategori').value = 0
@@ -45,13 +45,13 @@ export default function Home() {
       }
 
       else {
-        const response = await axios.get(`http://127.0.0.1:3001/t/cat/${cat_id}`)
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/t/cat/${cat_id}`)
         setDocumentList(response.data.data)
 
-        const language = await axios.get(`http://127.0.0.1:3001/l`)
+        const language = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/l`)
         setLang(language.data.data)
 
-        const subCategories = await axios.get(`http://127.0.0.1:3001/sc/c/${cat_id}`)
+        const subCategories = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/sc/c/${cat_id}`)
         setSub(subCategories.data.data)
 
         document.getElementById('kategori').value = cat_id
@@ -74,7 +74,7 @@ export default function Home() {
       }
 
       else {
-        const response = await axios.get(`http://127.0.0.1:3001/sc/c/${cat_id}`)
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/sc/c/${cat_id}`)
 
         
         setSub(response.data.data)
@@ -99,7 +99,7 @@ export default function Home() {
       }
 
       else {
-        const result = await axios.get(`http://localhost:3001/t/filter/${lang}/${sub_cat}`)
+        const result = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/t/filter/${lang}/${sub_cat}`)
         setDocumentList(result.data.data)
       }
     }
@@ -112,7 +112,7 @@ export default function Home() {
   const handleSearch = async (e, key) => {
     try {
       e.preventDefault()
-      const response = await axios.get(`http://127.0.0.1:3001/t/search?key=${key}`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/t/search?key=${key}`)
       console.log(response.data.status)
 
       if (response.data.status == 404) {
