@@ -13,20 +13,40 @@ export default function Home() {
 
   // const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
 
+  // useEffect(() => {
+  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/t-all`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setDocumentList(data.data)
+  //     })
+
+  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/c`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setCat(data.data)
+  //     })
+
+  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/l`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setLang(data.data)
+  //     })
+  // }, [])
+  
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/t-all`)
+    fetch(`/t-all`)
       .then((res) => res.json())
       .then((data) => {
         setDocumentList(data.data)
       })
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/c`)
+    fetch(`/c`)
       .then((res) => res.json())
       .then((data) => {
         setCat(data.data)
       })
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/l`)
+    fetch(`/l`)
       .then((res) => res.json())
       .then((data) => {
         setLang(data.data)

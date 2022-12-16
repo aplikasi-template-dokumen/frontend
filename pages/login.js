@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+// import { TemplateKita } from '../apis/TemplateKita'
 
 export default function LoginPage() {
     const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
@@ -20,7 +21,11 @@ export default function LoginPage() {
         e.preventDefault()
 
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/login`, {
+            // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/login`, {
+            //     uname: document.getElementById('uname').value,
+            //     pass: document.getElementById('pass').value
+            // })
+            const response = await axios.post(`/u/login`, {
                 uname: document.getElementById('uname').value,
                 pass: document.getElementById('pass').value
             })
