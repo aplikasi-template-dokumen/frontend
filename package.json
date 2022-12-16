@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "next build -p 3000",
+    "start": "next start -p 3000",
+    "lint": "next lint -p 3000"
   },
   "dependencies": {
     "@types/file-saver": "^2.0.5",
