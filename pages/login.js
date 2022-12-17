@@ -21,11 +21,7 @@ export default function LoginPage() {
         e.preventDefault()
 
         try {
-            // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/login`, {
-            //     uname: document.getElementById('uname').value,
-            //     pass: document.getElementById('pass').value
-            // })
-            const response = await axios.post(`/u/login`, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/login`, {
                 uname: document.getElementById('uname').value,
                 pass: document.getElementById('pass').value
             })
