@@ -1,5 +1,6 @@
 import style from '../../styles/Profile.module.css'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 import Link from 'next/dist/client/link'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
@@ -66,6 +67,8 @@ export default function ProfilePage() {
                     </div>
                 </main>
             </div>
+
+            <Footer />
         </>
     )
 }

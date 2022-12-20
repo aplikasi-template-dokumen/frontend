@@ -1,4 +1,5 @@
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import style from '../styles/Sign.module.css'
 import Link from 'next/link'
 import { useEffect } from 'react'
@@ -62,6 +63,7 @@ export default function LoginPage() {
                 <p className={style.center}>Belum punya akun?<Link href='/signup'>Daftar di sini</Link></p>
             </form>
         </div>
+        <Footer/>
         </>
     )
 }

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Navbar from '../../../components/Navbar'
+import Footer from '../../../components/Footer'
 import style from '../../../styles/Admin.module.css'
 
 export default function DashboardCategories() {
@@ -38,6 +39,8 @@ export default function DashboardCategories() {
                     </Link>
                 </main>
             </div>
+
+            <Footer />
         </>
     )
 }

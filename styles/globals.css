@@ -5,6 +5,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: #FFFFFF;
+  /* min-height: fit-content; */
+  /* height: 100vh; */
 }
 
 header {
@@ -251,6 +253,19 @@ img.iconDel:hover {
 
 .show {
   display: block;
+}
+
+footer {
+  background-color: #284f92;
+  color: #FFFFFF;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 0;
+  font-size: 14px;
+  position: relative;
+  padding: 2px 0;
+  bottom: 0;
+  margin-top: 150px;
 }
 
 @page {

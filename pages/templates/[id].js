@@ -1,5 +1,6 @@
 import style from '../../styles/Documents.module.css'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
@@ -104,6 +105,8 @@ export default function TemplateDetail() {
                     </div>
                 </main>
             </div>
+
+            <Footer />
         </>
     )
 }

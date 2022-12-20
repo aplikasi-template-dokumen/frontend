@@ -1,5 +1,6 @@
 import style from '../../styles/Profile.module.css'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 import Link from 'next/dist/client/link'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -98,35 +99,34 @@ export default function EditProfile() {
                     <Link className='backBtn' href={'/profile'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Profil</Link>
                 </main>
                 
-            <div className={style.container}>
-                <img id='profile-img' src={tempImg == null ? '/images/sample-profile.png' : tempImg.toString('base64')} alt='profile' />
+                <div className={style.container}>
+                    <img id='profile-img' src={tempImg == null ? '/images/sample-profile.png' : tempImg.toString('base64')} alt='profile' />
 
-                <p>Email</p>
-                <input id='email' type='email' disabled />
-                
-                <p>Nama Lengkap</p>
-                <input id='name' type='text' value={name} onChange={(e) => setName(e.target.value)} />
+                    <p>Email</p>
+                    <input id='email' type='email' disabled />
+                    
+                    <p>Nama Lengkap</p>
+                    <input id='name' type='text' value={name} onChange={(e) => setName(e.target.value)} />
 
-                <p>Username</p>
-                <input id='uname' type='text' value={uname} onChange={(e) => setUname(e.target.value)} />
+                    <p>Username</p>
+                    <input id='uname' type='text' value={uname} onChange={(e) => setUname(e.target.value)} />
 
-                <p>Pekerjaan</p>
-                { occs.length == 0 ? <select id="occ"><option value={-1}>Pilih Pekerjaan</option><option>Loading...</option></select> : <select id='occ' value={occId} onChange={(e) => setOccId(e.target.value)} >{ occs.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
+                    <p>Pekerjaan</p>
+                    { occs.length == 0 ? <select id="occ"><option value={-1}>Pilih Pekerjaan</option><option>Loading...</option></select> : <select id='occ' value={occId} onChange={(e) => setOccId(e.target.value)} >{ occs.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }</select> }
 
-                <p>Afiliasi</p>
-                <input id='aff' type='text' value={aff} onChange={(e) => setAff(e.target.value)} />
+                    <p>Afiliasi</p>
+                    <input id='aff' type='text' value={aff} onChange={(e) => setAff(e.target.value)} />
 
-                <p>Foto Profil</p>
-                <input id='input-img' type='file' accept="image/png, image/jpeg" onChange={(event) => handleUploadImage(event)} />
-                
-                <div className={style.btn}>
-                    <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`btn blue-btn ${style.button} ${style.fullWidth}`}>Simpan</Link>
+                    <p>Foto Profil</p>
+                    <input id='input-img' type='file' accept="image/png, image/jpeg" onChange={(event) => handleUploadImage(event)} />
+                    
+                    <div className={style.btn}>
+                        <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`btn blue-btn ${style.button} ${style.fullWidth}`}>Simpan</Link>
+                    </div>
                 </div>
             </div>
-            </div>
-            
-            
 
+            <Footer />
         </>
     )
 }

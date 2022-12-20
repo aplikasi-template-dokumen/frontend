@@ -1,5 +1,6 @@
 import style from '../../styles/Documents.module.css'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
@@ -124,6 +125,8 @@ export default function SubmissionDetail() {
                     </div>
                 </main>
             </div>
+
+            <Footer />
         </>
     )
 }

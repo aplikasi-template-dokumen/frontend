@@ -1,5 +1,5 @@
 import Navbar from "../../components/Navbar"
-import style from "../../styles/MyDocument.module.css"
+import Footer from "../../components/Footer"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
@@ -46,6 +46,8 @@ export default function SubmissionsPage() {
                     { list.length == 0 ? <p>Belum ada template yang diajukan...</p> : <table className="table"><thead><tr><td>Judul Template</td><td>Kontributor</td><td>Tanggal Diajukan</td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/submissions/${item.id}`}>{item.title}</Link></td><td>{item.contributor.username}</td><td>{item.updatedAt.slice(0, 10)}</td></tr>) }</tbody></table> }
                 </main>
             </div>
+
+            <Footer />
         </>
     )
 }

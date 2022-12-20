@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
+import Footer from '../components/Footer'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -205,6 +206,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer/>
     </div>
   )
 }

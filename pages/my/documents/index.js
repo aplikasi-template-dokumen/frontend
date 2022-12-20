@@ -1,4 +1,5 @@
 import Navbar from "../../../components/Navbar"
+import Footer from "../../../components/Footer"
 import style from "../../../styles/MyDocument.module.css"
 import Link from "next/link"
 import axios from "axios"
@@ -75,6 +76,8 @@ export default function MyDocumentsPage() {
                     </Link>
                 </main>
             </div>
+
+            <Footer />
         </>
     )
 }

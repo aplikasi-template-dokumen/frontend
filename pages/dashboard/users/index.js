@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Navbar from '../../../components/Navbar'
+import Footer from ''
 import style from '../../../styles/Admin.module.css'
 
 export default function DashboardUsers() {
@@ -37,6 +38,8 @@ export default function DashboardUsers() {
                     </Link>
                 </main>
             </div>
+
+            <Footer />
         </>
     )
 }

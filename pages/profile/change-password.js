@@ -1,5 +1,6 @@
 import style from '../../styles/Profile.module.css'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 import Link from 'next/dist/client/link'
 import axios from 'axios'
 import { useEffect } from 'react'
@@ -41,25 +42,25 @@ export default function ChangePassword() {
                     <Link className='backBtn' href={'/profile'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Profil</Link>
                 </main>
 
-            <div className={style.container}>
-                {/* <img src='/images/sample-profile.png' alt='profile' /> */}
+                <div className={style.container}>
+                    {/* <img src='/images/sample-profile.png' alt='profile' /> */}
 
-                <p>Password Lama</p>
-                <input id='old-pass' type='password' required />
+                    <p>Password Lama</p>
+                    <input id='old-pass' type='password' required />
 
-                <p>Password Baru</p>
-                <input id='pass' type='password' required />
+                    <p>Password Baru</p>
+                    <input id='pass' type='password' required />
 
-                <p>Konfirmasi Password Baru</p>
-                <input id='re-pass' type='password' required />
-                
-                <div className={style.btn}>
-                    <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`btn blue-btn ${style.button} ${style.fullWidth}`}>Simpan</Link>
+                    <p>Konfirmasi Password Baru</p>
+                    <input id='re-pass' type='password' required />
+                    
+                    <div className={style.btn}>
+                        <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`btn blue-btn ${style.button} ${style.fullWidth}`}>Simpan</Link>
+                    </div>
                 </div>
             </div>
-            </div>
             
-
+            <Footer />
         </>
     )
 }
