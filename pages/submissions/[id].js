@@ -65,7 +65,7 @@ export default function SubmissionDetail() {
     }
 
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -127,6 +127,6 @@ export default function SubmissionDetail() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

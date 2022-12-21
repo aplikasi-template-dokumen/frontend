@@ -34,7 +34,7 @@ export default function ChangePassword() {
     }
 
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -61,6 +61,6 @@ export default function ChangePassword() {
             </div>
             
             <Footer />
-        </>
+        </div>
     )
 }

@@ -17,7 +17,7 @@ export default function DashboardDocuments() {
     }, [])
 
     return(
-        <>
+        <div className='body'>
             <Head>
                 <title>TemplateKita</title>
             </Head>
@@ -40,6 +40,6 @@ export default function DashboardDocuments() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

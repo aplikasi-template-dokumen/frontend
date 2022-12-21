@@ -83,7 +83,7 @@ export default function TemplateDetail() {
     }
 
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -107,6 +107,6 @@ export default function TemplateDetail() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

@@ -45,25 +45,25 @@ export default function LoginPage() {
     }
 
     return (
-        <>
-        <Navbar/>
-        <div className={style.container}>
-            <h1>Masuk</h1>
+        <div className='body'>
+            <Navbar/>
+            <div className={style.container}>
+                <h1>Masuk</h1>
 
-            <form className={style.form}>
-                <p>Username <span>*</span></p>
-                <input type='text' id='uname' placeholder='user123' required/>
+                <form className={style.form}>
+                    <p>Username <span>*</span></p>
+                    <input type='text' id='uname' placeholder='user123' required/>
 
-                <p>Password <span>*</span></p>
-                <input type='password' id='pass' required/>
+                    <p>Password <span>*</span></p>
+                    <input type='password' id='pass' required/>
 
-                <p className={style.note}><span>*</span>wajib diisi</p>
+                    <p className={style.note}><span>*</span>wajib diisi</p>
 
-                <button onClick={(event) => handleSubmit(event)} id='daftar'>Masuk</button>
-                <p className={style.center}>Belum punya akun?<Link href='/signup'>Daftar di sini</Link></p>
-            </form>
+                    <button onClick={(event) => handleSubmit(event)} id='daftar'>Masuk</button>
+                    <p className={style.center}>Belum punya akun?<Link href='/signup'>Daftar di sini</Link></p>
+                </form>
+            </div>
+            <Footer/>
         </div>
-        <Footer/>
-        </>
     )
 }

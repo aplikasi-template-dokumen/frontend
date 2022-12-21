@@ -57,7 +57,7 @@ export default function MyTemplatesPage() {
     }
 
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -77,6 +77,6 @@ export default function MyTemplatesPage() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

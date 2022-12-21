@@ -18,7 +18,7 @@ export default function DashboardCategories() {
     }, [])
 
     return(
-        <>
+        <div className='body'>
             <Head>
                 <title>TemplateKita</title>
             </Head>
@@ -41,6 +41,6 @@ export default function DashboardCategories() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

@@ -59,7 +59,7 @@ export default function MyDocumentsPage() {
     }
 
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -78,6 +78,6 @@ export default function MyDocumentsPage() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

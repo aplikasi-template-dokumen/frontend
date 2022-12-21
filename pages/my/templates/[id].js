@@ -194,8 +194,8 @@ export default function MyTemplateDetail() {
     }
 
     return(
-        <>
-            <Navbar />
+        <div className='body'>
+        <Navbar />
 
             <div className='main-container'>
                 <main>
@@ -263,6 +263,6 @@ export default function MyTemplateDetail() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

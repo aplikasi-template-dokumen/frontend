@@ -55,40 +55,40 @@ export default function SignUpPage() {
     }
 
     return (
-        <>
-        <Navbar/>
-        <div className={style.container}>
-            <h1>Registrasi Akun</h1>
+        <div className={style.body}>
+            <Navbar/>
+            <div className={style.container}>
+                <h1>Registrasi Akun</h1>
 
-            <form className={style.form}>
-                <p>Email <span>*</span></p>
-                <input type='email' id='email' placeholder='example@mail.com' required/>
+                <form className={style.form}>
+                    <p>Email <span>*</span></p>
+                    <input type='email' id='email' placeholder='example@mail.com' required/>
 
-                <p>Nama Lengkap <span>*</span></p>
-                <input type='text' id='name' placeholder='user123' required/>
+                    <p>Nama Lengkap <span>*</span></p>
+                    <input type='text' id='name' placeholder='user123' required/>
 
-                <p>Username <span>*</span></p>
-                <input type='text' id='username' placeholder='user123' required/>
+                    <p>Username <span>*</span></p>
+                    <input type='text' id='username' placeholder='user123' required/>
 
-                <p>Pekerjaan <span>*</span></p>
-                <select id='occupation' required>
-                    <option value={0}>Pilih Pekerjaan</option>
-                    { occs.length == 0 ? <option>Loading...</option> : occs.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }
-                </select>
+                    <p>Pekerjaan <span>*</span></p>
+                    <select id='occupation' required>
+                        <option value={0}>Pilih Pekerjaan</option>
+                        { occs.length == 0 ? <option>Loading...</option> : occs.map((item) => <option key={item.id} value={item.id}>{item.name}</option>) }
+                    </select>
 
-                <p>Password <span>*</span></p>
-                <input type='password' id='pass' required/>
+                    <p>Password <span>*</span></p>
+                    <input type='password' id='pass' required/>
 
-                <p>Konfirmasi Password <span>*</span></p>
-                <input type='password' id='confirm-pass' required/>
+                    <p>Konfirmasi Password <span>*</span></p>
+                    <input type='password' id='confirm-pass' required/>
 
-                <p className={style.note}><span>*</span>wajib diisi</p>
+                    <p className={style.note}><span>*</span>wajib diisi</p>
 
-                <button id='daftar' onClick={(event) => handleSubmit(event)}>Daftar</button>
-                <p className={style.center}>Sudah punya akun?<Link href='/login'>Masuk</Link></p>
-            </form>
+                    <button id='daftar' onClick={(event) => handleSubmit(event)}>Daftar</button>
+                    <p className={style.center}>Sudah punya akun?<Link href='/login'>Masuk</Link></p>
+                </form>
+            </div>
+            <Footer/>
         </div>
-        <Footer/>
-        </>
     )
 }

@@ -33,7 +33,7 @@ export default function SubmissionsPage() {
     }, [])
 
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -48,6 +48,6 @@ export default function SubmissionsPage() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

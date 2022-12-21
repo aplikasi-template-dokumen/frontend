@@ -91,7 +91,7 @@ export default function EditProfile() {
     }
     
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -127,6 +127,6 @@ export default function EditProfile() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

@@ -1,3 +1,7 @@
+.body {
+    background-color: #FFFFFF;
+}
+
 .container {
     /* display: flex;
     justify-content: center; */
@@ -8,6 +12,7 @@
     padding: 30px 60px;
     width: 500px;
     margin: 100px auto;
+    color: #000000;
 }
 
 .container h1 {
@@ -29,6 +34,12 @@
     border: 1px solid #ADADAD;
     margin-bottom: 20px;
     padding: 0 15px;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.form a {
+    background-color: transparent;
 }
 
 .form select {

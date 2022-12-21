@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Navbar from '../../../components/Navbar'
-import Footer from '../../../components'
+import Footer from '../../../components/Footer'
 import style from '../../../styles/Admin.module.css'
 
 export default function DashboardTemplates() {
@@ -17,7 +17,7 @@ export default function DashboardTemplates() {
     }, [])
 
     return(
-        <>
+        <div className='body'>
             <Head>
                 <title>TemplateKita</title>
             </Head>
@@ -40,6 +40,6 @@ export default function DashboardTemplates() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

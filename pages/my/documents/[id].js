@@ -1,5 +1,5 @@
 import Navbar from '../../../components/Navbar'
-import Footer from '../../../components'
+import Footer from '../../../components/Footer'
 import style from '../../../styles/MyDocument.module.css'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -115,7 +115,7 @@ export default function MyDocumentDetail() {
     }
 
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -140,6 +140,6 @@ export default function MyDocumentDetail() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

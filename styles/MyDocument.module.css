@@ -19,6 +19,7 @@
 .form {
     margin: 30px 0;
     width: 100%;
+    color: #000000;
 }
 
 .form div {
@@ -36,6 +37,7 @@
     border-radius: 4px;
     border: 1px solid #ADADAD;
     background-color: #FFFFFF;
+    color: #000000;
 }
 
 .editor {    
@@ -107,4 +109,6 @@
     border-radius: 4px;
     padding: 4px 10px;
     font-weight: bold;
+    background-color: #FFFFFF;
+    color: #000000;
 }

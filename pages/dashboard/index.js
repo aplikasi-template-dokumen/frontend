@@ -6,7 +6,7 @@ import style from '../../styles/Admin.module.css'
 
 export default function Dashboard() {
     return(
-        <>
+        <div className='body'>
             <Head>
                 <title>TemplateKita</title>
             </Head>
@@ -41,6 +41,6 @@ export default function Dashboard() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

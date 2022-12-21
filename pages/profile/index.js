@@ -32,7 +32,7 @@ export default function ProfilePage() {
     }, [])
 
     return(
-        <>
+        <div className='body'>
             <Navbar />
 
             <div className='main-container'>
@@ -69,6 +69,6 @@ export default function ProfilePage() {
             </div>
 
             <Footer />
-        </>
+        </div>
     )
 }

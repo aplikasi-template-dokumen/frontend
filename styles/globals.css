@@ -5,8 +5,11 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: #FFFFFF;
-  /* min-height: fit-content; */
-  /* height: 100vh; */
+  min-height: 100%;
+}
+
+.body {
+  background-color: #FFFFFF;
 }
 
 header {
@@ -22,6 +25,7 @@ header h1 {
   width: 50%;
   font-size: 45px;
   opacity: 1;
+  color: #000000;
 }
 
 header span {
@@ -52,6 +56,7 @@ header .features div img {
 header .features div p {
   padding: 0 20px;
   text-align: center;
+  color: #000000;
 }
 
 header span {
@@ -71,7 +76,12 @@ a {
   padding: 60px 40px;
 }
 
+.main-container h1 {
+  color: #000000;
+}
+
 main {
+  background-color: #FFFFFF;
   padding: 0 40px 0 100px;
   /* margin: 0 auto; */
 }
@@ -151,6 +161,7 @@ img.iconDel:hover {
 
 /* TABLE */
 .table {
+  color: #000000;
   width: 100%;
   border-collapse: collapse;
 }
@@ -174,6 +185,7 @@ img.iconDel:hover {
   padding: 0;
   margin: 0;
   background-color:  rgb(176, 199, 219);
+  color: #000000;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -223,12 +235,14 @@ img.iconDel:hover {
 
 .backBtn {
   display: flex;
+  color: #000000;
 }
 
 .quill {
   width: 100%;
   max-width: 8.5in;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+  color: #000000;
 }
 
 .quill .ql-container.ql-snow {
@@ -256,14 +270,16 @@ img.iconDel:hover {
 }
 
 footer {
-  background-color: #284f92;
-  color: #FFFFFF;
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #284f92;
   text-align: center;
   letter-spacing: 1px;
   line-height: 0;
   font-size: 14px;
   position: relative;
-  padding: 2px 0;
+  padding: 6px 0;
+  border-top: 1px solid #ADADAD;
   bottom: 0;
   margin-top: 150px;
 }

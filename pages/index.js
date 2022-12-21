@@ -205,8 +205,8 @@ export default function Home() {
             { documentList.length == 0 ? "Loading . . ." : documentList.map((item) => <Card key={item.id} data={item} />) }
           </div>
         </div>
-      </main>
       <Footer/>
+      </main>
     </div>
   )
 }
