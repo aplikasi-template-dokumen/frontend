@@ -7,20 +7,19 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 export default function MyDocumentsPage() {
-    const [id, setId] = useState()
+    const [uid, setUid] = useState()
     const [list, setList] = useState([])
     const router = useRouter()
 
     useEffect(() => {
-        const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-        setId(id)
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (id == null) {
+        if (t == null) {
             router.push('/')
         }
 
         else {
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/d/user?id=${id}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/d/user?token=${t}`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.status == 404) {
@@ -29,17 +28,18 @@ export default function MyDocumentsPage() {
 
                     else {
                         setList(data.data)
+                        setUid(data.uid)
                     }
                 })
         }
     }, [])
 
-    const handleCreate = async (event, id) => {
+    const handleCreate = async (event) => {
         event.preventDefault()
 
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/d/create`, {
             title: 'Untitled',
-            user_id: id,
+            user_id: uid,
             data: null
         })
         .then((val) => {
@@ -71,7 +71,7 @@ export default function MyDocumentsPage() {
                     
                     { list.length == 0 ? <p>Belum ada dokumen...</p> : <table className="table"><thead><tr><td>Judul Dokumen</td><td>Terakhir Diedit</td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/documents/${item.id}`}>{item.title}</Link></td><td>{item.updatedAt.slice(0, 10)}</td><td><img className="iconDel" src='/images/icon-del.png' alt='del' onClick={(event) => handleDelete(event, item.id)}/></td></tr>) }</tbody></table> }
 
-                    <Link href='/' onClick={(event) => handleCreate(event, id)}>
+                    <Link href='/' onClick={(event) => handleCreate(event)}>
                         <button className={`btn blue-btn ${style.btnCreate}`}>Buat Dokumen Baru</button>
                     </Link>
                 </main>

@@ -5,22 +5,32 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export default function Navbar() {
-    const [status, setStatus] = useState()
-    const [uname, setUname] = useState()
-    const [role, setRole] = useState()
+    const [i, setI] = useState()
     const [menu, setMenu] = useState(styleLogin.hide)
     const router = useRouter()
     
     useEffect(() => {
-        const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-        const uname = window.localStorage.getItem('u')
-        const role = typeof window !== 'undefined' ? window.localStorage.getItem('r') : {}
-        setStatus(id)
-        setUname(uname)
-        setRole(role)
+        const token = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+
+        if (token != undefined) {
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/u/info?token=${token}`)
+                .then((res) => res.json())
+                .then((val) => {
+                    setI({
+                        uid: val.info._i,
+                        uname: val.info._u,
+                        role: val.info._r,
+                        img: val.info._p
+                    })
+                })
+        }
+
+        else {
+            setI(null)
+        }
     }, [])
 
-    if (status == null) {
+    if (i == null) {
         return (
             <div className={style.container}>
                 <div className={style.left}>
@@ -54,7 +64,7 @@ export default function Navbar() {
             router.reload({ pathname: '/' })
         }
 
-        if (role == 1) {
+        if (i.role == 1) {
             return (
                 <div className={styleLogin.container}>
                     <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
@@ -63,8 +73,8 @@ export default function Navbar() {
                     </div>
         
                     <div className={`${styleLogin.left} ${styleLogin.rightLogin}`}>
-                        <img src='/images/sample-profile.png' alt='profile' />
-                        <a>{uname}</a>
+                        <img src={i.img != null ? i.img : '/images/sample-profile.png'} alt='profile' />
+                        <a>{i.uname}</a>
                     </div>
         
                     <nav>
@@ -103,7 +113,7 @@ export default function Navbar() {
         }
 
         else
-        if (role == 2) {
+        if (i.role == 2) {
             return (
                 <div className={styleLogin.container}>
                     <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
@@ -112,8 +122,8 @@ export default function Navbar() {
                     </div>
         
                     <div className={`${styleLogin.left} ${styleLogin.rightLogin}`}>
-                        <img src='/images/sample-profile.png' alt='profile' />
-                        <a>{uname}</a>
+                        <img src={i.img != null ? i.img : '/images/sample-profile.png'} alt='profile' />
+                        <a>{i.name}</a>
                     </div>
         
                     <nav>
@@ -155,7 +165,7 @@ export default function Navbar() {
         }
 
         else
-        if (role == 3) {
+        if (i.role == 3) {
             return (
                 <div className={styleLogin.container}>
                     <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
@@ -164,8 +174,8 @@ export default function Navbar() {
                     </div>
         
                     <div className={`${styleLogin.left} ${styleLogin.rightLogin}`}>
-                        <img src='/images/sample-profile.png' alt='profile' />
-                        <a>{uname}</a>
+                        <img src={i.img != null ? i.img : '/images/sample-profile.png'} alt='profile' />
+                        <a>{i.uname}</a>
                     </div>
         
                     <nav>
@@ -211,7 +221,7 @@ export default function Navbar() {
         }
 
         else
-        if (role == 4) {
+        if (i.role == 4) {
             return (
                 <div className={styleLogin.container}>
                     <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
@@ -220,8 +230,8 @@ export default function Navbar() {
                     </div>
         
                     <div className={`${styleLogin.left} ${styleLogin.rightLogin}`}>
-                        <img src='/images/sample-profile.png' alt='profile' />
-                        <a>{uname}</a>
+                        <img src={i.img != null ? i.img : '/images/sample-profile.png'} alt='profile' />
+                        <a>{i.uname}</a>
                     </div>
         
                     <nav>

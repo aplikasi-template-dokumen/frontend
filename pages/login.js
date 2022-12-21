@@ -29,9 +29,10 @@ export default function LoginPage() {
             .then((val) => {
                 // console.log('Response: ', val.data.data)
                 // window.localStorage.setItem('status', 'login')
-                window.localStorage.setItem('i', val.data.data.id)
-                window.localStorage.setItem('u', val.data.data.username)
-                window.localStorage.setItem('r', val.data.data.role)
+                // window.localStorage.setItem('i', val.data.data.id)
+                // window.localStorage.setItem('u', val.data.data.username)
+                // window.localStorage.setItem('r', val.data.data.role)
+                window.localStorage.setItem('t', val.data.token)
 
                 // console.log(val)
                 console.log(val.data.message)

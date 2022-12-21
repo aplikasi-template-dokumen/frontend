@@ -69,17 +69,17 @@ export default function MyDocumentDetail() {
     }
 
     const handleSubmit = async (e) => {
-        const t = document.getElementById('doc-title').value
+        const title = document.getElementById('doc-title').value
 
-        if (t == '') {
+        if (title == '') {
             console.log('Judul harus diisi')
             e.preventDefault()
             return false
         }
 
         else {
-            const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/d/${router.query.id}/edit?u_id=${id}`, {
+            const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/d/${router.query.id}/edit?token=${t}`, {
                 title: document.getElementById('doc-title').value,
                 data: currentContent.current
             })

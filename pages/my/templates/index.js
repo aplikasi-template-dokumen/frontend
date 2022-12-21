@@ -7,20 +7,19 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 export default function MyTemplatesPage() {
-    const [id, setId] = useState()
+    const [uid, setUid] = useState()
     const [list, setList] = useState([])
     const router = useRouter()
 
     useEffect(() => {
-        const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-        setId(id)
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (id == null) {
+        if (t == null) {
             router.push('/')
         }
 
         else {
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/t/user?id=${id}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/t/user?token=${t}`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.status == 404) {
@@ -29,12 +28,13 @@ export default function MyTemplatesPage() {
 
                     else {
                         setList(data.data)
+                        setUid(data.uid)
                     }
                 })
         }
     }, [])
 
-    const handleCreate = async (event, id) => {
+    const handleCreate = async (event) => {
         event.preventDefault()
 
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/t/create`, {
@@ -67,10 +67,10 @@ export default function MyTemplatesPage() {
                     <h1>Template Saya</h1>
                     <hr />
 
-                    { list.length == 0 ? <p>Belum ada template...</p> : <table className="table"><thead><tr><td>Judul Template</td><td>Status</td><td>Terakhir Diedit</td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/templates/${item.id}`}>{item.title}</Link></td><td>{item.status.name}</td><td>{item.updatedAt.slice(0, 10)}</td><td><img className="iconDel" src='/images/icon-del.png' alt='del' onClick={(event) => handleDelete(event, item.id)}/></td></tr>) }</tbody></table> }
+                    { list.length == 0 ? <p>Belum ada template...</p> : <table className="table"><thead><tr><td>Judul Template</td><td>Status</td><td>Terakhir Diedit</td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td><Link href={`/my/templates/${item.id}?token=${window.localStorage.getItem('t')}`}>{item.title}</Link></td><td>{item.status.name}</td><td>{item.updatedAt.slice(0, 10)}</td><td><img className="iconDel" src='/images/icon-del.png' alt='del' onClick={(event) => handleDelete(event, item.id)}/></td></tr>) }</tbody></table> }
 
 
-                    <Link href='/' onClick={(event) => handleCreate(event, id)}>
+                    <Link href='/' onClick={(event) => handleCreate(event)}>
                         <button className={`btn blue-btn ${style.btnCreate}`}>Buat Template Baru</button>
                     </Link>
                 </main>
