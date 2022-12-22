@@ -8,6 +8,7 @@ import { useRouter  } from 'next/router'
 import { useEffect, useState } from 'react'
 
 export default function SubmissionDetail() {
+    const [uid, setUid] = useState()
     const router = useRouter()
     const [data, setData] = useState({})
 
@@ -16,11 +17,21 @@ export default function SubmissionDetail() {
     }
 
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/s/${router.query.id}`)
-            .then((res) => res.json())
-            .then((val) => {
-                setData(val.data)
-            })
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+
+        if (t == null) {
+            router.push('/')
+        }
+
+        else {
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/s/${router.query.id}?token=${t}`)
+                .then((res) => res.json())
+                .then((val) => {
+                    setData(val.data)
+                    setUid(val.uid)
+                })
+        }
+
     }, [])
 
     const QuillNoSSRWrapper = dynamic(import('react-quill'), {
@@ -32,7 +43,6 @@ export default function SubmissionDetail() {
         try {
             e.preventDefault()
 
-            const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
             let notes = document.getElementById('notes').value
             const date = new Date().toISOString()
             
@@ -41,18 +51,18 @@ export default function SubmissionDetail() {
             }
 
             else
-            if (notes != '' && s_id !== 1) {
+            if (notes != '') {
                 notes = notes + ' (reviewer)'
             }
 
-            else {
-                notes = 'Ajuan ditolak, ' + notes + ' (reviewer)'
-            }
+            // else {
+            //     notes = 'Ajuan ditolak, ' + notes + ' (reviewer)'
+            // }
 
-            const result = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/s/${router.query.id}/send-review`, {
+            const result = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/s/${router.query.id}/send-review?token=${window.localStorage.getItem('t')}`, {
                 notes,
                 status_id: s_id,
-                reviewer_id: id,
+                reviewer_id: uid,
                 publish_date: date
             })
 

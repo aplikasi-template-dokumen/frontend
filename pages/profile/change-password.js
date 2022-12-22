@@ -7,11 +7,12 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 export default function ChangePassword() {
-    const user = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
     const router = useRouter()
 
     useEffect(() => {
-        if (user === null) {
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+
+        if (t === null) {
             router.push('/')
         }
     })
@@ -19,7 +20,7 @@ export default function ChangePassword() {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/${user}/change-pass`, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/change-pass?token=${window.localStorage.getItem('t')}`, {
                 oldPass: document.getElementById('old-pass').value,
                 newPass: document.getElementById('pass').value,
                 newPassConf: document.getElementById('re-pass').value

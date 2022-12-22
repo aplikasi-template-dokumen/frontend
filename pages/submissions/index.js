@@ -5,20 +5,19 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 export default function SubmissionsPage() {
-    const [id, setId] = useState()
+    const [uid, setUid] = useState()
     const [list, setList] = useState([])
     const router = useRouter()
 
     useEffect(() => {
-        const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-        setId(id)
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (id == null) {
+        if (t == null) {
             router.push('/')
         }
 
         else {
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/s?r=ad`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/s?token=${t}`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.status == 404) {
@@ -27,6 +26,7 @@ export default function SubmissionsPage() {
 
                     else {
                         setList(data.data)
+                        setUid(data.uid)
                     }
                 })
         }

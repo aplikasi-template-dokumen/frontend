@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 export default function EditProfile() {
-    const user = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
     const router = useRouter()
 
     const [occs, setOccs] = useState([])
@@ -19,7 +18,9 @@ export default function EditProfile() {
     const [aff, setAff] = useState('')
 
     useEffect(() => {
-        if (user === null) {
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+        
+        if (t == null) {
             router.push(`/`)
         }
 
@@ -30,7 +31,7 @@ export default function EditProfile() {
                     setOccs(val.data)
                 })
 
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/u/profile/${user}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/u/profile?token=${t}`)
                 .then((res) => res.json())
                 .then((val) => {
                     setName(val.data.full_name)
@@ -62,10 +63,9 @@ export default function EditProfile() {
         try  {
             e.preventDefault()
 
-            const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
             const formData = new FormData()
 
-            formData.append('id', id)
+            // formData.append('id', id)
             formData.append('uname', uname)
             formData.append('name', name)
             formData.append('occ_id', occId)
@@ -74,7 +74,7 @@ export default function EditProfile() {
 
             console.log(formData)
 
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/${id}/edit-profile`, formData, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/edit-profile?token=${window.localStorage.getItem('t')}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

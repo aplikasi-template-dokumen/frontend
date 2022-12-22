@@ -49,7 +49,7 @@ export default function MyDocumentsPage() {
 
     const handleDelete = async (event, d_id) => {
         if (confirm('Hapus dokumen ini?') == true) {
-            const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/d/${d_id}/delete`)
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/d/${d_id}/delete?token=${window.localStorage.getItem('t')}`)
             window.location.reload()
         }
 

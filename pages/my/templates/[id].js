@@ -8,8 +8,9 @@ import { useRouter } from "next/router"
 import { useState, useEffect, useRef } from "react"
 
 export default function MyTemplateDetail() {
+    const [uid, setUid] = useState()
     const router = useRouter()
-    // const [value, setValue] = useState({})
+
     const [data, setData] = useState({})
     const [cat, setCat] = useState([])
     const [sub, setSub] = useState([])
@@ -23,50 +24,43 @@ export default function MyTemplateDetail() {
 
     const currentContent = useRef({})
 
-    // const [id, setId] = useState()
-    // const [data, setData] = useState({})
-
-    // useEffect(() => {
-    //     const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-    //     setId(id)
-
-    //     if (id == null) {
-    //         router.push('/')
-    //     }
-
-    //     else {
-    //         //fetch
-    //     }
-    // }, [])
-
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}`)
-            .then((res) => res.json())
-            .then((val) => {
-                setData(val.data)
-                setCatId(val.data.cat_id)
-                setSubId(val.data.sub_cat_id)
-                setLangId(val.data.lang_id)
-                document.getElementById('temp-title').innerHTML = val.data.title
-                
-                fetch(`${process.env.NEXT_PUBLIC_API_URL}/sc/c/${val.data.cat_id}`)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        setSub(data.data)
-                    })
-            })
-        
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/c`)
-            .then((res) => res.json())
-            .then((data) => {
-              setCat(data.data)
-            })
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/l`)
-            .then((res) => res.json())
-            .then((data) => {
-                setLang(data.data)
-            })
+        if (t == null) {
+            router.push('/')
+        }
+
+        else {
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}?token=${t}`)
+                .then((res) => res.json())
+                .then((val) => {
+                    setUid(val.uid)
+                    setData(val.data)
+                    setCatId(val.data.cat_id)
+                    setSubId(val.data.sub_cat_id)
+                    setLangId(val.data.lang_id)
+                    document.getElementById('temp-title').innerHTML = val.data.title
+                            
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/sc/c/${val.data.cat_id}`)
+                        .then((res) => res.json())
+                        .then((data) => {
+                            setSub(data.data)
+                        })
+                })
+                    
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/c`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setCat(data.data)
+                })
+            
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/l`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setLang(data.data)
+                })
+        }
 
     }, [])
 
@@ -153,8 +147,7 @@ export default function MyTemplateDetail() {
         // }
 
         else {
-            const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}/edit?u_id=${id}`, formData, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}/edit?token=${window.localStorage.getItem('t')}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }

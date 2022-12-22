@@ -6,18 +6,18 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 export default function ProfilePage() {
-    const user = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
     const router = useRouter()
-
     const [profileImg, setProfileImg] = useState(null)
 
     useEffect(() => {
-        if (user === null) {
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+
+        if (t == null) {
             router.push(`/`)
         }
 
         else {
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/u/profile/${user}`)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/u/profile?token=${t}`)
                 .then((res) => res.json())
                 .then((val) => {
                     document.getElementById('role').value = val.data.role
