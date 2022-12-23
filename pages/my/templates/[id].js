@@ -8,7 +8,6 @@ import { useRouter } from "next/router"
 import { useState, useEffect, useRef } from "react"
 
 export default function MyTemplateDetail() {
-    const [uid, setUid] = useState()
     const router = useRouter()
 
     const [data, setData] = useState({})
@@ -27,7 +26,7 @@ export default function MyTemplateDetail() {
     useEffect(() => {
         const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (t == null) {
+        if (t == undefined) {
             router.push('/')
         }
 
@@ -188,7 +187,14 @@ export default function MyTemplateDetail() {
 
     return(
         <div className='body'>
-        <Navbar />
+            
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+
+            <Navbar />
 
             <div className='main-container'>
                 <main>

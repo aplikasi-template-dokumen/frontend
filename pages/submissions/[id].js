@@ -76,6 +76,12 @@ export default function SubmissionDetail() {
 
     return(
         <div className='body'>
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+            
             <Navbar />
 
             <div className='main-container'>

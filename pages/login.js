@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-// import { TemplateKita } from '../apis/TemplateKita'
 
 export default function LoginPage() {
     const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
@@ -27,14 +26,8 @@ export default function LoginPage() {
                 pass: document.getElementById('pass').value
             })
             .then((val) => {
-                // console.log('Response: ', val.data.data)
-                // window.localStorage.setItem('status', 'login')
-                // window.localStorage.setItem('i', val.data.data.id)
-                // window.localStorage.setItem('u', val.data.data.username)
-                // window.localStorage.setItem('r', val.data.data.role)
                 window.localStorage.setItem('t', val.data.token)
 
-                // console.log(val)
                 console.log(val.data.message)
                 router.push({ pathname: `/` })
             })
@@ -47,6 +40,12 @@ export default function LoginPage() {
 
     return (
         <div className='body'>
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+
             <Navbar/>
             <div className={style.container}>
                 <h1>Masuk</h1>

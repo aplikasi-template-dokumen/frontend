@@ -43,7 +43,6 @@ export default function SignUpPage() {
                 window.localStorage.setItem('u', val.data.data.username)
                 window.localStorage.setItem('r', val.data.data.role)
                 
-                // console.log(val.data)
                 console.log(val.data.message)
                 router.push({ pathname: `/` })
             })
@@ -56,6 +55,12 @@ export default function SignUpPage() {
 
     return (
         <div className={style.body}>
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+            
             <Navbar/>
             <div className={style.container}>
                 <h1>Registrasi Akun</h1>

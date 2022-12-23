@@ -9,6 +9,8 @@ export default function Dashboard() {
         <div className='body'>
             <Head>
                 <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
             </Head>
 
             <Navbar />

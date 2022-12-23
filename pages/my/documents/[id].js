@@ -17,27 +17,22 @@ export default function MyDocumentDetail() {
     const currentContent = useRef({})
     const currentContentHTML = useRef({})
 
-    // useEffect(() => {
-    //     const id = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
-    //     setId(id)
-
-    //     if (id == null) {
-    //         router.push('/')
-    //     }
-
-    //     else {
-    //         //fetch data
-    //     }
-    // }, [])
-
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/d/${router.query.id}`)
-            .then((res) => res.json())
-            .then((val) => {
-                setValue(val.data.data)
-                // setTitle(val.data.title)
-                document.getElementById('doc-title').value = val.data.title
-            })
+        const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+
+        if (t == undefined) {
+            router.push('/')
+        }
+
+        else {
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/d/${router.query.id}`)
+                .then((res) => res.json())
+                .then((val) => {
+                    setValue(val.data.data)
+                    // setTitle(val.data.title)
+                    document.getElementById('doc-title').value = val.data.title
+                })
+        }
     }, [])
 
     const modules = {
@@ -116,11 +111,17 @@ export default function MyDocumentDetail() {
 
     return(
         <div className='body'>
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+            
             <Navbar />
 
             <div className='main-container'>
                 <main>
-                    <Link className='backBtn' href='/my/documents'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Dokumen Saya</Link>
+                    <Link className='backBtn' href='/my/documents' onClick={(event) => handleSubmit(event)}><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Dokumen Saya</Link>
                     {/* <h1 id='doc-title' contentEditable='true' spellCheck='false'>Loading...</h1> */}
                     <input id='doc-title' className={style.docTitle} type='text' placeholder='Untitled' />
                     <hr />

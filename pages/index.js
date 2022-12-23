@@ -12,8 +12,6 @@ export default function Home() {
   const [cat, setCat] = useState([])
   const [sub, setSub] = useState([])
 
-  // const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
-
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/t-all`)
       .then((res) => res.json())
@@ -135,7 +133,7 @@ export default function Home() {
       <Head>
         <title>TemplateKita</title>
         <meta name="description" content="TemplateKita" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/tab-icon.png" />
       </Head>
 
       <Navbar />

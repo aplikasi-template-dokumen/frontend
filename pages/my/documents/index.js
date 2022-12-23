@@ -7,14 +7,13 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 export default function MyDocumentsPage() {
-    const [uid, setUid] = useState()
     const [list, setList] = useState([])
     const router = useRouter()
 
     useEffect(() => {
         const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (t == null) {
+        if (t == undefined) {
             router.push('/')
         }
 
@@ -28,7 +27,6 @@ export default function MyDocumentsPage() {
 
                     else {
                         setList(data.data)
-                        setUid(data.uid)
                     }
                 })
         }
@@ -37,9 +35,8 @@ export default function MyDocumentsPage() {
     const handleCreate = async (event) => {
         event.preventDefault()
 
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/d/create`, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/d/create?token=${window.localStorage.getItem('t')}`, {
             title: 'Untitled',
-            user_id: uid,
             data: null
         })
         .then((val) => {
@@ -60,6 +57,12 @@ export default function MyDocumentsPage() {
 
     return(
         <div className='body'>
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+            
             <Navbar />
 
             <div className='main-container'>

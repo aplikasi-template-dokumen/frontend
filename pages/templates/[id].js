@@ -28,6 +28,7 @@ export default function TemplateDetail() {
                 setTitle(val.data.title)
                 document.getElementById('doc-image').src = val.data.img
             })
+
     }, [])
 
     const QuillNoSSRWrapper = dynamic(import('react-quill'), {
@@ -38,14 +39,13 @@ export default function TemplateDetail() {
     const handleUseTemplate = async (e) => {
         e.preventDefault()
 
-        if (window.localStorage.getItem('i') == undefined) {
+        if (window.localStorage.getItem('t') == undefined) {
             router.push('/login')
         }
 
         else {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/d/create`, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/d/create?token=${window.localStorage.getItem('t')}`, {
                 title: title,
-                user_id: window.localStorage.getItem('i'),
                 data: value
             })
             .then((val) => {
@@ -84,6 +84,12 @@ export default function TemplateDetail() {
 
     return(
         <div className='body'>
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+            
             <Navbar />
 
             <div className='main-container'>

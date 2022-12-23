@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 export default function SubmissionsPage() {
-    const [uid, setUid] = useState()
     const [list, setList] = useState([])
     const router = useRouter()
 
@@ -34,6 +33,12 @@ export default function SubmissionsPage() {
 
     return(
         <div className='body'>
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+
             <Navbar />
 
             <div className='main-container'>

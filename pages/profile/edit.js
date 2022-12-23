@@ -65,7 +65,6 @@ export default function EditProfile() {
 
             const formData = new FormData()
 
-            // formData.append('id', id)
             formData.append('uname', uname)
             formData.append('name', name)
             formData.append('occ_id', occId)
@@ -92,6 +91,12 @@ export default function EditProfile() {
     
     return(
         <div className='body'>
+            <Head>
+                <title>TemplateKita</title>
+                <meta name="description" content="TemplateKita" />
+                <link rel="icon" href="/tab-icon.png" />
+            </Head>
+            
             <Navbar />
 
             <div className='main-container'>

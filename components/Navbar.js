@@ -34,7 +34,7 @@ export default function Navbar() {
         return (
             <div className={style.container}>
                 <div className={style.left}>
-                    <img src='/favicon.ico' alt='logo' />
+                    <img src='/images/logo-5.png' alt='logo' />
                     <Link href='/'>TemplateKita</Link>
                 </div>
     
@@ -68,7 +68,7 @@ export default function Navbar() {
             return (
                 <div className={styleLogin.container}>
                     <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
-                        <img src='/favicon.ico' alt='logo' />
+                        <img src='/images/logo-5.png' alt='logo' />
                         <Link href={`/`}>TemplateKita</Link>
                     </div>
         
@@ -117,7 +117,7 @@ export default function Navbar() {
             return (
                 <div className={styleLogin.container}>
                     <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
-                        <img src='/favicon.ico' alt='logo' />
+                        <img src='/images/logo-5.png' alt='logo' />
                         <Link href={`/`}>TemplateKita</Link>
                     </div>
         
@@ -169,7 +169,7 @@ export default function Navbar() {
             return (
                 <div className={styleLogin.container}>
                     <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
-                        <img src='/favicon.ico' alt='logo' />
+                        <img src='/images/logo-5.png' alt='logo' />
                         <Link href={`/`}>TemplateKita</Link>
                     </div>
         
@@ -225,7 +225,7 @@ export default function Navbar() {
             return (
                 <div className={styleLogin.container}>
                     <div className={`${styleLogin.left} ${styleLogin.leftLogin}`}>
-                        <img src='/favicon.ico' alt='logo' />
+                        <img src='/images/logo-5.png' alt='logo' />
                         <Link href={`/`}>TemplateKita</Link>
                     </div>
         
