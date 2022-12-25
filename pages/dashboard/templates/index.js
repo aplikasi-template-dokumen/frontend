@@ -33,7 +33,7 @@ export default function DashboardTemplates() {
                     <h1>Data Template</h1>
                     <hr />
 
-                    { list.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Judul</td><td>Contributor</td><td>Status</td><td>Terakhir Diedit</td><td></td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.title}</td><td>{item.contributor_id}</td><td>{item.status_id}</td><td>{item.updatedAt.slice(0, 10)}</td><td><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' /></td></tr>) }</tbody></table> }
+                    { list.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Judul</td><td>Contributor</td><td>Status</td><td>Terakhir Diedit</td><td></td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.title}</td><td>{item.contributor_id}</td><td>{item.status_id}</td><td>{item.updatedAt.slice(0, 10)}</td><td><Link href={`/dashboard/templates/${item.id}/edit`}><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></Link></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' /></td></tr>) }</tbody></table> }
                     
                     <Link className={style.btn} href='/templates/create'>
                         <button className={`btn blue-btn ${style.btnCreate}`}>Tambah Template</button>

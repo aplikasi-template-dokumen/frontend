@@ -9,12 +9,32 @@ export default function DashboardUsers() {
     const [list, setList] = useState([])
     
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/u?r=ad`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/u?token=${window.localStorage.getItem('t')}`)
             .then((res) => res.json())
             .then((data) => {
                 setList(data.data)
             })
     }, [])
+
+    const handleDelete = async (event, u_id) => {
+        if (confirm('Hapus dokumen ini?') == true) {
+            // const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/d/${u_id}/delete?token=${window.localStorage.getItem('t')}`)
+            // window.location.reload()
+            if (confirm('Seriusan mau dihapus?' == true)) {
+                if (confirm('Yakin???') == true) {
+                    if (confirm('Jangan nyesel ya..') == true) {
+                        if (confirm('Sip, terakhir ya... Hapus nih?') == true) {
+                            alert('Ceritanya kehapus..')
+                        }
+                    }
+                }
+            }
+        }
+
+        else {
+            return false
+        }
+    }
 
     return(
         <div className='body'>
@@ -33,7 +53,7 @@ export default function DashboardUsers() {
                     <h1>Data User</h1>
                     <hr />
 
-                    { list.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Username</td><td>Nama Lengkap</td><td>Email</td><td>Status</td><td></td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.username}</td><td>{item.full_name}</td><td>{item.email}</td><td>{item.status}</td><td><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' /></td></tr>) }</tbody></table> }
+                    { list.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Username</td><td>Nama Lengkap</td><td>Email</td><td>Role</td><td></td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.username}</td><td>{item.full_name}</td><td>{item.email}</td><td>{item.role_name.name}</td><td><Link href={`/dashboard/users/${item.id}/edit`}><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></Link></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' onClick={(event) => handleDelete(event, item.id)}/></td></tr>) }</tbody></table> }
 
                     <Link className={style.btn} href='/users/create'>
                         <button className={`btn blue-btn ${style.btnCreate}`}>Tambah User</button>

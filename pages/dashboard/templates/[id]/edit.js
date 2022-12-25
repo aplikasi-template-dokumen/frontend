@@ -1,14 +1,14 @@
 import Head from 'next/head'
-import Navbar from "../../../components/Navbar"
-import Footer from "../../../components/Footer"
-import style from '../../../styles/MyDocument.module.css'
-import Link from "next/link"
-import dynamic from "next/dynamic"
+import Navbar from '../../../../components/Navbar'
+import Footer from '../../../../components/Footer'
+import style from '../../../../styles/MyDocument.module.css'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import axios from 'axios'
-import { useRouter } from "next/router"
-import { useState, useEffect, useRef } from "react"
+import { useRouter } from 'next/router'
+import { useEffect, useState, useRef } from 'react'
 
-export default function MyTemplateDetail() {
+export default function DashboardEditTemplates() {
     const router = useRouter()
 
     const [data, setData] = useState({})
@@ -61,7 +61,6 @@ export default function MyTemplateDetail() {
                     setLang(data.data)
                 })
         }
-
     }, [])
 
     const modules = {
@@ -141,11 +140,6 @@ export default function MyTemplateDetail() {
             console.log('Buat draft = Data tidak boleh kosong!')
         }
 
-        // else
-        // if (s_id == 2 && (title == '' || desc == '' || img == null)) {
-        //     console.log('Ajukan template - Data tidak boleh kosong!')
-        // }
-
         else {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}/edit?token=${window.localStorage.getItem('t')}`, formData, {
                 headers: {
@@ -188,19 +182,17 @@ export default function MyTemplateDetail() {
 
     return(
         <div className='body'>
-            
             <Head>
                 <title>TemplateKita</title>
                 <meta name="description" content="TemplateKita" />
                 <link rel="icon" href="/tab-icon.png" />
             </Head>
-
+            
             <Navbar />
-
+        
             <div className='main-container'>
-                <main>
+            <main>
                     <Link className='backBtn' href='/my/templates'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Template Saya</Link>
-                    {/* <h1>Buat Template</h1> */}
                     <h1 id='temp-title'>Loading...</h1>
                     <hr />
 
@@ -243,7 +235,6 @@ export default function MyTemplateDetail() {
                             <div>
                                 <p>Catatan</p>
                                 <input id="notes" type='text' defaultValue={data.notes} />
-                                {/* <p id="notes">{data.notes}</p> */}
                             </div>
                         </form>
                     </div>

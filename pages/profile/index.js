@@ -1,7 +1,8 @@
-import style from '../../styles/Profile.module.css'
+import Head from 'next/head'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Link from 'next/dist/client/link'
+import style from '../../styles/Profile.module.css'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 

@@ -1,10 +1,11 @@
-import style from '../../styles/Profile.module.css'
+import Head from 'next/head'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Link from 'next/dist/client/link'
-import axios from 'axios'
+import style from '../../styles/Profile.module.css'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 
 export default function ChangePassword() {
     const router = useRouter()

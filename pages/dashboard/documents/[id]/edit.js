@@ -1,19 +1,18 @@
 import Head from 'next/head'
-import Navbar from '../../../components/Navbar'
-import Footer from '../../../components/Footer'
-import style from '../../../styles/MyDocument.module.css'
+import Navbar from '../../../../components/Navbar'
+import Footer from '../../../../components/Footer'
 import Link from 'next/link'
+import style from '../../../../styles/MyDocument.module.css'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 // import * as quillToWord from 'quill-to-word'
 // import { saveAs } from 'file-saver'
 
-export default function MyDocumentDetail() {
+export default function DashboardEditDocuments() {
     const router = useRouter()
     const [value, setValue] = useState({})
-    // const [title, setTitle] = useState('Loading...')
 
     const currentContent = useRef({})
     const currentContentHTML = useRef({})
@@ -30,7 +29,6 @@ export default function MyDocumentDetail() {
                 .then((res) => res.json())
                 .then((val) => {
                     setValue(val.data.data)
-                    // setTitle(val.data.title)
                     document.getElementById('doc-title').value = val.data.title
                 })
         }
@@ -79,9 +77,8 @@ export default function MyDocumentDetail() {
                 title: document.getElementById('doc-title').value,
                 data: currentContent.current
             })
-    
-            // console.log(response) -> if status = 201, tampilkan toast
-            router.push('/my/documents')
+
+            router.push('/dashboard/documents')
         }
 
     }
@@ -122,8 +119,7 @@ export default function MyDocumentDetail() {
 
             <div className='main-container'>
                 <main>
-                    <Link className='backBtn' href='/my/documents' onClick={(event) => handleSubmit(event)}><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Dokumen Saya</Link>
-                    {/* <h1 id='doc-title' contentEditable='true' spellCheck='false'>Loading...</h1> */}
+                    <Link className='backBtn' href='/dashboard/documents' onClick={(event) => handleSubmit(event)}><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Halaman Dokumen</Link>
                     <input id='doc-title' className={style.docTitle} type='text' placeholder='Untitled' />
                     <hr />
 
