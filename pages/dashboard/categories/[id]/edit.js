@@ -3,15 +3,15 @@ import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import Navbar from '../../../components/Navbar'
-import Footer from '../../../components/Footer'
-import style from '../../../styles/Profile.module.css'
+import Navbar from '../../../../components/Navbar'
+import Footer from '../../../../components/Footer'
+import style from '../../../../styles/Profile.module.css'
 
-export default function DashboardCreateCategory() {
+export default function DashboardEditCategory() {
     const router = useRouter()
 
     const [name, setName] = useState(null)
-    const [order, setOrder] = useState(null)
+    const [order, setOrder] = useState(0)
 
     useEffect(() => {
         const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
@@ -19,13 +19,22 @@ export default function DashboardCreateCategory() {
         if (t == null) {
             router.push('/')
         }
+
+        else {
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/c/${router.query.id}`)
+                .then((res) => res.json())
+                .then((val) => {
+                    setName(val.data.name)
+                    setOrder(val.data.order)
+                })
+        }
     }, [])
 
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
 
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/c/create?token=${window.localStorage.getItem('t')}`, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/c/${router.query.id}/edit?token=${window.localStorage.getItem('t')}`, {
                 name,
                 order
             })

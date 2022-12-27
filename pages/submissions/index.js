@@ -26,7 +26,6 @@ export default function SubmissionsPage() {
 
                     else {
                         setList(data.data)
-                        setUid(data.uid)
                     }
                 })
         }

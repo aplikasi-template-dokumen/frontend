@@ -7,7 +7,7 @@ import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
 import style from '../../../styles/Profile.module.css'
 
-export default function DashboardCreateCategory() {
+export default function DashboardEditOccupation() {
     const router = useRouter()
 
     const [name, setName] = useState(null)
@@ -25,13 +25,13 @@ export default function DashboardCreateCategory() {
         try {
             e.preventDefault()
 
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/c/create?token=${window.localStorage.getItem('t')}`, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/o/create?token=${window.localStorage.getItem('t')}`, {
                 name,
                 order
             })
 
             if (response) {
-                router.push('/dashboard/categories')
+                router.push('/dashboard/occupations')
             }
         }
 
@@ -52,11 +52,11 @@ export default function DashboardCreateCategory() {
 
             <div className='main-container'>
                 <main>
-                    <Link className='backBtn' href={'/dashboard/categories'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Kategori</Link>
+                    <Link className='backBtn' href={'/dashboard/occupations'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Pekerjaan</Link>
                 </main>
 
                 <div className={style.container}>
-                    <p>Nama Kategori</p>
+                    <p>Nama Pekerjaan</p>
                     <input id='name' type='text' value={name} onChange={(e) => setName(e.target.value)} required />
                     
                     <p>Order</p>

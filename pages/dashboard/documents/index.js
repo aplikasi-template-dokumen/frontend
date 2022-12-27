@@ -45,9 +45,9 @@ export default function DashboardDocuments() {
 
                     { list.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Judul</td><td>Username</td><td>Terakhir Diedit</td><td></td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.title}</td><td>{item.user_id}</td><td>{item.updatedAt.slice(0, 10)}</td><td><Link href={`/dashboard/documents/${item.id}/edit`}><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></Link></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' /></td></tr>) }</tbody></table> }
                     
-                    <Link className={style.btn} href='/documents/create'>
+                    {/* <Link className={style.btn} href='/documents/create'>
                         <button className={`btn blue-btn ${style.btnCreate}`}>Tambah Dokumen</button>
-                    </Link>
+                    </Link> */}
                 </main>
             </div>
 

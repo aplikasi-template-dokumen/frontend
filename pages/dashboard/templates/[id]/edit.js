@@ -35,7 +35,6 @@ export default function DashboardEditTemplates() {
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}?token=${t}`)
                 .then((res) => res.json())
                 .then((val) => {
-                    setUid(val.uid)
                     setData(val.data)
                     setCatId(val.data.cat_id)
                     setSubId(val.data.sub_cat_id)
@@ -192,7 +191,7 @@ export default function DashboardEditTemplates() {
         
             <div className='main-container'>
             <main>
-                    <Link className='backBtn' href='/my/templates'><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Template Saya</Link>
+                    <Link className='backBtn' href='/dashboard/templates' onClick={(event) => handleSubmit(event, 1)}><img src='/images/icon-back.png' alt='icon' className='backImg'/>Kembali ke Halaman Template</Link>
                     <h1 id='temp-title'>Loading...</h1>
                     <hr />
 
@@ -242,13 +241,13 @@ export default function DashboardEditTemplates() {
                     <QuillNoSSRWrapper className='text-editor' defaultValue={data.data} onChange={handleChange} modules={modules} placeholder='Type something here . . .' theme='snow' />
 
                     <div className={style.btnGroup}>
-                        <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event, 1)}>
+                        <Link href='/' className={style.btnSingle} onClick={(event) => handleSubmit(event, 1)}>
                             <button  className='btn blue-btn'>Simpan</button>
                         </Link>
                         
-                        <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event, 2)}>
+                        {/* <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event, 2)}>
                             <button className='btn green-btn'>Ajukan</button>
-                        </Link>
+                        </Link> */}
                     </div>
                 </main>
             </div>

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import Footer from '../components/Footer'
@@ -112,7 +113,7 @@ export default function Home() {
     try {
       e.preventDefault()
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/t/search?key=${key}`)
-      console.log(response.data.status)
+      // console.log(response.data.status)
 
       if (response.data.status == 404) {
         setDocumentList([])
@@ -143,19 +144,23 @@ export default function Home() {
 
         <div className='features'>
           <div>
-            <img src='/images/ft-satu.png' alt='image'/>
-            <p><span>Cari template</span> dokumen sesuai kebutuhanmu</p>
+            <a href='#search'>
+              <img src='/images/ft-satu.png' alt='image'/>
+              <p><span>Cari template</span> dokumen sesuai kebutuhanmu</p>
+            </a>
           </div>
 
           <div>
-            <img className='largerImg' src='/images/ft-dua.png' alt='image'/>
-            <p><span>Buat dokumen</span> berdasarkan template yang kamu pilih</p>
+            <Link href={'/my/documents'}>
+              <img className='largerImg' src='/images/ft-dua.png' alt='image'/>
+              <p><span>Buat dokumen</span> berdasarkan template yang kamu pilih</p>
+            </Link>
           </div>
         </div>
       </header>
 
       <main>
-        <div className={styles.searchContainer}>
+        <div id='search' className={styles.searchContainer}>
           <h1>Cari Template</h1>
 
           <div className={styles.searchForm}>
@@ -165,11 +170,7 @@ export default function Home() {
 
           <div className={styles.categories}>
             <p id='semua-kategori' onClick={(event) => getDocumentList(event, 0)}>Semua Kategori</p>
-            <p id='surat' onClick={(event) => getDocumentList(event, 1)}>Surat</p>
-            <p id='proposal' onClick={(event) => getDocumentList(event, 2)}>Proposal</p>
-            <p id='laporan' onClick={(event) => getDocumentList(event,3)}>Laporan</p>
-            <p id='tugas' onClick={(event) => getDocumentList(event, 4)}>Tugas</p>
-            <p id='karya-tulis' onClick={(event) => getDocumentList(event, 5)}>Karya Tulis Ilmiah</p>
+            { cat.length == 0 ? '' : cat.map((item) => <p key={item.id} onClick={(event) => getDocumentList(event, item.id)}>{item.name}</p>) }
           </div>
         </div>
 
@@ -200,7 +201,7 @@ export default function Home() {
           </div>
 
           <div className={styles.cards}>
-            { documentList.length == 0 ? "Loading . . ." : documentList.map((item) => <Card key={item.id} data={item} />) }
+            { documentList.length == 0 ? "Template tidak ditemukan . . ." : documentList.map((item) => <Card key={item.id} data={item} />) }
           </div>
         </div>
       <Footer/>

@@ -1,14 +1,22 @@
 .cards {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .card {
+    width: 250px;
+    height: 180px;
+    border: 4px inset #82b9d6;
+    /* max-width: 48%; */
+    text-align: center;
+    border-radius: 4px;
     background-color: #FFFFFF;
     color: #000000;
     padding: 15px;
-    border: 1px solid gray;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 
 .btnCreate {

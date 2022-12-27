@@ -7,7 +7,7 @@ import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
 import style from '../../../styles/Profile.module.css'
 
-export default function DashboardCreateCategory() {
+export default function DashboardEditSubmissionStatus() {
     const router = useRouter()
 
     const [name, setName] = useState(null)
@@ -25,13 +25,13 @@ export default function DashboardCreateCategory() {
         try {
             e.preventDefault()
 
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/c/create?token=${window.localStorage.getItem('t')}`, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/ss/create?token=${window.localStorage.getItem('t')}`, {
                 name,
                 order
             })
 
             if (response) {
-                router.push('/dashboard/categories')
+                router.push('/dashboard/submission-statuses')
             }
         }
 
@@ -52,15 +52,15 @@ export default function DashboardCreateCategory() {
 
             <div className='main-container'>
                 <main>
-                    <Link className='backBtn' href={'/dashboard/categories'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Kategori</Link>
+                    <Link className='backBtn' href={'/dashboard/submission-statuses'}><img src='/images/icon-back.png' alt='icon' className='backImg' />Kembali ke Halaman Status Ajuan</Link>
                 </main>
 
                 <div className={style.container}>
-                    <p>Nama Kategori</p>
-                    <input id='name' type='text' value={name} onChange={(e) => setName(e.target.value)} required />
+                    <p>Nama Status Ajuan</p>
+                    <input id='name' type='text' value={name} onChange={(e) => setName(e.target.value)} />
                     
                     <p>Order</p>
-                    <input id='order' type='number' value={order} onChange={(e) => setOrder(e.target.value)} required />
+                    <input id='order' type='number' value={order} onChange={(e) => setOrder(e.target.value)} />
 
                     <div className={style.btn}>
                         <Link onClick={(event) => handleSubmit(event)} href={`#`} className={`btn blue-btn ${style.button} ${style.fullWidth}`}>Simpan</Link>

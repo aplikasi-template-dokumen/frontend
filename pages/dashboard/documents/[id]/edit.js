@@ -126,13 +126,13 @@ export default function DashboardEditDocuments() {
                     <QuillNoSSRWrapper className='text-editor' value={value} onChange={handleChange} modules={modules} placeholder='Type something here . . .' theme='snow' />
 
                     <div className={style.btnGroup}>
-                        <Link href='/' className={style.btn} onClick={(event) => handleSubmit(event)}>
+                        <Link href='/' className={style.btnSingle} onClick={(event) => handleSubmit(event)}>
                             <button className='btn blue-btn'>Simpan</button>
                         </Link>
                             
-                        <Link href='/' className={style.btn}>
+                        {/* <Link href='/' className={style.btn}>
                             <button className='btn green-btn' onClick={(event) => handleDownload(event)}>Unduh</button>
-                        </Link>
+                        </Link> */}
                     </div>
                 </main>
             </div>

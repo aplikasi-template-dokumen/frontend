@@ -35,7 +35,6 @@ export default function MyTemplateDetail() {
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/t/${router.query.id}?token=${t}`)
                 .then((res) => res.json())
                 .then((val) => {
-                    setUid(val.uid)
                     setData(val.data)
                     setCatId(val.data.cat_id)
                     setSubId(val.data.sub_cat_id)
