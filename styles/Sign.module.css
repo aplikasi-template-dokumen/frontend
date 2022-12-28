@@ -3,14 +3,12 @@
 }
 
 .container {
-    /* display: flex;
-    justify-content: center; */
     text-align: left;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 6px 0px #ADADAD;
     border-radius: 4px;
     padding: 30px 60px;
-    width: 500px;
+    max-width: 500px;
     margin: 100px auto;
     color: #000000;
 }
@@ -76,4 +74,12 @@
 .center a {
     color: rgb(40, 79, 146);
     margin-left: -10px;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0px 60px;
+        box-shadow: none;
+        font-size: 14px;
+    }
 }

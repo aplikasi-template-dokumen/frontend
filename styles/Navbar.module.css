@@ -87,3 +87,10 @@
     object-fit: cover;
     margin-right: 15px;
 }
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+        font-size: 14px;
+    }
+}

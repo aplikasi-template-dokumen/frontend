@@ -59,11 +59,12 @@ export default function DashboardCategories() {
                     <h1>Daftar Kategori dan Sub Kategori</h1>
                     <hr />
 
-                    <button onClick={(e) => setDisplay(['show', 'hide'])} className={display[0] == 'show' ? 'btn blue-btn' : 'btn'}>Kategori</button>
-                    <button onClick={(e) => setDisplay(['hide', 'show'])} className={display[1] == 'show' ? 'btn blue-btn' : 'btn'}>Sub Kategori</button>
+                    <button onClick={(e) => setDisplay(['show', 'hide'])} className={display[0] == 'show' ? `btn blue-btn ${style.btnDisplay}` : `btn ${style.btnDisplay}`}>Kategori</button>
+                    <button onClick={(e) => setDisplay(['hide', 'show'])} className={display[1] == 'show' ? `btn blue-btn ${style.btnDisplay}` : `btn ${style.btnDisplay}`}>Sub Kategori</button>
 
                     <div className={display[0]}>
-                        { catList.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Nama Kategori</td><td>Jumlah Sub Kategori</td><td></td><td></td></tr></thead><tbody>{ catList.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.name}</td><td>{item.id}</td><td><Link href={`/dashboard/categories/${item.id}/edit`}><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></Link></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' onClick={((event) => handleDelete(event, item.id, 'c'))} /></td></tr>) }</tbody></table> }
+                        {/* { catList.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Nama Kategori</td><td>Jumlah Sub Kategori</td><td></td><td></td></tr></thead><tbody>{ catList.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.name}</td><td>{item.id}</td><td><Link href={`/dashboard/categories/${item.id}/edit`}><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></Link></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' onClick={((event) => handleDelete(event, item.id, 'c'))} /></td></tr>) }</tbody></table> } */}
+                        { catList.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Nama Kategori</td><td></td><td></td></tr></thead><tbody>{ catList.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.name}</td><td><Link href={`/dashboard/categories/${item.id}/edit`}><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></Link></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' onClick={((event) => handleDelete(event, item.id, 'c'))} /></td></tr>) }</tbody></table> }
 
                         <Link className={style.btn} href='/dashboard/categories/create'>
                             <button className={`btn blue-btn ${style.btnCreate}`}>Tambah Kategori</button>
