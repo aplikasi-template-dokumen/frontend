@@ -103,9 +103,20 @@ main {
     padding: 10px 0;
   }
 
+  header .features {
+    /* background-color: #112e60; */
+    width: 100%;
+    justify-content: center;
+  }
+
   header .features div {
+    /* margin: 0; */
     width: calc(240px / 1.5);
+    max-width: 47%;
+    /* max-height: 38%; */
+    /* max-width: ; */
     height: calc(300px / 1.5);
+    /* height: 40%; */
   }
   
   header .features div img {

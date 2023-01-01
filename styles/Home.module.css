@@ -128,10 +128,6 @@
     font-size: 20px;
   }
   
-  .searchForm {
-    /* font-size: 20px; */
-  }
-  
   .searchForm input {
     width: 70%;
     height: 30px;
@@ -173,7 +169,6 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 30px 0;
-    /* background-color: #ADADAD; */
   }
   
   .filterBox {
