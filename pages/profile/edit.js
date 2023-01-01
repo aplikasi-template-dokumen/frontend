@@ -21,7 +21,7 @@ export default function EditProfile() {
     useEffect(() => {
         const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
         
-        if (t == null) {
+        if (!t) {
             router.push(`/`)
         }
 
@@ -77,9 +77,7 @@ export default function EditProfile() {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-
-            // console.log(response.data)
-
+            
             router.push('/profile')
         }
 

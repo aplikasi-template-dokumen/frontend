@@ -15,7 +15,7 @@ export default function MyTemplatesPage() {
     useEffect(() => {
         const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (t == null) {
+        if (!t) {
             router.push('/')
         }
 

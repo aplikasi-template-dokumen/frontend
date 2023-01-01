@@ -14,7 +14,7 @@ export default function MyDocumentsPage() {
     useEffect(() => {
         const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (t == undefined) {
+        if (!t) {
             router.push('/login')
         }
 

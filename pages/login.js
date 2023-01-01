@@ -8,11 +8,12 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 
 export default function LoginPage() {
-    const user = typeof window !== 'undefined' ? window.localStorage.getItem('u') : {}
     const router = useRouter()
 
     useEffect(() => {
-        if (user !== null) {
+        const token = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+
+        if (token) {
             router.push(`/`)
         }
     })
@@ -27,10 +28,14 @@ export default function LoginPage() {
                 pass: document.getElementById('pass').value
             })
             .then((val) => {
-                window.localStorage.setItem('t', val.data.token)
+                if (val.data.status === 400) {
+                    alert('Login tidak berhasil!')
+                }
 
-                console.log(val.data.message)
-                router.push({ pathname: `/` })
+                else {
+                    window.localStorage.setItem('t', val.data.token)
+                    router.push({ pathname: `/` })
+                }
             })
         }
 

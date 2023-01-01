@@ -103,10 +103,127 @@
   padding: 10px 0;
 }
 
+.btnFilter {
+  display: none;
+}
+
 .content .cards {
   width: 78%;
   display: grid;
   grid-template-columns: auto auto auto auto;
   column-gap: 20px;
   row-gap: 40px;
+}
+
+@media (max-width: 480px) {
+  .searchContainer {
+    /* padding: 0 0 0 0;
+    background-color: #ADADAD; */
+    /* margin-left: -30px; */
+    padding: 30px 0 20px 0;
+  }
+  
+  .searchContainer h1 {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  .searchForm {
+    /* font-size: 20px; */
+  }
+  
+  .searchForm input {
+    width: 70%;
+    height: 30px;
+    margin-right: 10px;
+    padding: 0 15px;
+    font-size: 10px;
+  }
+  
+  .searchForm button {
+    height: 30px;
+    padding: 0 8px;
+  }
+  
+  .searchIcon {
+    width: 10px;
+  }
+
+  .categories {
+    /* display: flex;
+    justify-content: center; */
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 8px;
+  }
+  
+  .categories p {
+    width: fit-content;
+    margin: 10px;
+    padding: 4px 0;
+    border-radius: 4px;
+  }
+  
+  .categories p:active {
+    background-color: rgba(216, 233, 255, 0.605);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 30px 0;
+    /* background-color: #ADADAD; */
+  }
+  
+  .filterBox {
+    width: 100%;
+    line-height: 0;
+    color: #000000;
+    /* position: sticky; */
+    /* top: 0; */
+  }
+  
+  .filterBox h2 {
+    display: none;
+  }
+  
+  .filterBox form {
+    margin-top: 0px;
+    box-shadow: none;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .filterBox form p {
+    display: none;
+  }
+  
+  .filterBox form select {
+    width: 31%;
+    padding: 6px 8px;
+    margin-bottom: 0px;
+    font-size: 8px;
+  }
+  
+  .filterBox form button {
+    display: none;
+  }
+
+  .btnFilter {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 6px 0;
+    font-size: 8px;
+  }
+  
+  .content .cards {
+    width: 100%;
+    margin-top: 30px;
+    grid-template-columns: auto auto;
+    column-gap: 20px;
+    row-gap: 30px;
+  }
 }

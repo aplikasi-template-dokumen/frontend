@@ -65,6 +65,29 @@ header span {
   font-weight: 600;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main-container {
+  padding: 60px 40px;
+}
+
+.main-container h1 {
+  color: #000000;
+}
+
+main {
+  background-color: #FFFFFF;
+  padding: 0 40px 0 100px;
+  /* margin: 0 auto; */
+}
+
 @media (max-width: 480px) {
   header {
     flex-direction: column;
@@ -94,29 +117,14 @@ header span {
   header .features div p {
     font-size: 12px;
   }
-}
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.main-container {
-  padding: 60px 40px;
-}
-
-.main-container h1 {
-  color: #000000;
-}
-
-main {
-  background-color: #FFFFFF;
-  padding: 0 40px 0 100px;
-  /* margin: 0 auto; */
+  main {
+    /* background-color: #FFFFFF; */
+    /* padding: 0 40px 0 100px; */
+    padding-left: 40px;
+    padding-right: 40px;
+    /* margin: 0 auto; */
+  }
 }
 
 img.iconDel {

@@ -40,7 +40,7 @@ export default function TemplateDetail() {
     const handleUseTemplate = async (e) => {
         e.preventDefault()
 
-        if (window.localStorage.getItem('t') == undefined) {
+        if (!window.localStorage.getItem('t')) {
             router.push('/login')
         }
 

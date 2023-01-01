@@ -12,7 +12,7 @@ export default function Navbar() {
     useEffect(() => {
         const token = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (token != undefined) {
+        if (token) {
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/u/info?token=${token}`)
                 .then((res) => res.json())
                 .then((val) => {

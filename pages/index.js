@@ -75,8 +75,6 @@ export default function Home() {
 
       else {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/sc/c/${cat_id}`)
-
-        
         setSub(response.data.data)
       }
 
@@ -198,6 +196,9 @@ export default function Home() {
 
                 <button className='btn blue-btn' onClick={(event) => handleFilter(event)}>Filter</button>
               </form>
+
+              <button className={`btn blue-btn ${styles.btnFilter}`} onClick={(event) => handleFilter(event)}>Filter</button>
+
           </div>
 
           <div className={styles.cards}>

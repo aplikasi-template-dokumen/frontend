@@ -13,7 +13,7 @@ export default function ChangePassword() {
     useEffect(() => {
         const t = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
 
-        if (t === null) {
+        if (!t) {
             router.push('/')
         }
     })
@@ -26,8 +26,15 @@ export default function ChangePassword() {
                 newPass: document.getElementById('pass').value,
                 newPassConf: document.getElementById('re-pass').value
             })
-            
-            router.push('/profile')
+                .then((val) => {
+                    if (val.data.status === 400) {
+                        alert('Ubah password tidak berhasil!')
+                    }
+
+                    else {
+                        router.push('/profile')
+                    }
+                })
         }
 
         catch(err) {

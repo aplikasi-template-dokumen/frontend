@@ -8,13 +8,14 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 
 export default function SignUpPage() {
-    const user = typeof window !== 'undefined' ? window.localStorage.getItem('i') : {}
     const router = useRouter()
-
+    
     const [occs, setOccs] = useState([])
-
+    
     useEffect(() => {
-        if (user !== null) {
+        const token = typeof window !== 'undefined' ? window.localStorage.getItem('t') : {}
+        
+        if (token) {
             router.push(`/${user}`)
         }
 

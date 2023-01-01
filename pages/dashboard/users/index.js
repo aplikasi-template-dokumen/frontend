@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
 import style from '../../../styles/Admin.module.css'
+import axios from 'axios'
 
 export default function DashboardUsers() {
     const [list, setList] = useState([])
@@ -17,18 +18,18 @@ export default function DashboardUsers() {
     }, [])
 
     const handleDelete = async (event, u_id) => {
-        if (confirm('Hapus dokumen ini?') == true) {
-            // const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/d/${u_id}/delete?token=${window.localStorage.getItem('t')}`)
-            // window.location.reload()
-            if (confirm('Seriusan mau dihapus?' == true)) {
-                if (confirm('Yakin???') == true) {
-                    if (confirm('Jangan nyesel ya..') == true) {
-                        if (confirm('Sip, terakhir ya... Hapus nih?') == true) {
-                            alert('Ceritanya kehapus..')
-                        }
-                    }
-                }
-            }
+        if (confirm('Hapus user ini?') == true) {
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/u/${u_id}/delete?token=${window.localStorage.getItem('t')}`)
+            window.location.reload()
+            // if (confirm('Seriusan mau dihapus?' == true)) {
+            //     if (confirm('Yakin???') == true) {
+            //         if (confirm('Jangan nyesel ya..') == true) {
+            //             if (confirm('Sip, terakhir ya... Hapus nih?') == true) {
+            //                 alert('Ceritanya kehapus..')
+            //             }
+            //         }
+            //     }
+            // }
         }
 
         else {
@@ -55,7 +56,7 @@ export default function DashboardUsers() {
 
                     { list.length == 0 ? <p>Data tidak ditemukan</p> : <table className='table'><thead><tr><td>Id</td><td>Username</td><td>Nama Lengkap</td><td>Email</td><td>Role</td><td></td><td></td></tr></thead><tbody>{ list.map((item) => <tr key={item.id}><td>{item.id}</td><td>{item.username}</td><td>{item.full_name}</td><td>{item.email}</td><td>{item.role_name.name}</td><td><Link href={`/dashboard/users/${item.id}/edit`}><img className='iconDel' src='/images/icon-edit.png' alt='edit' /></Link></td><td><img className='iconDel' src='/images/icon-del.png' alt='delete' onClick={(event) => handleDelete(event, item.id)}/></td></tr>) }</tbody></table> }
 
-                    <Link className={style.btn} href='/users/create'>
+                    <Link className={style.btn} href='/dashboard/users/create'>
                         <button className={`btn blue-btn ${style.btnCreate}`}>Tambah User</button>
                     </Link>
                 </main>
