@@ -2,12 +2,35 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+-- (Please do these steps after deploying backend) --
+
+Install and Configure NGINX:
+```bash
+sudo apt install nginx -y
+sudo systemctl enable nginx
+
+cd /etc/nginx/sites-available
+```
 
 ```bash
-npm run dev
-# or
-yarn dev
+
+```
+
+Clone this repository to server.
+Move inside the frontend repository and install node dependencies:
+```bash
+git clone https://github.com/aplikasi-template-dokumen/frontend.git
+cd frontend
+npm install
+```
+
+```bash
+npm run build
+```
+
+Configure PM2 (still inside frontend repository):
+```bash
+pm2 start npm --name server -- run 'dev'
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
