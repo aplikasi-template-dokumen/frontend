@@ -60,8 +60,10 @@ export default function Navbar() {
         }
 
         const logout = async () => {
-            window.localStorage.clear()
-            router.reload({ pathname: '/' })
+            if (confirm('Anda yakin ingin keluar?') == true) {
+                window.localStorage.clear()
+                router.reload({ pathname: '/' })
+            }
         }
 
         if (i.role == 1) {

@@ -46,7 +46,8 @@ export default function SignUpPage() {
                 window.localStorage.setItem('r', val.data.data.role)
                 
                 console.log(val.data.message)
-                router.push({ pathname: `/` })
+                // router.push({ pathname: `/` })
+                router.push({ pathname: `/login` })
             })
         }
         

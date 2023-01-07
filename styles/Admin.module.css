@@ -15,8 +15,20 @@
     border-radius: 4px;
     background-color: #FFFFFF;
     color: #000000;
-    padding: 15px;
+    padding: 30px 15px;
+    margin-top: 30px;
     margin-bottom: 40px;
+    box-shadow: 0 0 3px 5px #adadad2b;
+}
+
+.card img {
+    position: relative;
+    width: auto;
+    max-height: 70%;
+}
+
+.card p {
+    font-weight: 700;
 }
 
 .btnDisplay {
