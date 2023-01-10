@@ -30,29 +30,48 @@ export default function SignUpPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const email = document.getElementById('email').value
+        const name = document.getElementById('name').value
+        const uname = document.getElementById('username').value
+        const occ_id = parseInt(document.getElementById('occupation').value)
+        const pass = document.getElementById('pass').value
+        const repass = document.getElementById('confirm-pass').value
 
-        try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/regist`, {
-                email: document.getElementById('email').value,
-                name: document.getElementById('name').value,
-                uname: document.getElementById('username').value,
-                occ_id: parseInt(document.getElementById('occupation').value),
-                pass: document.getElementById('pass').value,
-                repass: document.getElementById('confirm-pass').value
-            })
-            .then((val) => {
-                window.localStorage.setItem('i', val.data.data.id)
-                window.localStorage.setItem('u', val.data.data.username)
-                window.localStorage.setItem('r', val.data.data.role)
-                
-                console.log(val.data.message)
-                // router.push({ pathname: `/` })
-                router.push({ pathname: `/login` })
-            })
+        if (email == '' || name == '' || uname == '' || occ_id == 0 || pass == '' || repass == '') {
+            alert('Data harus diisi!')
         }
-        
-        catch (err) {
-            console.log(err)
+
+        else {
+            try {
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/u/regist`, {
+                    email,
+                    name,
+                    uname,
+                    occ_id,
+                    pass,
+                    repass
+                })
+                .then((val) => {
+                    if (val.data.status === 201) {
+                        window.localStorage.setItem('i', val.data.data.id)
+                        window.localStorage.setItem('u', val.data.data.username)
+                        window.localStorage.setItem('r', val.data.data.role)
+                        
+                        console.log(val.data.message)
+                        // router.push({ pathname: `/` })
+                        router.push({ pathname: `/login` })
+                    }
+    
+                    else {
+                        alert('Registrasi akun tidak berhasil!')
+                    }
+                })
+            }
+    
+            
+            catch (err) {
+                console.log(err)
+            }
         }
     }
 
